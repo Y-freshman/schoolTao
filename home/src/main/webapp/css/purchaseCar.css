@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+.head_pic {
+	max-width: 120px;
+	max-height: 80px;
+}
+
+.grid-content .el-link,.size {
+	border-radius: 4px;
+	min-height: 36px;
+	padding-right: 20px;
+	font-size: 12px;
+}
+/* .grid-content :hover{
+  	cursor: pointer;
+  	corlor: light-blue;
+  } */
+.purchaseCar_sum{
+	color: red;
+	font-size: 18px;
+	font-weight: 600;
+}
+.purchaseCar_price{
+	font-size: 18px;
+	font-weight: 600;
+}
+
