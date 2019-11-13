@@ -13,14 +13,31 @@
 <body>
 	<div id="shouye">
 		<el-container>
-		  <el-header>Header</el-header>
-		  <el-container>
-		    <el-aside width="200px">Aside</el-aside>
-		    <el-container>
-		      <el-main>Main</el-main>
-		      <el-footer>Footer</el-footer>
-		    </el-container>
-		  </el-container>
+		  <el-header>
+		  	<el-row type="flex" class="row-bg">
+			  <el-col :span="12">
+			  	<div class="grid-content ">
+			  		<img src="img/icon_2.png" class="shouye_tubiao"></img>
+			  		<span style="color: blue">校园二手淘</span>
+			  	</div>
+			  </el-col>
+			  <el-col :span="12">
+				<div class="grid-content ">
+				  	<div style="margin-top: 15px;">
+					  <el-input placeholder="请输入你想要的商品"  class="input-with-select">
+					    <el-button slot="append"  type="primary"  icon="el-icon-search" style="background-color: #409EFF; color: white;">搜索</el-button>
+					  </el-input>
+					</div>
+				</div>
+			  </el-col>
+			</el-row>
+		  </el-header>
+		  <el-main>
+		  	Main
+		  </el-main>
+		  <el-footer>
+		  	Footer
+		  </el-footer>
 		</el-container>
 	</div>
 </body>
