@@ -5,47 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=no">
-<title>校园二手2</title>
-<!-- 引入样式 -->
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-<style>
-  .el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
-  
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  }
-  
-  .el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
-  
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-  
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-  
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
-</style>
+<title>校园二手淘</title>
+<link rel="shortcut icon" href="img/icon_3.png" type="image/png" />
+<link rel="stylesheet" href="css/element.css">
+<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-	<div id="app">
+	<div id="shouye">
 		<el-container>
 		  <el-header>Header</el-header>
 		  <el-container>
@@ -58,15 +24,8 @@
 		</el-container>
 	</div>
 </body>
-<!-- 引入组件库 -->
 <script src="js/vue.js"></script>
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-<script>
-    new Vue({
-      el: '#app',
-      data:{
-    	  
-      },
-    })
-</script>
+<script src="js/element.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/index.js"></script>
 </html>
