@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-﻿<el-row :gutter="20" class="shouye_db">
+<div id="shouye_db">
+﻿<el-row :gutter="20" class="shouye_db" >
 			  <el-col :span="6" :offset="1">
 			  	<el-link type="success">欢迎您：user321</el-link>
 			  </el-col>
@@ -85,4 +86,4 @@
 			</el-row>
 		  </el-header>
 		</el-container>
-  
+  </div>

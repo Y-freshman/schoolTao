@@ -5,15 +5,7 @@ $(document).ready(function(){
 		    
 		  },
 		  methods: {
-			  goSy: function () {
-				  $(".shouye_fl").click();
-			  },
-			  alert: function (e) {
-				  this.$message({
-			          message: '恭喜你，'+e,
-			          type: 'success'
-			        });
-			  },
+			  
 			  jubao: function () {
 				  this.$message({
 					  message: '我们已收到您的举报，感谢支持！',
@@ -32,5 +24,5 @@ $(document).ready(function(){
 		  },
 		  
 	});
-	$(".shouye_fl").click();
+	
 });
