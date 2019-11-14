@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>注册页面</title>
+<title>找回密码</title>
 <link rel="shortcut icon" href="img/icon_3.png" type="image/png" />
 <link rel="stylesheet" href="css/element.css">
 <link rel="stylesheet" href="css/fonts/element-icons.woff">
-<link rel="stylesheet" href="css/register.css">
+<link rel="stylesheet" href="css/reset.css">
 </head>
 <body>
-	<div id="register">
+	<div id="reset">
 	<!-- 	<el-header>Header</el-header> -->
 		<el-container class="header">
 			<el-col :span="2">
@@ -22,7 +22,7 @@
 			  	</div>
 			</el-col>
 			<el-col :span="10">
-			  		<p style="color: black;font-size:20px;">校园二手淘&nbsp&nbsp<span style="color: black;font-size:20px;">欢迎注册</span></p>
+			  		<p style="color: black;font-size:20px;">校园二手淘&nbsp&nbsp<span style="color: black;font-size:20px;">找回密码</span></p>
 			</el-col>
 			<el-col :span="10">
 			  	<div style="text-align:right;padding-right:40px;margin-top: 38px;">
@@ -37,21 +37,13 @@
 			  </el-col>
 			 <el-col :span="8">
 				<div class="grid-content " style="margin-top: 100px;">
-			 		<el-input v-model="root"  placeholder="请输入用户名"  clearable>
+			 		<el-input v-model="root"  placeholder="请输入您的用户名"  clearable>
 	  					 <el-button slot="prepend" icon="el-icon-user-solid"></el-button>
 			 		</el-input>
 			 		<br><br>
-	  				<el-input placeholder="请输入密码" v-model="pass"  autocomplete="off" show-password>
-	  					 <el-button slot="prepend" icon="el-icon-lock"></el-button>
-	  				</el-input>		
-	  				<br><br>	
-	  				<el-input placeholder="请确认密码" v-model="checkPass"  autocomplete="off" show-password>
-	  					 <el-button slot="prepend" icon="el-icon-lock"></el-button>
-	  				</el-input>		
-	  				<br><br>	
 				</div>	
 				<template >
-					  <el-select v-model="value" placeholder="请选择一个密保问题" style="width:100%" >
+					  <el-select v-model="value" placeholder="请选择你曾经的密保问题" style="width:100%" >
 					    <el-option
 					      v-for="item in options"
 					      :key="item.value"
@@ -61,12 +53,20 @@
 					  </el-select>
 				</template>	
 					 <br><br>	
-				<el-input placeholder="请输入密保答案" v-model="answer" clearable>
+				<el-input placeholder="请输入你的密保答案" v-model="answer" clearable>
 	  					 <el-button slot="prepend" icon="el-icon-s-comment"></el-button>
 	  			 </el-input>	
 		  			  <br><br>	
+	  			  <el-input placeholder="请输入密码" v-model="pass"  autocomplete="off" show-password>
+  					 <el-button slot="prepend" icon="el-icon-lock"></el-button>
+  				</el-input>		
+  				<br><br>	
+  				<el-input placeholder="请确认密码" v-model="checkPass"  autocomplete="off" show-password>
+  					 <el-button slot="prepend" icon="el-icon-lock"></el-button>
+  				</el-input>		
+  				<br><br>	
 				<div>
-					<el-button type="primary" style="width:100%;font-size:16px" @click="submitForm()">立即注册</el-button>	
+					<el-button type="primary" style="width:100%;font-size:16px" @click="submitForm()">密码重置</el-button>	
 				</div>
 			  </el-col>
 		</el-container>
@@ -78,5 +78,5 @@
 <script src="js/vue.js"></script>
 <script src="js/element.js"></script>
 <script src="js/jquery.min.js"></script>
-<script src="js/register.js"></script>
+<script src="js/reset.js"></script>
 </html>

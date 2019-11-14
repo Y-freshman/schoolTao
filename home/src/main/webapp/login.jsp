@@ -29,7 +29,7 @@
 	  					 <el-button slot="prepend" icon="el-icon-user-solid"></el-button>
 			 		</el-input>
 			 		<br><br>
-	  				<el-input placeholder="请输入密码" v-model="password" show-password>
+	  				<el-input placeholder="请输入密码" v-model="password"  autocomplete="off" show-password>
 	  					 <el-button slot="prepend" icon="el-icon-lock"></el-button>
 	  				</el-input>		
 	  				<br><br>								 				
