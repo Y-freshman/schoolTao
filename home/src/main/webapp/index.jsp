@@ -11,8 +11,9 @@
 <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+	<%@include file="/inc/header.inc"%>
 	<div id="shouye">
-		<%@include file="/inc/header.inc"%>
+		
 		<div >
 		  	  <el-carousel indicator-position="outside" height="350px">
 			    <el-carousel-item style="text-align:center;background-color: #eee;">
@@ -781,4 +782,5 @@
 <script src="js/element.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/index.js"></script>
+<script src="js/header.js"></script>
 </html>
