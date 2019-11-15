@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-.el-header, .el-footer {
+.gd_main .el-header, .el-footer {
 	background-color: #B3C0D1;
 	color: #333;
 	text-align: center;
@@ -24,6 +24,7 @@
 .gd_main .el-aside img {
 	width: 400px;
 	height: 400px;
+	object-fit: cover;
 }
 
 .gd_main .el-aside .el-row {
@@ -53,6 +54,23 @@
 	width: 80px;
 	height: 80px;
 	margin: 19px;
+	object-fit: cover;
+}
+.gd_main .gd_detail_item{
+	color:#333;
+	font-weight:400;
+}
+.gd_main .item_info{
+	color:#666;
+}
+.gd_detail_price{
+	color:#3a8ee6;
+	font-size: 24px;
+	font-weight: 600;
+	padding: 0 25px;
+}
+.gd_detail_status, .gd_detail_address, .gd_detail_time, .gd_detail_people{
+	padding: 0 50px;
 }
 .gd_price{
 	line-height: 35px;
