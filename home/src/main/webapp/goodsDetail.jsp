@@ -9,16 +9,17 @@
 <link rel="stylesheet" href="css/element.css">
 <link rel="stylesheet" href="css/fonts/element-icons.woff">
 <link rel="stylesheet" href="css/goodsDetail.css">
+<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+	<%@include file="/inc/header.inc"%>
 	<div id="goodsDetail">
-		<el-header>Header</el-header>
-		<el-breadcrumb separator="/">
+		<!-- <el-breadcrumb separator="/">
 		  <el-breadcrumb-item :to="{ path: '/' }"><span style="font-weight:400">首页</span></el-breadcrumb-item>
 		  <el-breadcrumb-item><a href="/" style="font-weight:400">校园二手</a></el-breadcrumb-item>
 		  <el-breadcrumb-item><a href="/" style="font-weight:400">二手分类</a></el-breadcrumb-item>
 		  <el-breadcrumb-item>史丹利</el-breadcrumb-item>
-		</el-breadcrumb>
+		</el-breadcrumb> -->
 		<div class="gd_main">
 			<el-container>
 			  <el-container>
@@ -41,17 +42,22 @@
 				</el-aside>
 			    <el-container>
 			      <el-main>
-					<p><b>STANLEY/史丹利单手开工具箱19寸STST73099/73100/73101内含抽屉 单手开工具箱19寸</b></p>
+					<p><b>{{title}}</b></p>
 					<div class="gd_price">
-						<p>合采价&emsp;&emsp;<span style="color:blue;font-size: 24px;font-weight: 600;">￥239.00&emsp;&emsp;</span>
-							<s>￥299</s></p>
-						<p>&emsp;&emsp;&emsp;&emsp;&emsp;15套及以上</p>
-						<p>货物编码&emsp;&emsp;&emsp;&emsp;10000016</p>
-						<p>可交易时间&emsp;&emsp;&emsp;&emsp;联系确认</p>
-						<p>联系人&emsp;&emsp;&emsp;&emsp;134xxxx0214</p>
+						<p><span class="gd_detail_item">物品价格:</span>
+							<span class="gd_detail_price">{{now_price}}</span>
+							<s>{{old_price}}</s></p>
+						<p><span class="gd_detail_item">物品现状:</span>
+							<span class="gd_detail_status item_info">{{status}}</span></p>
+						<p><span class="gd_detail_item">可交易地点:</span>
+							<span class="gd_detail_address item_info">{{address}}</span></p>
+						<p><span class="gd_detail_item">可交易时间:</span>
+							<span class="gd_detail_time item_info">{{time}}</span></p>
+						<p><span class="gd_detail_item">联系人:</span>
+							<span class="gd_detail_people item_info">{{people}}</span></p>
 						<template>
-						  期望数量&emsp;&emsp;&emsp;&emsp;
-						  <el-input-number v-model="num" @change="handleChange" controls-position="right" :min="1" :max="10" label="描述文字"></el-input-number>
+						  <span class="gd_detail_item">期望数量:&emsp;&emsp;&emsp;&emsp;</span>
+						  <el-input-number v-model="num" @change="handleChange" controls-position="right" :min="1" :max="own_num" label="描述文字"></el-input-number>
 						</template>
 						<el-row><br>
 						  <el-button type="danger" style="font-size: 18px;">
@@ -67,10 +73,12 @@
 			  </el-container>
 			</el-container>
 		</div>
+		<%@include file="/inc/footer.inc"%>
 	</div>
 </body>
 <script src="js/vue.js"></script>
 <script src="js/element.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/goodsDetail.js"></script>
+<script src="js/header.js"></script>
 </html>
