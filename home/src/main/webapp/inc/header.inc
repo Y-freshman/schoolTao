@@ -53,20 +53,20 @@
 					</el-dropdown>
 			  </el-col>
 			  <el-col :span="10" :offset="1">
-	  			<el-tabs >
-				    <el-tab-pane>
-					   <span slot="label"  @click="goSy()"><i class="el-icon-date"></i> 首页</span>
+	  			<el-tabs v-model="value">
+				    <el-tab-pane name="sy">
+					   <span slot="label"  @click="goSy()"><el-link href="index.jsp"> <i class="el-icon-s-home"></i>首页</el-link></span>
 					</el-tab-pane>
-				    <el-tab-pane>
-					   <span slot="label"><i class="el-icon-date"></i> 精品馆</span>
+				    <el-tab-pane name="qg">
+					   <span slot="label" @click="goQg()"><el-link href="qiugou.jsp"><i class="el-icon-s-flag"></i> 求购</el-link></span>
 					</el-tab-pane>
-				    <el-tab-pane>
+				    <el-tab-pane name="ppg">
 					   <span slot="label"><i class="el-icon-date"></i> 品牌管</span>
 					</el-tab-pane>
-				    <el-tab-pane>
+				    <el-tab-pane name="xg">
 					   <span slot="label"><i class="el-icon-date"></i> 限购</span>
 					</el-tab-pane>
-				    <el-tab-pane>
+				    <el-tab-pane name="yh">
 					   <span slot="label"><i class="el-icon-date"></i> 优惠</span>
 					</el-tab-pane>
 				  </el-tabs>
