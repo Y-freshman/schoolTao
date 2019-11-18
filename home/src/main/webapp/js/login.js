@@ -3,7 +3,7 @@ $(document).ready(function(){
 		  el: '#login',
 		  data: {
 			   root: '',
-			   password: ''
+			   password: '',
 		  },
 		  methods: {
 			  
