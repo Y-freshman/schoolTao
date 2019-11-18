@@ -10,6 +10,9 @@ $(document).ready(function(){
 				  sessionStorage.setItem("html","sy");
 				  //location.href="./index.jsp";
 			  },
+			  search: function () {
+				  location.href="./search.jsp";
+			  },
 			  goQg: function () {
 				  sessionStorage.setItem("html","qg");
 				  //location.href="./qiugou.jsp";

@@ -20,14 +20,14 @@
 			  <el-col :span="12">
 	  			<el-image src="img/icon_1.png" class="shouye_tubiao"  lazy></el-image>
 	  			<span class="shouye_tubiao2" >
-	  				校园二手淘<br>www.hcljy.com
+	  				校园二手淘<br>schooltao.com
 	  			</span>
 			  </el-col>
 			  <el-col :span="12">
 				<div class="grid-content ">
 				  	<div style="margin-top: 15px;">
 					  <el-input placeholder="请输入你想要的商品"  class="input-with-select">
-					    <el-button slot="append"  type="primary"  icon="el-icon-search" style="background-color: #409EFF; color: white;">搜索</el-button>
+					    <el-button slot="append"  @click="search()" type="primary"  icon="el-icon-search" style="background-color: #409EFF; color: white;">搜索</el-button>
 					  </el-input>
 					</div>
 				</div>
@@ -39,7 +39,7 @@
 					  <span class="el-dropdown-link shouye_fl" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
 					   <i class="el-icon-s-grid"></i>全部分类
 					  </span>
-					  <el-dropdown-menu slot="dropdown" style="width:150px;text-align: center;background-color: rgba(0,0,0,0.7);">
+					  <el-dropdown-menu slot="dropdown" style="width:150px;text-align: center;background-color: rgba(0,0,0,0.5);">
 					    <el-dropdown-item onclick="javascript:location.href='#shouye_gyyl'">工业原料</el-dropdown-item>
 					    <el-dropdown-item onclick="javascript:location.href='#shouye_jzsb'" divided>建筑设备</el-dropdown-item>
 					    <el-dropdown-item onclick="javascript:location.href='#shouye_znaf'" divided>智能安防</el-dropdown-item>
