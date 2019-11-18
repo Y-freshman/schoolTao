@@ -13,11 +13,12 @@ $(document).ready(function(){
 			  },
 			  sqpl: function (e) {
 				  $("#qg_sqpl"+e).css("display","none");
-				  $(".qg_zkpl"+e).fadeIn(500);
+				  $("#qg_plsl"+e).fadeIn(500);
+				  $("#qg_zkpl"+e).fadeIn(500);
 				  $("#qg_pl"+e).slideUp(500);
 			  },
 			  zkpl: function (e) {
-				  $(".qg_zkpl"+e).css("display","none");
+				  $("#qg_plsl"+e).css("display","none");
 				  $("#qg_zkpl"+e).css("display","none");
 				  $("#qg_sqpl"+e).fadeIn(500);
 				  $("#qg_pl"+e).slideDown(500);
@@ -47,6 +48,7 @@ $(document).ready(function(){
 		  },
 		  
 	});
+	/*
 	$("#qg_card0").hover(function(){
 		if($("#qg_sqpl0").css("display") == "none"){
 			$(".qg_zkpl0").css("display","none");
@@ -58,7 +60,6 @@ $(document).ready(function(){
 		    $(".qg_zkpl0").fadeIn(500);
 		}
 	}); 
-	/*
 	$("#qg_card0").mouseover(function(){
 		if($("#qg_sqpl0").css("display") == "none"){
 			$(".qg_zkpl0").css("display","none");

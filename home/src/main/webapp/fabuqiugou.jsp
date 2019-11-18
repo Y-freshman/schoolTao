@@ -20,7 +20,7 @@
 		  	  <el-col :span="8">
 	  			<el-image src="img/icon_1.png" class="shouye_tubiao"  lazy></el-image>
 	  			<span class="shouye_tubiao2" >
-	  				校园二手淘<br>www.hcljy.com
+	  				校园二手淘<br>schooltao.com
 	  			</span>
 			  </el-col>
 			  <el-col :span="8" style="text-align:center;float: left;margin-top: 35px;">
