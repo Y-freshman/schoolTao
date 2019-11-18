@@ -30,7 +30,7 @@ $(document).ready(function(){
 			  submitForm(formName) {
 			        this.$refs[formName].validate((valid) => {
 			          if (valid) {
-			            alert('submit!');
+			        	  this.$message.error('请输入用户名');
 			          } else {
 			            console.log('error submit!!');
 			            return false;
