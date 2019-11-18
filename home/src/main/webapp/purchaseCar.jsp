@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>我的购物车</title>
 <link rel="shortcut icon" href="img/icon_3.png" type="image/png" />
 <link rel="stylesheet" href="css/element.css">
 <link rel="stylesheet" href="css/fonts/element-icons.woff">

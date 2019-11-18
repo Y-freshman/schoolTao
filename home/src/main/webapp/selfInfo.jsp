@@ -36,6 +36,9 @@
 		      <el-radio label="女"></el-radio>
 		    </el-radio-group>
 		  </el-form-item>
+		  <el-form-item label="自我介绍" prop="selfInfo">
+		    <el-input type="textarea" v-model="ruleForm.selfInfo" style="width: 70%;"></el-input>
+		  </el-form-item>
 		  <el-form-item>
 		    <el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
 		    <el-button @click="resetForm('ruleForm')">重置</el-button>
