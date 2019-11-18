@@ -67,17 +67,21 @@
 				            <el-radio :label="false">非新品</el-radio>
 				          </el-radio-group>
 				       </el-form-item>
-				     <el-form-item label="商品图片">
-					    <el-upload
-						  class="avatar-uploader"
-						  action=""
-						  :show-file-list="false"
-						  :on-success="handleAvatarSuccess"
-						  :before-upload="beforeAvatarUpload">
-						  <img v-if="goods.picUrl" :src="goods.picUrl" class="avatar">
-						  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+				     
+					  
+					  <el-form-item label="商品图片">
+					  	<el-upload
+						  action="https://jsonplaceholder.typicode.com/posts/"
+						  list-type="picture-card"
+						  :on-preview="handlePictureCardPreview"
+						  :on-remove="handleRemove">
+						  <i class="el-icon-plus"></i>
 						</el-upload>
-					  </el-form-item>
+						<el-dialog :visible.sync="dialogVisible">
+						  <img width="100%" v-if="goods.picUrl" :src="goods.picUrl" alt="">
+						</el-dialog>
+					 </el-form-item>
+					 
 					<el-form-item label="商品简介" prop="brief">
 				          <el-input v-model="goods.brief" > </el-input>
 				      </el-form-item>
