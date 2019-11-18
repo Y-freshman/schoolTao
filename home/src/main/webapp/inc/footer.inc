@@ -47,7 +47,7 @@
 						800-8820-0820</b>
 						<p style="color:#666;margin-top: 5px;text-align: left;">周一至周五 9:00-18:00</p>
 						<p style="color:#666;margin-top: 20px;text-align: left;color:#999" @click="jubao()">
-							<el-link><i class="el-icon-headset" >&nbsp;我要举报</i></el-link>
+							<el-link><i class="el-icon-service" >&nbsp;我要举报</i></el-link>
 						</p>
 					</div>
 					<div style="float: left;margin-left: 10px">

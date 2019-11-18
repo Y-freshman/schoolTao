@@ -1,0 +1,4 @@
+@CHARSET "UTF-8";
+.el-tabs--border-card>.el-tabs__content {
+    padding: 0px;
+}
