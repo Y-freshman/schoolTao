@@ -84,16 +84,19 @@
 					          <el-menu-item index="2-3"><i class="el-icon-truck"></i>代收货</el-menu-item>
 					          <el-menu-item index="2-4"><i class="el-icon-s-claim"></i>已完成</el-menu-item>
 					      </el-submenu>
-					      
 				      <el-menu-item index="3">
+				        <i class="el-icon-edit-outline"></i>
+				        <span slot="title">商品求购</span>
+				      </el-menu-item>
+				       <el-menu-item index="4">
+				        <i class="el-icon-circle-plus-outline"></i>
+				        <span slot="title">发布商品</span>
+				      </el-menu-item>
+				        <el-menu-item index="5">
 				        <i class="el-icon-star-off"></i>
 				        <span slot="title">我的收藏</span>
 				      </el-menu-item>
-				      <el-menu-item index="4">
-				        <i class="el-icon-circle-plus-outline"></i>
-				        <span slot="title">发布求购</span>
-				      </el-menu-item>
-				      <el-submenu index="5">
+				      <el-submenu index="6">
 					        <template slot="title"><i class="el-icon-question"></i>常见问题</template>
 					          <el-menu-item index="3-1">选项1</el-menu-item>
 					          <el-menu-item index="3-2">选项2</el-menu-item>
