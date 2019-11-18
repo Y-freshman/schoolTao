@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/element.css">
 <link rel="stylesheet" href="css/fonts/element-icons.woff">
 <link rel="stylesheet" href="css/register.css">
+<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 	<div id="register">
@@ -18,11 +19,11 @@
 			</el-col>
 			<el-col :span="1.5">
 				<div class="grid-content ">
-			  		<el-link :underline="false"  href="#" ><img src="img/icon_2.png" class="register_tubiao"></img></el-link>
+			  		<el-link :underline="false"  href="#" ><img src="img/icon_1.png" class="register_tubiao"></img></el-link>
 			  	</div>
 			</el-col>
 			<el-col :span="10">
-			  		<p style="color: black;font-size:20px;">校园二手淘&nbsp&nbsp<span style="color: black;font-size:20px;">欢迎注册</span></p>
+			  		<p style="color: #1296db;font-size: 14px;font-weight: 600;float: left;margin-top: 18px;">校园二手淘&nbsp&nbsp<span style="color: black;font-size:20px;">欢迎注册</span></p>
 			</el-col>
 			<el-col :span="10">
 			  	<div style="text-align:right;padding-right:40px;margin-top: 38px;">
@@ -31,12 +32,11 @@
 				</div>  
 			 </el-col>
 		</el-container>
-		
-		<el-container>
+		<el-container style="min-height:521px;background-color:#eee">
 			  <el-col :span="8">
 			  </el-col>
 			 <el-col :span="8">
-				<div class="grid-content " style="margin-top: 100px;">
+				<div class="grid-content " style="margin-top: 50px;">
 			 		<el-input v-model="root"  placeholder="请输入用户名"  clearable>
 	  					 <el-button slot="prepend" icon="el-icon-user-solid"></el-button>
 			 		</el-input>
@@ -72,7 +72,7 @@
 		</el-container>
 		
 		
-		<el-footer>Footer</el-footer>
+		<%@include file="/inc/footer.inc"%>
 	</div>
 </body>
 <script src="js/vue.js"></script>
