@@ -9,20 +9,22 @@
 <link rel="stylesheet" href="css/element.css">
 <link rel="stylesheet" href="css/fonts/element-icons.woff">
 <link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 	<div id="reset">
 	<!-- 	<el-header>Header</el-header> -->
 		<el-container class="header">
 			<el-col :span="2">
+			
 			</el-col>
 			<el-col :span="1.5">
 				<div class="grid-content ">
-			  		<el-link :underline="false"  href="#" ><img src="img/icon_2.png" class="register_tubiao"></img></el-link>
+			  		<el-link :underline="false"  href="#" ><img src="img/icon_1.png" class="reset_tubiao"></img></el-link>
 			  	</div>
 			</el-col>
 			<el-col :span="10">
-			  		<p style="color: black;font-size:20px;">校园二手淘&nbsp&nbsp<span style="color: black;font-size:20px;">找回密码</span></p>
+				<p style="color: #1296db;font-size: 14px;font-weight: 600;float: left;margin-top: 18px;">校园二手淘&nbsp&nbsp<span style="color: black;font-size:20px;">找回密码</span></p>
 			</el-col>
 			<el-col :span="10">
 			  	<div style="text-align:right;padding-right:40px;margin-top: 38px;">
@@ -31,8 +33,7 @@
 				</div>  
 			 </el-col>
 		</el-container>
-		
-		<el-container>
+		<el-container style="min-height:521px;background-color:#eee">
 			  <el-col :span="8">
 			  </el-col>
 			 <el-col :span="8">
@@ -72,7 +73,7 @@
 		</el-container>
 		
 		
-		<el-footer>Footer</el-footer>
+			<%@include file="/inc/footer.inc"%>
 	</div>
 </body>
 <script src="js/vue.js"></script>

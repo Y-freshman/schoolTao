@@ -6,6 +6,7 @@ $(document).ready(function(){
 		          region: '',
 		          resource: '',
 		          userName: '',
+		          selfInfo: '',
 		        },
 		        rules: {
 			          region: [
@@ -17,7 +18,11 @@ $(document).ready(function(){
 			          userName: [
 			        	  { required: true, message: '请输入昵称', trigger: 'blur' },
 				          { min: 2, max: 7, message: '长度在 2 到 7 个字符', trigger: 'blur' }
-			          ]
+			          ],
+			          selfInfo: [
+			        	  { required: true, message: '介绍介绍自己吧', trigger: 'blur' },
+			        	  { min: 2, message: '少于2个字符的介绍怎么能显示你的魅力呢', trigger: 'blur' }
+		        	  ]
 			        },
 			        imageUrl: '',
 		  },

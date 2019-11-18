@@ -47,6 +47,9 @@
 #selfInfo  .el-input__inner {
 	border: 1px solid #4e93839e;
 }
+#selfInfo  .el-textarea__inner {
+	border: 1px solid #4e93839e;
+}
 #selfInfo .el-radio__inner {
     border: 1px solid #4e9383;
 }
