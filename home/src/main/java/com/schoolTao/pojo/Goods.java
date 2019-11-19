@@ -3,8 +3,7 @@ package com.schoolTao.pojo;
 import java.util.Date;
 
 public class Goods {
-
-	private Integer goodsId;
+    private Integer goodsId;
 
     private Integer userId;
 
@@ -18,7 +17,7 @@ public class Goods {
 
     private Integer goodsNum;
 
-    private Integer goodsUserPhone;
+    private String goodsUserPhone;
 
     private String goodsUserName;
 
@@ -88,12 +87,12 @@ public class Goods {
         this.goodsNum = goodsNum;
     }
 
-    public Integer getGoodsUserPhone() {
+    public String getGoodsUserPhone() {
         return goodsUserPhone;
     }
 
-    public void setGoodsUserPhone(Integer goodsUserPhone) {
-        this.goodsUserPhone = goodsUserPhone;
+    public void setGoodsUserPhone(String goodsUserPhone) {
+        this.goodsUserPhone = goodsUserPhone == null ? null : goodsUserPhone.trim();
     }
 
     public String getGoodsUserName() {
@@ -143,8 +142,8 @@ public class Goods {
     public void setGoodsViewNum(Integer goodsViewNum) {
         this.goodsViewNum = goodsViewNum;
     }
-    
-    @Override
+
+	@Override
 	public String toString() {
 		return "Goods [goodsId=" + goodsId + ", userId=" + userId + ", goodsName=" + goodsName + ", goodsOldPrice="
 				+ goodsOldPrice + ", goodsNewPrice=" + goodsNewPrice + ", goodsFresh=" + goodsFresh + ", goodsNum="
@@ -152,4 +151,6 @@ public class Goods {
 				+ goodsPics + ", goodsType=" + goodsType + ", goodsTime=" + goodsTime + ", goodsState=" + goodsState
 				+ ", goodsViewNum=" + goodsViewNum + "]";
 	}
+    
+    
 }
