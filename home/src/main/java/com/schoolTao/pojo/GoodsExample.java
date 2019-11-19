@@ -545,52 +545,62 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andGoodsUserPhoneEqualTo(Integer value) {
+        public Criteria andGoodsUserPhoneEqualTo(String value) {
             addCriterion("goods_user_phone =", value, "goodsUserPhone");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsUserPhoneNotEqualTo(Integer value) {
+        public Criteria andGoodsUserPhoneNotEqualTo(String value) {
             addCriterion("goods_user_phone <>", value, "goodsUserPhone");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsUserPhoneGreaterThan(Integer value) {
+        public Criteria andGoodsUserPhoneGreaterThan(String value) {
             addCriterion("goods_user_phone >", value, "goodsUserPhone");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsUserPhoneGreaterThanOrEqualTo(Integer value) {
+        public Criteria andGoodsUserPhoneGreaterThanOrEqualTo(String value) {
             addCriterion("goods_user_phone >=", value, "goodsUserPhone");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsUserPhoneLessThan(Integer value) {
+        public Criteria andGoodsUserPhoneLessThan(String value) {
             addCriterion("goods_user_phone <", value, "goodsUserPhone");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsUserPhoneLessThanOrEqualTo(Integer value) {
+        public Criteria andGoodsUserPhoneLessThanOrEqualTo(String value) {
             addCriterion("goods_user_phone <=", value, "goodsUserPhone");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsUserPhoneIn(List<Integer> values) {
+        public Criteria andGoodsUserPhoneLike(String value) {
+            addCriterion("goods_user_phone like", value, "goodsUserPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsUserPhoneNotLike(String value) {
+            addCriterion("goods_user_phone not like", value, "goodsUserPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodsUserPhoneIn(List<String> values) {
             addCriterion("goods_user_phone in", values, "goodsUserPhone");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsUserPhoneNotIn(List<Integer> values) {
+        public Criteria andGoodsUserPhoneNotIn(List<String> values) {
             addCriterion("goods_user_phone not in", values, "goodsUserPhone");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsUserPhoneBetween(Integer value1, Integer value2) {
+        public Criteria andGoodsUserPhoneBetween(String value1, String value2) {
             addCriterion("goods_user_phone between", value1, value2, "goodsUserPhone");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsUserPhoneNotBetween(Integer value1, Integer value2) {
+        public Criteria andGoodsUserPhoneNotBetween(String value1, String value2) {
             addCriterion("goods_user_phone not between", value1, value2, "goodsUserPhone");
             return (Criteria) this;
         }
