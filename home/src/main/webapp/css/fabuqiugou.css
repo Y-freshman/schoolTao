@@ -33,3 +33,7 @@
 .fbqg_tjtp:hover{
 	box-shadow: 1px 1px 3px #ccc;
 }
+.el-icon-plus:before {
+    content: "\e6d9";
+    line-height: 140px;
+}

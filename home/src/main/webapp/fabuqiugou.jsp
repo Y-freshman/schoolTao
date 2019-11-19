@@ -62,11 +62,22 @@
 		  	<el-row :gutter="20" >
 			  <el-col :span="22" :offset="1" >
 			  	<span style="color: #666;font-size: 16px;font-weight: 600">附加图片</span>
-			  	<span style="color: #aaa;font-size: 13px;font-weight: 600">（可不选，最多上传九张）</span>
+			  	<span style="color: #aaa;font-size: 13px;font-weight: 600">（可不选，最多上传六张）</span>
 			  </el-col>
 			</el-row>
 		  	<el-row :gutter="20" >
 			  <el-col :span="22" :offset="1" >
+			   	<el-upload
+				  action="https://jsonplaceholder.typicode.com/posts/"
+				  list-type="picture-card"
+				  :on-preview="handlePictureCardPreview"
+				  :on-remove="handleRemove">
+				  <i class="el-icon-plus"></i>
+				</el-upload>
+				<el-dialog :visible.sync="dialogVisible">
+				  <img width="100%" :src="dialogImageUrl" alt="">
+				</el-dialog>
+			  <!-- 
 			  	<div style="float: left;width: 8%;margin-right: 2%;">
 			  		<div class="fbqg_tpsc" >
 				  		<i class="el-icon-delete" style="color:#eee;font-size: 30px;line-height: 50px;"></i>
@@ -76,6 +87,7 @@
 			  	<div class="fbqg_tjtp" >
 			  		<i class="el-icon-plus" style="color:#eee;font-size: 30px;line-height: 70px;font-weight: 600"></i>
 			  	</div>
+		  	 -->
 			  </el-col>
 			</el-row>
 		  	<el-row :gutter="20" >
