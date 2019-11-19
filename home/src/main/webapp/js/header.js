@@ -6,12 +6,15 @@ $(document).ready(function(){
 		  },
 		  methods: {
 			  goSy: function () {
-				  $(".shouye_fl").click();
 				  sessionStorage.setItem("html","sy");
 				  //location.href="./index.jsp";
 			  },
+			  goSy2: function () {
+				  sessionStorage.setItem("html","sy");
+				  location.href="/home/index.jsp";
+			  },
 			  search: function () {
-				  location.href="./search.jsp";
+				  location.href="/home/search.do";
 			  },
 			  goQg: function () {
 				  sessionStorage.setItem("html","qg");
@@ -39,5 +42,7 @@ $(document).ready(function(){
 			$(".shouye_fl").css("pointer-events","none ");
 			$(".shouye_fl").css("cursor","no-drop ");
 		}
+	}else{
+		$(".shouye_fl").click();
 	}
 });

@@ -2,16 +2,16 @@
 <div id="shouye_db">
 ﻿<el-row :gutter="20" class="shouye_db" >
 			  <el-col :span="6" :offset="1">
-			  	<el-link type="success">欢迎您：user321</el-link>
+			  	<el-link type="success" href="/home/personalCenter.do">欢迎您：user321</el-link>
 			  </el-col>
 			  <el-col :span="3" :offset="7">
-			  	<el-link icon="el-icon-shopping-bag-1">我的订单</el-link>
+			  	<el-link icon="el-icon-shopping-bag-1" href="/home/orderForm.do">我的订单</el-link>
 			  </el-col>
 			  <el-col :span="4">
 			  	<el-link >在线客服/35135435</el-link>
 			  </el-col>
 			  <el-col :span="3">
-			  	<el-link icon="el-icon-shopping-cart-full">购物车(0)</el-link>
+			  	<el-link icon="el-icon-shopping-cart-full" href="/home/purchaseCar.do">购物车(0)</el-link>
 			  </el-col>
 		</el-row>
 		<el-container>
@@ -52,26 +52,18 @@
 					  </el-dropdown-menu>
 					</el-dropdown>
 			  </el-col>
-			  <el-col :span="10" :offset="1">
+			  <el-col :span="5" :offset="1">
 	  			<el-tabs v-model="value">
 				    <el-tab-pane name="sy">
-					   <span slot="label"  @click="goSy()"><el-link href="index.jsp"> <i class="el-icon-s-home"></i>首页</el-link></span>
+					   <span slot="label"  @click="goSy()"><el-link href="/home/index.jsp"> <i class="el-icon-s-home"></i>首页</el-link></span>
 					</el-tab-pane>
 				    <el-tab-pane name="qg">
-					   <span slot="label" @click="goQg()"><el-link href="qiugou.jsp"><i class="el-icon-s-flag"></i> 求购</el-link></span>
+					   <span slot="label" @click="goQg()"><el-link href="/home/qiugou.do"><i class="el-icon-s-flag"></i> 求购</el-link></span>
 					</el-tab-pane>
-				    <el-tab-pane name="ppg">
-					   <span slot="label"><i class="el-icon-date"></i> 品牌管</span>
-					</el-tab-pane>
-				    <el-tab-pane name="xg">
-					   <span slot="label"><i class="el-icon-date"></i> 限购</span>
-					</el-tab-pane>
-				    <el-tab-pane name="yh">
-					   <span slot="label"><i class="el-icon-date"></i> 优惠</span>
-					</el-tab-pane>
+				    
 				  </el-tabs>
 			  </el-col>
-			  <el-col :span="9" style="font-size:14px;margin-top:10px">
+			  <el-col :span="14" style="font-size:14px;margin-top:10px">
 				   <el-carousel style="float:right;width:333px;color:#666;"height="30px" direction="vertical" :autoplay="true"  indicator-position="none">
 				    <el-carousel-item  >
 				      <el-link @click="alert(1)">中小企业如何通过智能建造&emsp;[2019-11-12 17:44:00]</el-link>

@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=no">
 <title>校园二手淘</title>
-<link rel="shortcut icon" href="img/icon_3.png" type="image/png" />
-<link rel="stylesheet" href="css/element.css">
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/fabuqiugou.css">
+<link rel="shortcut icon" href="/home/img/icon_3.png" type="image/png" />
+<link rel="stylesheet" href="/home/css/element.css">
+<link rel="stylesheet" href="/home/css/index.css">
+<link rel="stylesheet" href="/home/css/fabuqiugou.css">
 </head>
 <body>
 	
@@ -62,11 +62,22 @@
 		  	<el-row :gutter="20" >
 			  <el-col :span="22" :offset="1" >
 			  	<span style="color: #666;font-size: 16px;font-weight: 600">附加图片</span>
-			  	<span style="color: #aaa;font-size: 13px;font-weight: 600">（可不选，最多上传九张）</span>
+			  	<span style="color: #aaa;font-size: 13px;font-weight: 600">（可不选，最多上传六张）</span>
 			  </el-col>
 			</el-row>
 		  	<el-row :gutter="20" >
 			  <el-col :span="22" :offset="1" >
+			   	<el-upload
+				  action="https://jsonplaceholder.typicode.com/posts/"
+				  list-type="picture-card"
+				  :on-preview="handlePictureCardPreview"
+				  :on-remove="handleRemove">
+				  <i class="el-icon-plus"></i>
+				</el-upload>
+				<el-dialog :visible.sync="dialogVisible">
+				  <img width="100%" :src="dialogImageUrl" alt="">
+				</el-dialog>
+			  <!-- 
 			  	<div style="float: left;width: 8%;margin-right: 2%;">
 			  		<div class="fbqg_tpsc" >
 				  		<i class="el-icon-delete" style="color:#eee;font-size: 30px;line-height: 50px;"></i>
@@ -76,6 +87,7 @@
 			  	<div class="fbqg_tjtp" >
 			  		<i class="el-icon-plus" style="color:#eee;font-size: 30px;line-height: 70px;font-weight: 600"></i>
 			  	</div>
+		  	 -->
 			  </el-col>
 			</el-row>
 		  	<el-row :gutter="20" >
@@ -89,8 +101,8 @@
 	<%@include file="/inc/footer.inc"%>
 	</div>
 </body>
-<script src="js/vue.js"></script>
-<script src="js/element.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/fabuqiugou.js"></script>
+<script src="/home/js/vue.js"></script>
+<script src="/home/js/element.js"></script>
+<script src="/home/js/jquery.min.js"></script>
+<script src="/home/js/fabuqiugou.js"></script>
 </html>

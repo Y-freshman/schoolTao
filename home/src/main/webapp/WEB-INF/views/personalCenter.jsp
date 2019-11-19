@@ -5,11 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>个人中心</title>
-<link rel="shortcut icon" href="img/icon_3.png" type="image/png" />
-<link rel="stylesheet" href="css/element.css">
-<link rel="stylesheet" href="css/fonts/element-icons.woff">
-<link rel="stylesheet" href="css/personalCenter.css">
-<link rel="stylesheet" href="css/index.css">
+<link rel="shortcut icon" href="/home/img/icon_3.png" type="image/png" />
+<link rel="stylesheet" href="/home/css/element.css">
+<link rel="stylesheet" href="/home/css/fonts/element-icons.woff">
+<link rel="stylesheet" href="/home/css/personalCenter.css">
+<link rel="stylesheet" href="/home/css/index.css">
 </head>
 <body>
 	<div id="personalCenter">
@@ -439,8 +439,8 @@
 		<%@include file="/inc/footer.inc"%>
 	</div>
 </body>
-<script src="js/vue.js"></script>
-<script src="js/element.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/personalCenter.js"></script>
+<script src="/home/js/vue.js"></script>
+<script src="/home/js/element.js"></script>
+<script src="/home/js/jquery.min.js"></script>
+<script src="/home/js/personalCenter.js"></script>
 </html>
