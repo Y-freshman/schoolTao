@@ -6,9 +6,12 @@ $(document).ready(function(){
 		  },
 		  methods: {
 			  goSy: function () {
-				  $(".shouye_fl").click();
 				  sessionStorage.setItem("html","sy");
 				  //location.href="./index.jsp";
+			  },
+			  goSy2: function () {
+				  sessionStorage.setItem("html","sy");
+				  location.href="/home/index.jsp";
 			  },
 			  search: function () {
 				  location.href="/home/search.do";

@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/home/css/index.css">
 </head>
 <body>
-	<%@include file="/inc/header.inc"%>
+	<%@include file="/inc/header2.inc"%>
 	<div id="orderForm">
 		<el-tabs v-model="activeName" @tab-click="handleClick">
 		    <el-tab-pane label="所有订单" name="first">
