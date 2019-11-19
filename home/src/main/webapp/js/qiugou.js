@@ -24,7 +24,7 @@ $(document).ready(function(){
 				  $("#qg_pl"+e).slideDown(500);
 			  },
 			  fbqg: function () {
-				  window.open("./fabuqiugou.jsp");
+				  window.open("/home/fabuqiugou.do");
 			  },
 			  xr_lb: function (e) {
 				  if(e == 0){

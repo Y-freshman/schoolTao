@@ -55,7 +55,9 @@
 				  type="textarea"
 				  :autosize="{ minRows: 4}"
 				  placeholder="内容描述区域"
-				  v-model="textarea2">
+				  v-model="text"
+				  maxlength="255"
+  				show-word-limit>
 				</el-input>
 			  </el-col>
 			</el-row>
@@ -70,8 +72,17 @@
 			   	<el-upload
 				  action="https://jsonplaceholder.typicode.com/posts/"
 				  list-type="picture-card"
+				  accept="image/*"
+				  :limit="imgLimit"
+				  :file-list="productImgs"
+				  :multiple="isMultiple"
 				  :on-preview="handlePictureCardPreview"
-				  :on-remove="handleRemove">
+				  :on-remove="handleRemove"
+				  :on-success="handleAvatarSuccess"
+				  :before-upload="beforeAvatarUpload"
+				  :on-exceed="handleExceed"
+				  :on-error="imgUploadError"
+				  >
 				  <i class="el-icon-plus"></i>
 				</el-upload>
 				<el-dialog :visible.sync="dialogVisible">
