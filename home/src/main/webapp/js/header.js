@@ -39,5 +39,7 @@ $(document).ready(function(){
 			$(".shouye_fl").css("pointer-events","none ");
 			$(".shouye_fl").css("cursor","no-drop ");
 		}
+	}else{
+		$(".shouye_fl").click();
 	}
 });

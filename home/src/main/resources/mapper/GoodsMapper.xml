@@ -9,7 +9,7 @@
     <result column="goods_new_price" jdbcType="INTEGER" property="goodsNewPrice" />
     <result column="goods_fresh" jdbcType="TINYINT" property="goodsFresh" />
     <result column="goods_num" jdbcType="INTEGER" property="goodsNum" />
-    <result column="goods_user_phone" jdbcType="INTEGER" property="goodsUserPhone" />
+    <result column="goods_user_phone" jdbcType="VARCHAR" property="goodsUserPhone" />
     <result column="goods_user_name" jdbcType="VARCHAR" property="goodsUserName" />
     <result column="goods_pics" jdbcType="VARCHAR" property="goodsPics" />
     <result column="goods_type" jdbcType="VARCHAR" property="goodsType" />
@@ -118,7 +118,7 @@
       goods_state, goods_view_num)
     values (#{goodsId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
       #{goodsOldPrice,jdbcType=INTEGER}, #{goodsNewPrice,jdbcType=INTEGER}, #{goodsFresh,jdbcType=TINYINT}, 
-      #{goodsNum,jdbcType=INTEGER}, #{goodsUserPhone,jdbcType=INTEGER}, #{goodsUserName,jdbcType=VARCHAR}, 
+      #{goodsNum,jdbcType=INTEGER}, #{goodsUserPhone,jdbcType=VARCHAR}, #{goodsUserName,jdbcType=VARCHAR}, 
       #{goodsPics,jdbcType=VARCHAR}, #{goodsType,jdbcType=VARCHAR}, #{goodsTime,jdbcType=TIMESTAMP}, 
       #{goodsState,jdbcType=CHAR}, #{goodsViewNum,jdbcType=INTEGER})
   </insert>
@@ -191,7 +191,7 @@
         #{goodsNum,jdbcType=INTEGER},
       </if>
       <if test="goodsUserPhone != null">
-        #{goodsUserPhone,jdbcType=INTEGER},
+        #{goodsUserPhone,jdbcType=VARCHAR},
       </if>
       <if test="goodsUserName != null">
         #{goodsUserName,jdbcType=VARCHAR},
@@ -244,7 +244,7 @@
         goods_num = #{record.goodsNum,jdbcType=INTEGER},
       </if>
       <if test="record.goodsUserPhone != null">
-        goods_user_phone = #{record.goodsUserPhone,jdbcType=INTEGER},
+        goods_user_phone = #{record.goodsUserPhone,jdbcType=VARCHAR},
       </if>
       <if test="record.goodsUserName != null">
         goods_user_name = #{record.goodsUserName,jdbcType=VARCHAR},
@@ -278,7 +278,7 @@
       goods_new_price = #{record.goodsNewPrice,jdbcType=INTEGER},
       goods_fresh = #{record.goodsFresh,jdbcType=TINYINT},
       goods_num = #{record.goodsNum,jdbcType=INTEGER},
-      goods_user_phone = #{record.goodsUserPhone,jdbcType=INTEGER},
+      goods_user_phone = #{record.goodsUserPhone,jdbcType=VARCHAR},
       goods_user_name = #{record.goodsUserName,jdbcType=VARCHAR},
       goods_pics = #{record.goodsPics,jdbcType=VARCHAR},
       goods_type = #{record.goodsType,jdbcType=VARCHAR},
@@ -311,7 +311,7 @@
         goods_num = #{goodsNum,jdbcType=INTEGER},
       </if>
       <if test="goodsUserPhone != null">
-        goods_user_phone = #{goodsUserPhone,jdbcType=INTEGER},
+        goods_user_phone = #{goodsUserPhone,jdbcType=VARCHAR},
       </if>
       <if test="goodsUserName != null">
         goods_user_name = #{goodsUserName,jdbcType=VARCHAR},
@@ -342,7 +342,7 @@
       goods_new_price = #{goodsNewPrice,jdbcType=INTEGER},
       goods_fresh = #{goodsFresh,jdbcType=TINYINT},
       goods_num = #{goodsNum,jdbcType=INTEGER},
-      goods_user_phone = #{goodsUserPhone,jdbcType=INTEGER},
+      goods_user_phone = #{goodsUserPhone,jdbcType=VARCHAR},
       goods_user_name = #{goodsUserName,jdbcType=VARCHAR},
       goods_pics = #{goodsPics,jdbcType=VARCHAR},
       goods_type = #{goodsType,jdbcType=VARCHAR},
