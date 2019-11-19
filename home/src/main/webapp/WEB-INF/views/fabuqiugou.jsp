@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=no">
 <title>校园二手淘</title>
-<link rel="shortcut icon" href="img/icon_3.png" type="image/png" />
-<link rel="stylesheet" href="css/element.css">
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/fabuqiugou.css">
+<link rel="shortcut icon" href="/home/img/icon_3.png" type="image/png" />
+<link rel="stylesheet" href="/home/css/element.css">
+<link rel="stylesheet" href="/home/css/index.css">
+<link rel="stylesheet" href="/home/css/fabuqiugou.css">
 </head>
 <body>
 	
@@ -101,8 +101,8 @@
 	<%@include file="/inc/footer.inc"%>
 	</div>
 </body>
-<script src="js/vue.js"></script>
-<script src="js/element.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/fabuqiugou.js"></script>
+<script src="/home/js/vue.js"></script>
+<script src="/home/js/element.js"></script>
+<script src="/home/js/jquery.min.js"></script>
+<script src="/home/js/fabuqiugou.js"></script>
 </html>

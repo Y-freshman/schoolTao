@@ -11,7 +11,7 @@ $(document).ready(function(){
 				  //location.href="./index.jsp";
 			  },
 			  search: function () {
-				  location.href="./search.jsp";
+				  location.href="/home/search.do";
 			  },
 			  goQg: function () {
 				  sessionStorage.setItem("html","qg");
