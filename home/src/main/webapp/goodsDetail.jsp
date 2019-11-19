@@ -24,7 +24,7 @@
 			<el-container>
 			  <el-container>
 			    <el-aside width="480px">	
-					<el-image src="img/goods/timg.jpg"></el-image>
+					<el-image :src="goodsPic"></el-image>
 					<el-row>
 					  <el-col :span="6"><div class="grid-content bg-purple">
 					  	<el-image src="img/goods/timg.jpg"></el-image>
@@ -42,13 +42,13 @@
 				</el-aside>
 			    <el-container>
 			      <el-main>
-					<p><b>{{title}}</b></p>
+					<p><b>{{goodsName}}</b></p>
 					<div class="gd_price">
 						<p><span class="gd_detail_item">物品价格:</span>
-							<span class="gd_detail_price">{{now_price}}</span>
-							<s>{{old_price}}</s></p>
+							<span class="gd_detail_price">{{goodsNewPrice}}</span>
+							<s>{{goodsOldPrice}}</s></p>
 						<p><span class="gd_detail_item">物品现状:</span>
-							<span class="gd_detail_status item_info">{{status}}</span></p>
+							<span class="gd_detail_status item_info">{{goodsFresh}}</span></p>
 						<p><span class="gd_detail_item">可交易地点:</span>
 							<span class="gd_detail_address item_info">{{address}}</span></p>
 						<p><span class="gd_detail_item">可交易时间:</span>

@@ -19,7 +19,7 @@ public class GoodsController {
 	@Autowired
 	GoodsService goodsService;
 	
-	@GetMapping("/{goodsId}")
+	@GetMapping("/{goodsId}.do")
 	@ResponseBody
 	public Map<String, Object> goodsDetail(@PathVariable(value="goodsId")Integer goodsId){
 		Map<String, Object>map = new HashMap<String, Object>();
