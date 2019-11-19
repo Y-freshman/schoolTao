@@ -56,7 +56,7 @@
 			            <template slot="append">元</template>
 			          </el-input>
 			        </el-form-item>
-				 	 <el-form-item label="商品简介" prop="retailPrice">
+				 	 <el-form-item label="现售价格" prop="retailPrice">
 				          <el-input v-model="goods.retailPrice" placeholder="0.00">
 				            <template slot="append">元</template>
 				          </el-input>
@@ -82,7 +82,8 @@
 						</el-dialog>
 					 </el-form-item>
 					 
-					<el-form-item label="商品简介" prop="brief">
+					<el-form-item label="商品数量
+					" prop="brief">
 				          <el-input v-model="goods.brief" > </el-input>
 				      </el-form-item>
 					  <el-form-item>
