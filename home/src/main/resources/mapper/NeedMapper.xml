@@ -254,4 +254,9 @@
     set need_comment_num = need_comment_num + 1
     where need_id = #{needId,jdbcType=INTEGER}
   </update>
+  <update id="addNum" parameterType="java.lang.Integer">
+    update need
+    set need_view_num = need_view_num + 1
+    where need_id = #{needId,jdbcType=INTEGER}
+  </update>
 </mapper>

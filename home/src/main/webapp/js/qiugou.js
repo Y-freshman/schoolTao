@@ -47,6 +47,13 @@ $(document).ready(function(){
 				  }
 			  },
 			  like: function (e,e1,e2,e3) {
+				  var star=getCookieById("star",e);
+				    if(star==""){
+				        addCookieById("star",e,2); 
+				    }else{
+				    	this.$message.error("您两个小时内已经点过赞了~");
+				    	return false;
+				    }
 				  let that = this;
 				  $.ajax({
 					  type: "post",
@@ -81,6 +88,30 @@ $(document).ready(function(){
 				  $("#qg_zkpl"+e).css("display","none");
 				  $("#qg_sqpl"+e).fadeIn(500);
 				  $("#qg_pl"+e).slideDown(500);
+				  var need=getCookieById("need",e);
+				    if(need==""){
+				        addCookieById("need",e,12); 
+				    }else{
+				    	//this.$message.error("您两个小时内已经点过赞了~");
+				    	return false;
+				    }
+				  let that = this;
+				  $.ajax({
+					  type: "post",
+					  dataType:"json",
+					  async:true,//同步异步
+					  contentType:"application/json", 
+					  url: "/home/need/update.do",
+					  data:  JSON.stringify({
+						  "needId":e,
+					  }), 
+					  success: function(data) {
+						 
+					  },
+					  error: function(){
+						  //that.$message.error('浏览失败！');
+					  }
+				  });
 			  },
 			  fbqg: function () {
 				  window.open("/home/fabuqiugou.do");
@@ -216,4 +247,78 @@ $(document).ready(function(){
 	        result="刚刚";
 	    return result;
 	};//时间戳转化为几天前，几小时前，几分钟前
+	/*
+	* 获取特定cookie的值
+	* @param    cookie键
+	* @return   cookie该键对应的值
+	* */
+	function getCookie(cname){
+	    var name=cname+"=";
+	    var ca=document.cookie.split(';');
+	    for(var i=0;i<ca.length;i++){
+	        var c=ca[i].trim();
+	        if(c.indexOf(name)==0)
+	            return c.substring(name.length,c.length);
+	    }
+	    return "";
+	}
+
+	/*
+	* 判断cookie键中是否有某个资源的id
+	* @param    cookie键
+	* @param    查询资源id
+	* @return   存在返回true，否则返回""
+	* */
+	function getCookieById(cname,id){
+	    var name=cname+"=";
+	    var ca=document.cookie.split(';');
+	    var cValue="";
+	    for(var i=0;i<ca.length;i++){
+	        var c=ca[i].trim();
+	        if(c.indexOf(name)==0)
+	            cValue=c.substring(name.length,c.length);
+	    }
+	    if(cValue!=""){
+	        var cArray=cValue.split(",");
+	        for(var i=0;i<cArray.length;i++){
+	            var c=cArray[i].trim();
+	            if(c.indexOf(id)==0){
+	                return true;
+	            }
+	        }
+	    }
+	    return "";
+	}
+
+
+	/*
+	* 添加某个资源id到cookie键中
+	* @param    cookie键名
+	* @param    资源id
+	* @param    cookie过期时间
+	* */
+	function addCookieById(cname,id,exdays){
+	    var cvalue=getCookie(cname);
+	    if(cvalue==""){
+	        cvalue=id;
+	    }else {
+	        var cArray=cvalue.split(",");
+	        var flag=0;
+	        for(var i=0;i<cArray.length;i++){
+	            var c=cArray[i].trim();
+	            if(c.indexOf(id)==0){
+	                flag=1;
+	                break;
+	            }
+	        }
+	        if(flag==0) {
+	            cvalue += "," + id;
+	        }
+	    }
+
+	    var d=new Date();
+	    d.setTime(d.getTime()+(exdays*60*60*1000));
+	    var expires="expires="+d.toGMTString();
+	    document.cookie=cname+"="+cvalue+"; "+expires;
+	}   
 });

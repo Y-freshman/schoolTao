@@ -21,12 +21,9 @@ public class NeedService {
 		return i;
 	}
 	
-	public void UpdateNeed(Need need) {
-		// TODO Auto-generated method stub
-		NeedExample needExample = new NeedExample();
-		needExample.createCriteria().andNeedContentEqualTo(need.getNeedContent());
-		//更新每一个need.getNeedContent()
-		needMapper.updateByExampleSelective(need, needExample);
+	public void UpdateNeed(int needId) {
+		
+		needMapper.addNum(needId);
 	}
 	
 	public List<Need> SelectNeed() {

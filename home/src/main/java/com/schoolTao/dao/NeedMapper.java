@@ -31,4 +31,6 @@ public interface NeedMapper {
     int updateByPrimaryKey(Need record);
     
     int incNum(Integer needId);
+
+	int addNum(Integer needId);
 }

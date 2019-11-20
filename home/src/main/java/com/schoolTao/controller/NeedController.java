@@ -53,6 +53,18 @@ public class NeedController {
 						map.put("i",i);
 						return map;
 			}
+			//更新浏览量
+			@RequestMapping(value = "/update.do")
+			@ResponseBody
+			public  Map<String, Object> update(HttpServletRequest request,HttpServletResponse response,@RequestBody Map<String,String> Data ) throws IOException, ParseException{
+				request.setCharacterEncoding("utf-8");
+				response.setContentType("application/json;charset=utf-8");
+				int needId = Integer.parseInt(Data.get("needId"));
+				needService.UpdateNeed(needId);
+				Map<String, Object>map = new HashMap<String, Object>();
+				map.put("i",1);
+				return map;
+			}
 			//查询求购
 			@RequestMapping(value = "/select.do")
 			@ResponseBody
