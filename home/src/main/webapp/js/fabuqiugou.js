@@ -38,7 +38,7 @@ $(document).ready(function(){
 				    		data:  JSON.stringify({
 				    			"needContent":vm.text,
 				    			"pics":vm.pics,
-				    			"user_id":vm.pics,
+				    			"user_id":1,
 				    		}), 
 				    		success: function(data) {
 				    			

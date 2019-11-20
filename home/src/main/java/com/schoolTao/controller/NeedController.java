@@ -1,6 +1,7 @@
 package com.schoolTao.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,11 +34,19 @@ public class NeedController {
 						request.setCharacterEncoding("utf-8");
 						response.setContentType("application/json;charset=utf-8");
 						String needContent = Data.get("needContent");
+						String needPics = Data.get("needPics");
+						int userId = Integer.parseInt(Data.get("userId"));
+						Date needTime  = new Date();
 				        Need need = new Need();
 				        need.setNeedContent(needContent);
-				        needService.InsertNeed(need);
+				        need.setNeedPics(needPics);
+				        need.setUserId(userId);
+				        need.setNeedCommentNum(0);
+				        need.setNeedViewNum(0);
+				        need.setNeedTime(needTime);
+				        int i = needService.InsertNeed(need);
 						Map<String, Object>map = new HashMap<String, Object>();
-						map.put("datas",1);
+						map.put("i",i);
 						return map;
 			}
 		

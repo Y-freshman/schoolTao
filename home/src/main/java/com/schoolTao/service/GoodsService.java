@@ -11,6 +11,11 @@ public class GoodsService {
 	@Autowired
 	GoodsMapper goodsMapper;
 
+	/**
+	 * 根据id获取商品信息
+	 * @param goodsId
+	 * @return
+	 */
 	public Goods getOne(Integer goodsId) {
 		// TODO Auto-generated method stub
 		return goodsMapper.selectByPrimaryKey(goodsId);

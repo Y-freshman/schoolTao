@@ -11,7 +11,7 @@
 		<!--数据库链接URL，用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://localhost:3306/schooltao" userId="root"
-			password="freshman">
+			password="123">
 		</jdbcConnection>
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
@@ -29,7 +29,6 @@
 			targetPackage="com.schoolTao.dao" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
-		
 		<!-- <table tableName="user" domainObjectName="User"></table>
 		<table tableName="turn" domainObjectName="Turn"></table>
 		<table tableName="remain" domainObjectName="Remain"></table>
@@ -41,6 +40,5 @@
 		<!-- <table tableName="comment" domainObjectName="Comment"></table>
 		<table tableName="collect" domainObjectName="Collect"></table>
 		<table tableName="cart" domainObjectName="Cart"></table> -->
-
 	</context>
 </generatorConfiguration>

@@ -13,16 +13,17 @@ public class NeedService {
 	@Autowired
 	NeedMapper needMapper;
 
-	public void InsertNeed(Need need) {
+	public int InsertNeed(Need need) {
 		// TODO Auto-generated method stub
-		needMapper.insertSelective(need);//插入，可部分插入
+		int i = needMapper.insertSelective(need);//插入，可部分插入
+		return i;
 	}
 	
 	public void UpdateNeed(Need need) {
 		// TODO Auto-generated method stub
 		NeedExample needExample = new NeedExample();
 		needExample.createCriteria().andNeedContentEqualTo(need.getNeedContent());
-		needMapper.updateByExampleSelective(need, needExample);//更新，可部分插入
+		needMapper.updateByExampleSelective(need, needExample);//更新
 	}
 	
 	
