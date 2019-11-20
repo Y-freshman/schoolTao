@@ -26,4 +26,7 @@
 #publishGoods .el-radio-group {
     margin-top: 12px;
 }
-
+#publishGoods .el-icon-plus::before {
+    content: "\e6d9";
+    line-height: 140px;
+}

@@ -5,10 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>商品发布</title>
-<link rel="shortcut icon" href="img/icon_3.png" type="image/png" />
-<link rel="stylesheet" href="css/element.css">
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/publishGoods.css">
+<link rel="shortcut icon" href="/home/img/icon_3.png" type="image/png" />
+<link rel="stylesheet" href="/home/css/element.css">
+<link rel="stylesheet" href="/home/css/index.css">
+<link rel="stylesheet" href="/home/css/publishGoods.css">
 </head>
 <body>
 	
@@ -56,7 +56,7 @@
 			            <template slot="append">元</template>
 			          </el-input>
 			        </el-form-item>
-				 	 <el-form-item label="商品简介" prop="retailPrice">
+				 	 <el-form-item label="现售价格" prop="retailPrice">
 				          <el-input v-model="goods.retailPrice" placeholder="0.00">
 				            <template slot="append">元</template>
 				          </el-input>
@@ -67,18 +67,23 @@
 				            <el-radio :label="false">非新品</el-radio>
 				          </el-radio-group>
 				       </el-form-item>
-				     <el-form-item label="商品图片">
-					    <el-upload
-						  class="avatar-uploader"
-						  action=""
-						  :show-file-list="false"
-						  :on-success="handleAvatarSuccess"
-						  :before-upload="beforeAvatarUpload">
-						  <img v-if="goods.picUrl" :src="goods.picUrl" class="avatar">
-						  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+				     
+					  
+					  <el-form-item label="商品图片">
+					  	<el-upload
+						  action="https://jsonplaceholder.typicode.com/posts/"
+						  list-type="picture-card"
+						  :on-preview="handlePictureCardPreview"
+						  :on-remove="handleRemove">
+						  <i class="el-icon-plus"></i>
 						</el-upload>
-					  </el-form-item>
-					<el-form-item label="商品简介" prop="brief">
+						<el-dialog :visible.sync="dialogVisible">
+						  <img width="100%" v-if="goods.picUrl" :src="goods.picUrl" alt="">
+						</el-dialog>
+					 </el-form-item>
+					 
+					<el-form-item label="商品数量
+					" prop="brief">
 				          <el-input v-model="goods.brief" > </el-input>
 				      </el-form-item>
 					  <el-form-item>
@@ -95,7 +100,7 @@
 	<%@include file="/inc/footer.inc"%>
 	</div>
 </body>
-<script src="js/vue.js"></script>
-<script src="js/element.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/publishGoods.js"></script>
+<script src="/home/js/vue.js"></script>
+<script src="/home/js/element.js"></script>
+<script src="/home/js/jquery.min.js"></script>
+<script src="/home/js/publishGoods.js"></script>

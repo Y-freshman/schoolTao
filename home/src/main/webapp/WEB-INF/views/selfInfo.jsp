@@ -5,11 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>个人信息</title>
-<link rel="shortcut icon" href="img/icon_3.png" type="image/png" />
-<link rel="stylesheet" href="css/element.css">
-<link rel="stylesheet" href="css/fonts/element-icons.woff">
-<link rel="stylesheet" href="css/selfInfo.css">
-<link rel="stylesheet" href="css/index.css">
+<link rel="shortcut icon" href="/home/img/icon_3.png" type="image/png" />
+<link rel="stylesheet" href="/home/css/element.css">
+<link rel="stylesheet" href="/home/css/fonts/element-icons.woff">
+<link rel="stylesheet" href="/home/css/selfInfo.css">
+<link rel="stylesheet" href="/home/css/index.css">
 </head>
 <body>
 	<%@include file="/inc/header.inc"%>
@@ -47,9 +47,9 @@
 	</div>
 	<%@include file="/inc/footer.inc"%>
 </body>
-<script src="js/vue.js"></script>
-<script src="js/element.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/selfInfo.js"></script>
-<script src="js/header.js"></script>
+<script src="/home/js/vue.js"></script>
+<script src="/home/js/element.js"></script>
+<script src="/home/js/jquery.min.js"></script>
+<script src="/home/js/selfInfo.js"></script>
+<script src="/home/js/header.js"></script>
 </html>
