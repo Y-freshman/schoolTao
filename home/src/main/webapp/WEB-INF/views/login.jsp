@@ -57,7 +57,7 @@
   				<br><br>								 				
 			</div>	
 			<div>
-				<el-button type="primary" style="width:100%;font-size:16px" >登      录</el-button>	
+				<el-button type="primary" style="width:100%;font-size:16px" @click="submitForm()">登      录</el-button>	
 			</div>
 			
 			<p style="margin-top:20px;">
