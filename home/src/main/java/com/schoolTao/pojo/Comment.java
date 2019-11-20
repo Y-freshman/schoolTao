@@ -6,7 +6,10 @@ public class Comment {
     private Integer commentId;
 
     private Integer userId;
-
+    private String userName;
+    private String userSex;
+    private String userAvater;
+    private String userVip;
     private Integer needId;
 
     private String commentContent;
@@ -62,12 +65,47 @@ public class Comment {
     public void setCommentLikeNum(Integer commentLikeNum) {
         this.commentLikeNum = commentLikeNum;
     }
+    
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserSex() {
+		return userSex;
+	}
+
+	public void setUserSex(String userSex) {
+		this.userSex = userSex;
+	}
+
+	public String getUserAvater() {
+		return userAvater;
+	}
+
+	public void setUserAvater(String userAvater) {
+		this.userAvater = userAvater;
+	}
+
+	public String getUserVip() {
+		return userVip;
+	}
+
+	public void setUserVip(String userVip) {
+		this.userVip = userVip;
+	}
 
 	@Override
 	public String toString() {
-		return "Comment [commentId=" + commentId + ", userId=" + userId + ", needId=" + needId + ", commentContent="
-				+ commentContent + ", commentTime=" + commentTime + ", commentLikeNum=" + commentLikeNum + "]";
+		return "Comment [commentId=" + commentId + ", userId=" + userId + ", userName=" + userName + ", userSex="
+				+ userSex + ", userAvater=" + userAvater + ", userVip=" + userVip + ", needId=" + needId
+				+ ", commentContent=" + commentContent + ", commentTime=" + commentTime + ", commentLikeNum="
+				+ commentLikeNum + "]";
 	}
-    
+
+	
     
 }

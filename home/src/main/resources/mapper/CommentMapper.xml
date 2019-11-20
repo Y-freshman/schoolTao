@@ -9,6 +9,12 @@
     <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime" />
     <result column="comment_like_num" jdbcType="INTEGER" property="commentLikeNum" />
   </resultMap>
+  <resultMap extends="BaseResultMap" id="BaseResultMapAndUser" type="com.schoolTao.pojo.Comment">
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_sex" jdbcType="CHAR" property="userSex" />
+    <result column="user_avater" jdbcType="VARCHAR" property="userAvater" />
+    <result column="user_vip" jdbcType="CHAR" property="userVip" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -70,6 +76,9 @@
   <sql id="Base_Column_List">
     comment_id, user_id, need_id, comment_content, comment_time, comment_like_num
   </sql>
+  <select id="selectCommentAndUser" parameterType="java.lang.Integer" resultMap="BaseResultMapAndUser">
+    select * from comment,user where comment.user_id = user.user_id and comment.need_id = #{needId} ORDER BY comment.comment_id DESC  
+  </select>
   <select id="selectByExample" parameterType="com.schoolTao.pojo.CommentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -223,6 +232,11 @@
       comment_content = #{commentContent,jdbcType=VARCHAR},
       comment_time = #{commentTime,jdbcType=TIMESTAMP},
       comment_like_num = #{commentLikeNum,jdbcType=INTEGER}
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+  <update id="incNum" parameterType="java.lang.Integer">
+    update comment
+    set comment_like_num = comment_like_num + 1
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
 </mapper>

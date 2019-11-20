@@ -20,48 +20,63 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.schoolTao.pojo.Need;
-import com.schoolTao.service.NeedService;
+import com.schoolTao.dao.NeedMapper;
+import com.schoolTao.pojo.Comment;
+import com.schoolTao.service.CommentService;
+import com.schoolTao.service.CommentService;
 
 @Controller
-@RequestMapping("/need" )
-public class NeedController {
+@RequestMapping("/comment" )
+public class CommentController {
 	
 	@Autowired
-	NeedService needService;
+	CommentService commentService;
 	
-			//插入求购
+	
+			//插入评论
 			@RequestMapping(value = "/insert.do")
 			@ResponseBody
 			public  Map<String, Object> insert(HttpServletRequest request,HttpServletResponse response,@RequestBody Map<String,String> Data ) throws IOException, ParseException{
 						request.setCharacterEncoding("utf-8");
 						response.setContentType("application/json;charset=utf-8");
-						String needContent = Data.get("needContent");
-						String needPics = Data.get("needPics");
+						String commentContent = Data.get("commentContent");
 						int userId = Integer.parseInt(Data.get("userId"));
-						Date needTime  = new Date();
+						int needId = Integer.parseInt(Data.get("needId"));
+						Date commentTime  = new Date();
 						SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :HH:mm:ss");
-				        Need need = new Need();
-				        need.setNeedContent(needContent);
-				        need.setNeedPics(needPics);
-				        need.setUserId(userId);
-				        need.setNeedCommentNum(0);
-				        need.setNeedViewNum(0);
-				        need.setNeedTime(dateFormat.parse(dateFormat.format(needTime)));
-				        int i = needService.InsertNeed(need);
+				        Comment comment = new Comment();
+				        comment.setCommentContent(commentContent);
+				        comment.setCommentLikeNum(0);
+				        comment.setNeedId(needId);
+				        comment.setUserId(userId);
+				        comment.setCommentTime(dateFormat.parse(dateFormat.format(commentTime)));
+				        int i = commentService.InsertComment(comment,needId);
 						Map<String, Object>map = new HashMap<String, Object>();
 						map.put("i",i);
 						return map;
 			}
-			//查询求购
+			//评论点赞
+			@RequestMapping(value = "/update.do")
+			@ResponseBody
+			public  Map<String, Object> update(HttpServletRequest request,HttpServletResponse response,@RequestBody Map<String,String> Data ) throws IOException, ParseException{
+				request.setCharacterEncoding("utf-8");
+				response.setContentType("application/json;charset=utf-8");
+				int commentId = Integer.parseInt(Data.get("commentId"));
+				commentService.UpdateComment(commentId);
+				Map<String, Object>map = new HashMap<String, Object>();
+				map.put("i",1);
+				return map;
+			}
+			//查询评论
 			@RequestMapping(value = "/select.do")
 			@ResponseBody
 			public  Map<String, Object> select(HttpServletRequest request,HttpServletResponse response,@RequestBody Map<String,String> Data ) throws IOException, ParseException{
 				request.setCharacterEncoding("utf-8");
 				response.setContentType("application/json;charset=utf-8");
-				List<Need> needlist = needService.SelectNeed();
+				int needId = Integer.parseInt(Data.get("needId"));
+				List<Comment> commentlist = commentService.SelectComment(needId);
 				Map<String, Object>map = new HashMap<String, Object>();
-				map.put("list",needlist);
+				map.put("list",commentlist);
 				return map;
 			}
 		

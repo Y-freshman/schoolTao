@@ -70,6 +70,7 @@
 		  	<el-row :gutter="20" >
 			  <el-col :span="22" :offset="1" >
 			   	<el-upload
+			   	  ref='upload'
 				  action="http://upload-z2.qiniup.com"
 				  :data="tk"
 				  list-type="picture-card"
