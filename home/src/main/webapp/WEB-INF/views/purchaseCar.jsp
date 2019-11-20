@@ -15,42 +15,47 @@
 		<template>
 		  <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" border 
 		  style="width: 100%;border:1px solid rgb(72, 115, 172);" @selection-change="handleSelectionChange">
-		    <el-table-column type="selection" width="55" style="border:1px solid rgb(72, 115, 172);"> </el-table-column>
-		    <el-table-column label="商品信息" width="570">
+		    <el-table-column type="selection" width="45" style="border:1px solid rgb(72, 115, 172);"> </el-table-column>
+		    <el-table-column label="商品信息" width="550">
 		    	<template slot-scope="scope">
 			        <el-row>
 					  <el-col :span="8"><div class="grid-content">
-					  	<img :src="scope.row.head_pic" class="head_pic"/>
+					  	<img :src="scope.row.goodsPics" class="head_pic"/>
 					  </div></el-col>
-					  <el-col :span="8"><div class="grid-content" style="margin-left: -20px;">
-					  	<el-link href="goodsDetail.jsp" :underline="false" target="_blank">
-					  		{{ scope.row.title }}
+					  <el-col :span="8"><div class="grid-content" style="margin-left: -20px;margin-top: 10px;">
+					  	<el-link :underline="false" target="_blank" @click="toDetail(scope.row.goodsId)">
+					  		{{ scope.row.goodsName }}
 					  	</el-link>
 					  </div></el-col>
-					  <el-col :span="8"><div class="grid-content size" style="margin-left: 20px;" 
-					  @mouseenter="sizeOn">
-					  	<i class="el-icon-edit" @click="gdMdfySize" class="gd_mdfy_size"></i>
-					  	<p style="margin-top: 0px;">{{ scope.row.color }}</p>
-					  	<p style="margin-top: -10px;">{{ scope.row.size }}</p>
+					  <el-col :span="8"><div class="grid-content size" style="margin-left: 20px;margin-top:3px;">
+					  	<!-- <i class="el-icon-edit" @click="gdMdfySize" class="gd_mdfy_size"></i> -->
+					  	<p style="margin-top: 0px;"><s>￥{{ scope.row.goodsOldPrice }}</s></p>
+					  	<p style="margin-top: -10px;">{{ scope.row.goodsFresh|xinxian }}</p>
+					  	<p style="margin-top: -10px;">{{ scope.row.goodsState|state }}</p>
 					  </div></el-col>
 					</el-row>
 			    </template>
 		    </el-table-column>
-		    <el-table-column label="出手人" width="161"> 
+		    <el-table-column label="出手人" width="151"> 
 	    		<template slot-scope="scope">
 	    			<el-link type="primary">
-		        	{{ scope.row.source }}
+		        	{{ scope.row.goodsUserName }}
 		        	</el-link>
+    			</template>
+		    </el-table-column>
+		    <el-table-column label="数量" width="40">
+		    	<template slot-scope="scope">
+		        	<span class="purchaseCar_num">{{ scope.row.cartGoodsNum }}</span>
     			</template>
 		    </el-table-column>
 		    <el-table-column label="金额" width="121">
 		    	<template slot-scope="scope">
-		        	<span class="purchaseCar_sum">￥{{ scope.row.sum }}</span>
+		        	<span class="purchaseCar_sum">￥{{ scope.row.goodsNewPrice }}</span>
     			</template>
 		    </el-table-column>
 		    <el-table-column label="操作" width="111" show-overflow-tooltip> 
 		    	<template slot-scope="scope">
-			        <el-button @click.native.prevent="deleteRow(scope.$index, tableData)"
+			        <el-button @click.native.prevent="deleteRow(scope.$index,scope.row.cartId)"
 			          type="text" size="small">
 			          <span style="color:red">删除</span>
 			        </el-button>

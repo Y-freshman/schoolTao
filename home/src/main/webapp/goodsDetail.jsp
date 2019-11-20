@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-	<%@include file="/inc/header.inc"%>
+	<%@include file="/inc/header2.inc"%>
 	<div id="goodsDetail">
 		<div class="gd_main">
 			<el-container>
@@ -43,13 +43,14 @@
 							<span class="gd_detail_people item_info">{{goods.goodsUserName}}（{{goods.goodsUserPhone}}）</span></p>
 						<template>
 						  <span class="gd_detail_item">商品货存:&emsp;&emsp;&emsp;&emsp;</span>
-						  <el-input-number v-model="goods.num" @change="handleChange" controls-position="right" :min="1" :max="3" label="描述文字"></el-input-number>
+						  <!-- <el-input-number @change="handleChange" controls-position="right" :min="1" :max="goods.goodsNum" label="描述文字"></el-input-number> -->
+						  {{goods.goodsNum}}
 						</template>
 						<el-row><br>
-						  <el-button type="danger" style="font-size: 18px;" @click="buy">
+						  <el-button type="danger" style="font-size: 18px;" @click="buy()">
 						  	立即购买
 						  </el-button>
-						  <el-button type="primary" icon="el-icon-shopping-cart-full" style="font-size: 18px;" @click="adCart">
+						  <el-button type="primary" icon="el-icon-shopping-cart-full" style="font-size: 18px;" @click="open">
 						  	加入购物车
 						  </el-button>
 						</el-row>

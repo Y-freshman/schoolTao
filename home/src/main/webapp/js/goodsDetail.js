@@ -22,32 +22,34 @@ $(document).ready(function(){
 			      console.log(value);
 			  },
 			  
-			  /**
-			   * 添加购物车
-			   */
-			  adCart(){
-				  $.ajax({
-					  url: "/home/gdsDetails/adCart.do",
-					  async: false,
-					  type: "post",
-					  data: JSON.stringify({
-						  goodsId: 1,
-						  userId: 1,
-					  }),
-					  contentType: "application/json",
-					  dataType: 'json',
-					  success: function(res){
-			              if(res.code == "200"){
-			            	  this.$message({
-			                      message: '添加购物车成功',
-			                      type: 'success'
-			                   });
-			            	  return;
-			              }
-			              this.$message.error('啊哦！系统错误，请稍后添加');
-		              }
-				  })
-			  },
+			  open() {
+				  const h = this.$createElement;
+			        this.$msgbox({
+			          title: '加入购物车',
+			          message: h('p', null, [
+			        	h('span', { style: 'color: teal' }, '所需数量:'),
+			            h('input', { class:'gdNum',placeholder:'现有数量"vm.goods.goodsNum"'}),
+			          ]),
+			          showCancelButton: true,
+			          confirmButtonText: '确定',
+			          cancelButtonText: '取消',
+			          beforeClose: (action, instance, done) => {
+			            if (action === 'confirm') {
+			              var num = $(".gdNum").val();
+			              console.log(num);
+			              adCart(num);
+			              done();
+			            } else {
+			              done();
+			            }
+			          }
+			        }).then(action => {
+			          this.$message({
+			            type: 'success',
+			            message: '添加购物车成功',
+			          });
+			        });
+		      },
 			  
 			  /**
 			   * 立即购买
@@ -90,16 +92,46 @@ $(document).ready(function(){
 	});
 	
 	/**
+	   * 添加购物车
+	   */
+	function adCart(num){
+		  let that = this;
+		  $.ajax({
+			  url: "/home/gdsDetails/adCart.do",
+			  async: false,
+			  type: "post",
+			  data: JSON.stringify({
+				  goodsId: 2,
+				  userId: 2,
+				  goodsNum: num
+			  }),
+			  contentType: "application/json",
+			  dataType: 'json',
+			  success: function(res){
+	              /*if(res.code == "200"){
+	            	  that.$message({
+	                      message: '添加购物车成功',
+	                      type: 'success'
+	                   });
+	            	  return;
+	              }
+	              that.$message.error('啊哦！系统错误，请稍后添加');*/
+            }
+		  })
+	  }
+	
+	/**
 	 * 获取当前商品详细信息
 	 * @returns
 	 */
 	function getGdsDetail(){
+		var gdId = sessionStorage.getItem("goodsId");
 		$.ajax({
 			  url: "/home/gdsDetails/gdsDetails.do",
 			  async: false,
 			  type: "post",
 			  data: JSON.stringify({
-				  gdId: 1
+				  gdId: gdId
 			  }),
 			  contentType: "application/json",
 			  dataType: 'json',
@@ -107,7 +139,7 @@ $(document).ready(function(){
 	              vm.goods = data.goods;
 	              console.log(vm.goods);
 	              vm.goods.goodsPics = JSON.parse(data.goods.goodsPics);
-	              console.log(vm.goods.goodsPics);
+	              console.log(vm.goods.goodsNum);
               }
 		  })
 	  }

@@ -52,6 +52,7 @@ public class GoodsController {
 		cartMap.put("descript", Byte.parseByte(data.get("descript")));*/
 		cartMap.put("goodsId", Integer.parseInt(data.get("goodsId")));
 		cartMap.put("userId", Integer.parseInt(data.get("userId")));
+		cartMap.put("goodsNum", Integer.parseInt(data.get("goodsNum")));
 		cartService.adCart(cartMap);
 		map.put("code", 200);
 		return map;
