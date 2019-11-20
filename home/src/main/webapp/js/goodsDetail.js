@@ -2,7 +2,9 @@ $(document).ready(function(){
 	var vm = new Vue({
 		  el: '#goodsDetail',
 		  data: {
-			  goodsDetail: {
+			  goods:[],
+		  },
+			  
 				  /*title: "STANLEY/史丹利单手开工具箱19寸STST73099/73100/73101内含抽屉 单手开工具箱19寸",
 				  goodsPic: 'img/goods/timg.jpg',
 				  now_price: '￥239.00',
@@ -13,32 +15,101 @@ $(document).ready(function(){
 				  people: '134xxxx0214(张先生)',
 				  own_num: 3,
 				  num: 1*/
-			  }
-		  },
+			  
+		  
 		  methods: {
 			  handleChange(value) {
 			      console.log(value);
 			  },
 			  
+			  /**
+			   * 添加购物车
+			   */
+			  adCart(){
+				  $.ajax({
+					  url: "/home/gdsDetails/adCart.do",
+					  async: false,
+					  type: "post",
+					  data: JSON.stringify({
+						  goodsId: 1,
+						  userId: 1,
+					  }),
+					  contentType: "application/json",
+					  dataType: 'json',
+					  success: function(res){
+			              if(res.code == "200"){
+			            	  this.$message({
+			                      message: '添加购物车成功',
+			                      type: 'success'
+			                   });
+			            	  return;
+			              }
+			              this.$message.error('啊哦！系统错误，请稍后添加');
+		              }
+				  })
+			  },
+			  
+			  /**
+			   * 立即购买
+			   */
+			  buy(){
+				  this.$message({
+                      message: '购买成功',
+                      type: 'success'
+                   }); 
+			  },
 		  },
 		  filters: {
-			  
+			  xinxian: function (value) {
+			    if (!value) return '';
+			    value = value.toString();
+			    if(value == 1){
+			    	return "一成新，望深思";
+			    }else if(value == 2){
+			    	return "两成新，望深思";
+			    }else if(value == 3){
+			    	return "三成新，望深思";
+			    }else if(value == 4){
+			    	return "四成新，望深思";
+			    }else if(value == 5){
+			    	return "五成新，还可以";
+			    }else if(value == 6){
+			    	return "六成新，还可以";
+			    }else if(value == 7){
+			    	return "七成新，还可以";
+			    }else if(value == 8){
+			    	return "八成新，很不错";
+			    }else if(value == 9){
+			    	return "九成新，非常棒";
+			    }else{
+			    	return "全新，简直完美";
+			    }
+			  }
 		  },
 		  
 	});
 	
+	/**
+	 * 获取当前商品详细信息
+	 * @returns
+	 */
 	function getGdsDetail(){
-		  $.ajax({
-			  url: "/home/1.do",
+		$.ajax({
+			  url: "/home/gdsDetails/gdsDetails.do",
 			  async: false,
-			  type: get,
+			  type: "post",
+			  data: JSON.stringify({
+				  gdId: 1
+			  }),
 			  contentType: "application/json",
 			  dataType: 'json',
 			  success: function(data){
-				  console.log(data);
-	                       vm.goodsDetail = data;
-                     }
+	              vm.goods = data.goods;
+	              console.log(vm.goods);
+	              vm.goods.goodsPics = JSON.parse(data.goods.goodsPics);
+	              console.log(vm.goods.goodsPics);
+              }
 		  })
 	  }
-	
+	getGdsDetail();
 });

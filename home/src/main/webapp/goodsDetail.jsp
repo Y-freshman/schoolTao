@@ -14,56 +14,42 @@
 <body>
 	<%@include file="/inc/header.inc"%>
 	<div id="goodsDetail">
-		<!-- <el-breadcrumb separator="/">
-		  <el-breadcrumb-item :to="{ path: '/' }"><span style="font-weight:400">首页</span></el-breadcrumb-item>
-		  <el-breadcrumb-item><a href="/" style="font-weight:400">校园二手</a></el-breadcrumb-item>
-		  <el-breadcrumb-item><a href="/" style="font-weight:400">二手分类</a></el-breadcrumb-item>
-		  <el-breadcrumb-item>史丹利</el-breadcrumb-item>
-		</el-breadcrumb> -->
 		<div class="gd_main">
 			<el-container>
 			  <el-container>
 			    <el-aside width="480px">	
-					<el-image :src="goodsPic"></el-image>
+					<el-image :src="goods.goodsPics[0]"></el-image>
 					<el-row>
-					  <el-col :span="6"><div class="grid-content bg-purple">
-					  	<el-image src="img/goods/timg.jpg"></el-image>
+					  <el-col :span="6" v-for="(item,index) in goods.goodsPics"><div class="grid-content bg-purple">
+					  	<el-image :src="goods.goodsPics[index]"></el-image>
 					  </div></el-col>
-					  <el-col :span="6"><div class="grid-content bg-purple">
-					  	<el-image src="img/goods/timg.jpg"></el-image>
-					  </div></el-col>
-					  <el-col :span="6"><div class="grid-content bg-purple">
-					  	<el-image src="img/goods/timg.jpg"></el-image>
-					  </div></el-col>
-					  <el-col :span="6"><div class="grid-content bg-purple">
-					  	<el-image src="img/goods/timg.jpg"></el-image>
-					  </div></el-col>
+					  
 					</el-row>
 				</el-aside>
 			    <el-container>
 			      <el-main>
-					<p><b>{{goodsName}}</b></p>
+					<p><b>{{goods.goodsName}}</b></p>
 					<div class="gd_price">
 						<p><span class="gd_detail_item">物品价格:</span>
-							<span class="gd_detail_price">{{goodsNewPrice}}</span>
-							<s>{{goodsOldPrice}}</s></p>
+							<span class="gd_detail_price">￥{{goods.goodsNewPrice}}</span>
+							<s>￥{{goods.goodsOldPrice}}</s></p>
 						<p><span class="gd_detail_item">物品现状:</span>
-							<span class="gd_detail_status item_info">{{goodsFresh}}</span></p>
+							<span class="gd_detail_status item_info">{{goods.goodsFresh|xinxian}}</span></p>
 						<p><span class="gd_detail_item">可交易地点:</span>
-							<span class="gd_detail_address item_info">{{address}}</span></p>
+							<span class="gd_detail_address item_info">无</span></p>
 						<p><span class="gd_detail_item">可交易时间:</span>
-							<span class="gd_detail_time item_info">{{time}}</span></p>
+							<span class="gd_detail_time item_info">{{goods.goodsTime}}</span></p>
 						<p><span class="gd_detail_item">联系人:</span>
-							<span class="gd_detail_people item_info">{{people}}</span></p>
+							<span class="gd_detail_people item_info">{{goods.goodsUserName}}（{{goods.goodsUserPhone}}）</span></p>
 						<template>
-						  <span class="gd_detail_item">期望数量:&emsp;&emsp;&emsp;&emsp;</span>
-						  <el-input-number v-model="num" @change="handleChange" controls-position="right" :min="1" :max="own_num" label="描述文字"></el-input-number>
+						  <span class="gd_detail_item">商品货存:&emsp;&emsp;&emsp;&emsp;</span>
+						  <el-input-number v-model="goods.num" @change="handleChange" controls-position="right" :min="1" :max="3" label="描述文字"></el-input-number>
 						</template>
 						<el-row><br>
-						  <el-button type="danger" style="font-size: 18px;">
+						  <el-button type="danger" style="font-size: 18px;" @click="buy">
 						  	立即购买
 						  </el-button>
-						  <el-button type="primary" icon="el-icon-shopping-cart-full" style="font-size: 18px;">
+						  <el-button type="primary" icon="el-icon-shopping-cart-full" style="font-size: 18px;" @click="adCart">
 						  	加入购物车
 						  </el-button>
 						</el-row>
