@@ -70,7 +70,8 @@
 		  	<el-row :gutter="20" >
 			  <el-col :span="22" :offset="1" >
 			   	<el-upload
-				  action="https://jsonplaceholder.typicode.com/posts/"
+				  action="http://upload-z2.qiniup.com"
+				  :data="tk"
 				  list-type="picture-card"
 				  accept="image/*"
 				  :limit="imgLimit"
@@ -103,7 +104,7 @@
 			</el-row>
 		  	<el-row :gutter="20" >
 			  <el-col :span="2" :offset="11" style="text-align:center">
-			  	<el-button type="primary" icon="el-icon-position">发布</el-button>
+			  	<el-button type="primary" icon="el-icon-position" @click="fabu()" >发布</el-button>
 			  </el-col>
 			</el-row>
 		  	
