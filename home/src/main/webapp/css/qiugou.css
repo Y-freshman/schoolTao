@@ -11,3 +11,10 @@
 .qg_card:hover .qg_zkpl{
 	display: block ;
 }
+.el-divider__text {
+    position: absolute;
+    background-color: #FFF;
+    padding: 0 20px;
+    color: #409eff;
+    font-size: 14px;
+}

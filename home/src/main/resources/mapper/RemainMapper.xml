@@ -9,6 +9,17 @@
     <result column="remain_to_id" jdbcType="INTEGER" property="remainToId" />
     <result column="remian_last_id" jdbcType="INTEGER" property="remianLastId" />
   </resultMap>
+  <resultMap id="BaseResultMapAndUser" type="com.schoolTao.dto.RemainDTO">
+    <id column="remain_id" jdbcType="INTEGER" property="remainId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_sex" jdbcType="CHAR" property="userSex" />
+    <result column="user_avater" jdbcType="VARCHAR" property="userAvater" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="remain_content" jdbcType="VARCHAR" property="remainContent" />
+    <result column="remain_time" jdbcType="TIMESTAMP" property="remainTime" />
+    <result column="remain_to_id" jdbcType="INTEGER" property="receicverId" />
+    <result column="remian_last_id" jdbcType="INTEGER" property="remianLastId" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -89,6 +100,14 @@
     <include refid="Base_Column_List" />
     from remain
     where remain_id = #{remainId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAndUser" parameterType="java.lang.Integer" resultMap="BaseResultMapAndUser">
+  	select * from remain left join user on remain.user_id = `user`.user_id 
+		where remain_to_id = #{receicverId,jdbcType=INTEGER} and remain.remian_last_id = 0
+  </select>
+  <select id="selectAndUserSub" parameterType="java.lang.Integer" resultMap="BaseResultMapAndUser">
+  	select * from remain left join user on remain.user_id = `user`.user_id 
+		where remain.remian_last_id = #{remianLastId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from remain

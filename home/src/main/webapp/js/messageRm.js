@@ -100,8 +100,23 @@ $(document).ready(function(){
 		      textarea: '',
 		  },
 		  methods: {
-			  handleChange(val) {
-			        console.log(val);
+			  handleChange(name) {
+			        console.log(name);
+			        $.ajax({
+						url: "/home/remain/selectSub.do",
+						async: false,
+						type: "post",
+						data: JSON.stringify({
+							lastId: 4
+						}),
+						contentType: "application/json",
+						dataType: 'json',
+						success: function(data){
+							for(var i=0; i<vm.message.length; i++){
+								vm.message[i].subContent = data.remains
+							}
+						}
+					})
 			  },
 			  handleClose(done) {
 		            done();
@@ -111,8 +126,36 @@ $(document).ready(function(){
 		      }
 		  },
 		  filters: {
-			  
+			  dateFormat(date){
+					var date = new Date(date);
+					Y = date.getFullYear() + '-';
+					M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+					D = date.getDate() + ' ';
+					h = date.getHours() + ':';
+					m = date.getMinutes() + ':';
+					s = date.getSeconds(); 
+					return (Y+M+D+h+m+s);
+				}
 		  },
 		  
 	});
+	
+	function getAllMain(){
+		$.ajax({
+			  url: "/home/remain/selectMain.do",
+			  async: false,
+			  type: "post",
+			  data: JSON.stringify({
+				  receiverId: 2
+			  }),
+			  contentType: "application/json",
+			  dataType: 'json',
+			  success: function(data){
+				  vm.message = data.remains;
+	              console.log(vm.message);
+            }
+		  })
+	}
+	getAllMain();
+	
 });

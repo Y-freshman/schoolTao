@@ -38,11 +38,20 @@ public class CartService {
 		cartMapper.insertSelective(cart);
 	}
 
+	/**
+	 * 查询购物车内所有商品详情
+	 * @param parseInt
+	 * @return
+	 */
 	public List<CartDTO> getAll(int parseInt) {
 		// TODO Auto-generated method stub
 		return cartMapper.selectByUserIdAndGoods(parseInt);
 	}
 
+	/**
+	 * 删除购物车内某商品
+	 * @param cartId
+	 */
 	public void delete(Integer cartId) {
 		// TODO Auto-generated method stub
 		cartMapper.deleteByPrimaryKey(cartId);

@@ -29,6 +29,7 @@ $(document).ready(function(){
 					  this.$message.error('内容过短！');
 					  return false;
 				  }else{
+					  let that = this;
 					  $.ajax({
 				    		type: "post",
 				    		dataType:"json",
@@ -37,11 +38,19 @@ $(document).ready(function(){
 				    		url: "/home/need/insert.do",
 				    		data:  JSON.stringify({
 				    			"needContent":vm.text,
-				    			"pics":vm.pics,
-				    			"user_id":1,
+				    			"needPics":vm.pics.toString(),
+				    			"userId":1,
 				    		}), 
 				    		success: function(data) {
-				    			
+				    			console.log(data);
+			    				that.$message({message: '发布成功~',type: 'success'});
+			    				that.$refs.upload.clearFiles();
+			    				vm.text = "";
+			    				vm.picst = [];
+			    				
+				    		},
+				    		error: function(){
+				    			that.$message.error('发布失败！');
 				    		}
 						});
 				  }

@@ -1,5 +1,7 @@
 package com.schoolTao.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +25,14 @@ public class NeedService {
 		// TODO Auto-generated method stub
 		NeedExample needExample = new NeedExample();
 		needExample.createCriteria().andNeedContentEqualTo(need.getNeedContent());
-		needMapper.updateByExampleSelective(need, needExample);//更新
+		//更新每一个need.getNeedContent()
+		needMapper.updateByExampleSelective(need, needExample);
+	}
+	
+	public List<Need> SelectNeed() {
+		// TODO Auto-generated method stub
+		//NeedExample needExample = new NeedExample();
+		return needMapper.selectNeedAndUser(null);
 	}
 	
 	

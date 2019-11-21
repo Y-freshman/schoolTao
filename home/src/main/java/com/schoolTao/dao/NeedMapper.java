@@ -17,6 +17,8 @@ public interface NeedMapper {
     int insertSelective(Need record);
 
     List<Need> selectByExample(NeedExample example);
+    
+    List<Need> selectNeedAndUser(NeedExample example);
 
     Need selectByPrimaryKey(Integer needId);
 
@@ -27,4 +29,6 @@ public interface NeedMapper {
     int updateByPrimaryKeySelective(Need record);
 
     int updateByPrimaryKey(Need record);
+    
+    int incNum(Integer needId);
 }

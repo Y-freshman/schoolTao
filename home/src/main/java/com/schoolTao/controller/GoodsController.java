@@ -40,6 +40,12 @@ public class GoodsController {
 		return map;
 	}
 	
+	/**
+	 * 添加至购物车
+	 * @param data
+	 * @return
+	 * @throws ParseException
+	 */
 	@PostMapping("/adCart.do")
 	@ResponseBody
 	public Map<String, Object> adCart(@RequestBody Map<String,String> data) throws ParseException{

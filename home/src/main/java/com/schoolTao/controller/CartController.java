@@ -23,6 +23,11 @@ public class CartController {
 	@Autowired
 	CartService cartService;
 	
+	/**
+	 * 查询当前购物车商品
+	 * @param data
+	 * @return
+	 */
 	@PostMapping("/select.do")
 	@ResponseBody
 	public List<CartDTO> getAll(@RequestBody Map<String, Object> data){
@@ -31,6 +36,10 @@ public class CartController {
 		return list;
 	}
 	
+	/**
+	 * 删除购物车内某商品
+	 * @param data
+	 */
 	@PostMapping("/delete.do")
 	@ResponseBody
 	public void delete(@RequestBody Map<String, Object> data){
