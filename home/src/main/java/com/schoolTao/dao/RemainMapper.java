@@ -1,5 +1,6 @@
 package com.schoolTao.dao;
 
+import com.schoolTao.dto.RemainDTO;
 import com.schoolTao.pojo.Remain;
 import com.schoolTao.pojo.RemainExample;
 import java.util.List;
@@ -17,6 +18,10 @@ public interface RemainMapper {
     int insertSelective(Remain record);
 
     List<Remain> selectByExample(RemainExample example);
+    
+    List<RemainDTO> selectAndUser(Integer receicverId);
+    
+    List<RemainDTO> selectAndUserSub(Integer remianLastId);
 
     Remain selectByPrimaryKey(Integer remainId);
 

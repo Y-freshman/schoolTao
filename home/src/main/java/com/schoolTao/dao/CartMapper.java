@@ -1,5 +1,6 @@
 package com.schoolTao.dao;
 
+import com.schoolTao.dto.CartDTO;
 import com.schoolTao.pojo.Cart;
 import com.schoolTao.pojo.CartExample;
 import java.util.List;
@@ -17,6 +18,8 @@ public interface CartMapper {
     int insertSelective(Cart record);
 
     List<Cart> selectByExample(CartExample example);
+    
+    List<CartDTO> selectByUserIdAndGoods(Integer userId);
 
     Cart selectByPrimaryKey(Integer cartId);
 

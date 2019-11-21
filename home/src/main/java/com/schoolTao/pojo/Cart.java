@@ -11,6 +11,8 @@ public class Cart {
 
     private Date cartTime;
 
+    private Integer cartGoodsNum;
+
     public Integer getCartId() {
         return cartId;
     }
@@ -43,10 +45,18 @@ public class Cart {
         this.cartTime = cartTime;
     }
 
+    public Integer getCartGoodsNum() {
+        return cartGoodsNum;
+    }
+
+    public void setCartGoodsNum(Integer cartGoodsNum) {
+        this.cartGoodsNum = cartGoodsNum;
+    }
+
 	@Override
 	public String toString() {
 		return "Cart [cartId=" + cartId + ", userId=" + userId + ", goodsId=" + goodsId + ", cartTime=" + cartTime
-				+ "]";
+				+ ", cartGoodsNum=" + cartGoodsNum + "]";
 	}
     
     

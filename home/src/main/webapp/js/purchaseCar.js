@@ -2,39 +2,7 @@ $(document).ready(function(){
 	var vm = new Vue({
 		  el: '#purchaseCar',
 		  data: {
-		        tableData: [{
-		          title: '2019秋冬女装春装新款上衣连衣裙加绒加厚打底衫女长袖衬衫t恤女',
-		          head_pic: 'img/goods/timg.jpg',
-		          color: '颜色分类：墨绿色（加绒款）',
-		          size:	'尺码：L',
-			      price: '￥79',
-			      source: '站在远处看从前',
-			      sum: 79,
-			    }, {
-			      title: '2019秋冬女装春装新款上衣连衣裙加绒加厚打底衫女长袖衬衫t恤女',
-			      head_pic: 'img/goods/timg.jpg',
-			      color: '颜色分类：墨绿色（加绒款）',
-			      size:	'尺码：L',
-	        	  price: '￥79',
-	        	  source: '站在远处看从前',
-	        	  sum: 89,
-			    }, {
-			      title: '2019秋冬女装春装新款上衣连衣裙加绒加厚打底衫女长袖衬衫t恤女',
-			      head_pic: 'img/goods/timg.jpg',
-			      color: '颜色分类：墨绿色（加绒款）',
-			      size:	'尺码：L',
-	        	  price: '￥79',
-	        	  source: '站在远处看从前',
-	        	  sum: 99,
-			    }, {
-			      title: '2019秋冬女装春装新款上衣连衣裙加绒加厚打底衫女长袖衬衫t恤女',
-			      head_pic: 'img/goods/timg.jpg',
-			      color: '颜色分类：墨绿色（加绒款）',
-			      size:	'尺码：L',
-	        	  price: '￥79',
-	        	  source: '站在远处看从前',
-	        	  sum: 69,
-			    }],
+			    tableData: [],
 			    multipleSelection: [],
 			    checked: false
 		},
@@ -58,17 +26,30 @@ $(document).ready(function(){
 	          $(".sum_price").html(sum);
 	        }
 	      },
-	      deleteRow(index, rows) {
-	          this.$confirm('此操作将永久删除该商品, 是否继续?', '提示', {
+	      deleteRow(index, cartId) {
+	          this.$confirm('此操作将使该商品从你的购物车中删除, 是否继续?', '提示', {
 	            confirmButtonText: '确定',
 	            cancelButtonText: '取消',
 	            type: 'warning'
 	          }).then(() => {
-	            this.$message({
-	              type: 'success',
-	              message: '删除成功!'
-	            });
-	            rows.splice(index, 1);
+	        	$.ajax({
+	    			  url: "/home/cart/delete.do",
+	    			  async: true,
+	    			  type: "post",
+	    			  data: JSON.stringify({
+	    				  cartId: cartId
+	    			  }),
+	    			  contentType: "application/json",
+	    			  dataType: 'json',
+	    			  success: function(){
+	    				  
+	                  }
+	    		})
+				this.$message({
+		            type: 'success',
+		            message: '删除成功!'
+		        });
+	        	/*rows.splice(index, 1);*/
 	          }).catch(() => {
 	            this.$message({
 	              type: 'info',
@@ -76,20 +57,77 @@ $(document).ready(function(){
 	            });          
 	          });
 	      },
+	      toDetail(goodsId){
+	    	  sessionStorage.setItem("goodsId",goodsId);
+	    	  location.href = "/home/goodsDetail.jsp";
+	      },
 	      handleSelectionChange(val) {
 	        this.multipleSelection = val;
 	      },
-	      sizeOn(row, column, cell, event){
-	        	/*$(".size").css("border","1px dashed red");*/
-	      },
-	      gdMdfySize(){
-	    	  
-	      }
 	    },
 	    filters: {
-		  
+	    	xinxian: function (value) {
+			    if (!value) return '';
+			    value = value.toString();
+			    if(value == 1){
+			    	return "一成新，望深思";
+			    }else if(value == 2){
+			    	return "两成新，望深思";
+			    }else if(value == 3){
+			    	return "三成新，望深思";
+			    }else if(value == 4){
+			    	return "四成新，望深思";
+			    }else if(value == 5){
+			    	return "五成新，还可以";
+			    }else if(value == 6){
+			    	return "六成新，还可以";
+			    }else if(value == 7){
+			    	return "七成新，还可以";
+			    }else if(value == 8){
+			    	return "八成新，很不错";
+			    }else if(value == 9){
+			    	return "九成新，非常棒";
+			    }else{
+			    	return "全新，简直完美";
+			    }
+			},
+			state(value){
+				if (!value) return '';
+			    value = value.toString();
+			    if(value == 0){
+			    	return "已下架";
+			    }else if(value == 1){
+			    	return "正常售卖";
+			    }
+			}
 	    },
 	  
 	});
+	
+	/**
+	 * 查询购物车里的商品
+	 * @returns
+	 */
+	function getCart(){
+		$.ajax({
+			  url: "/home/cart/select.do",
+			  async: false,
+			  type: "post",
+			  data: JSON.stringify({
+				  userId: 2
+			  }),
+			  contentType: "application/json",
+			  dataType: 'json',
+			  success: function(data){
+	              vm.tableData = data;
+	              console.log(vm.tableData);
+	              for(var i=0; i<vm.tableData.length; i++){
+	            	  vm.tableData[i].goodsPics = JSON.parse(vm.tableData[i].goodsPics);
+	              }
+            }
+		})
+	}
+	getCart();
+	
 	
 });

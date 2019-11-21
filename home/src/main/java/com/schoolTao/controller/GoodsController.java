@@ -40,6 +40,12 @@ public class GoodsController {
 		return map;
 	}
 	
+	/**
+	 * 添加至购物车
+	 * @param data
+	 * @return
+	 * @throws ParseException
+	 */
 	@PostMapping("/adCart.do")
 	@ResponseBody
 	public Map<String, Object> adCart(@RequestBody Map<String,String> data) throws ParseException{
@@ -52,6 +58,7 @@ public class GoodsController {
 		cartMap.put("descript", Byte.parseByte(data.get("descript")));*/
 		cartMap.put("goodsId", Integer.parseInt(data.get("goodsId")));
 		cartMap.put("userId", Integer.parseInt(data.get("userId")));
+		cartMap.put("goodsNum", Integer.parseInt(data.get("goodsNum")));
 		cartService.adCart(cartMap);
 		map.put("code", 200);
 		return map;

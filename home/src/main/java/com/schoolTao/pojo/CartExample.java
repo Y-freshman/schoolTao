@@ -344,6 +344,66 @@ public class CartExample {
             addCriterion("cart_time not between", value1, value2, "cartTime");
             return (Criteria) this;
         }
+
+        public Criteria andCartGoodsNumIsNull() {
+            addCriterion("cart_goods_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCartGoodsNumIsNotNull() {
+            addCriterion("cart_goods_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCartGoodsNumEqualTo(Integer value) {
+            addCriterion("cart_goods_num =", value, "cartGoodsNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCartGoodsNumNotEqualTo(Integer value) {
+            addCriterion("cart_goods_num <>", value, "cartGoodsNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCartGoodsNumGreaterThan(Integer value) {
+            addCriterion("cart_goods_num >", value, "cartGoodsNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCartGoodsNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("cart_goods_num >=", value, "cartGoodsNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCartGoodsNumLessThan(Integer value) {
+            addCriterion("cart_goods_num <", value, "cartGoodsNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCartGoodsNumLessThanOrEqualTo(Integer value) {
+            addCriterion("cart_goods_num <=", value, "cartGoodsNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCartGoodsNumIn(List<Integer> values) {
+            addCriterion("cart_goods_num in", values, "cartGoodsNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCartGoodsNumNotIn(List<Integer> values) {
+            addCriterion("cart_goods_num not in", values, "cartGoodsNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCartGoodsNumBetween(Integer value1, Integer value2) {
+            addCriterion("cart_goods_num between", value1, value2, "cartGoodsNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCartGoodsNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("cart_goods_num not between", value1, value2, "cartGoodsNum");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

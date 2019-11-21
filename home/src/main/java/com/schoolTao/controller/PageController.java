@@ -69,5 +69,11 @@ public class PageController {
 			return "selfInfo";
 		}
 		
+		//链接
+		@RequestMapping("/gdsDetail.do")
+		public String tiaozhuan13()throws IOException{
+			return "goodsDetail";
+		}
+		
 		
 }
