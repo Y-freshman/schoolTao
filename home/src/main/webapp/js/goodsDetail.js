@@ -3,25 +3,40 @@ $(document).ready(function(){
 		  el: '#goodsDetail',
 		  data: {
 			  goods:[],
+			  dialogVisible:false,
+			  visible:false,
+			  num:1,
 		  },
-			  
-				  /*title: "STANLEY/史丹利单手开工具箱19寸STST73099/73100/73101内含抽屉 单手开工具箱19寸",
-				  goodsPic: 'img/goods/timg.jpg',
-				  now_price: '￥239.00',
-				  old_price: '￥299.00',
-				  status: '9成新，很上手',
-				  address: '四食堂一楼（不接受改地点）',
-				  time: '联系确认',
-				  people: '134xxxx0214(张先生)',
-				  own_num: 3,
-				  num: 1*/
-			  
-		  
+			
 		  methods: {
-			  handleChange(value) {
-			      console.log(value);
+			  cart() {
+				  let that = this;
+				  $.ajax({
+					  url: "/home/gdsDetails/adCart.do",
+					  async: true,
+					  type: "post",
+					  data: JSON.stringify({
+						  goodsId: sessionStorage.getItem("goodsId"),
+						  userId: 1,
+						  goodsNum: vm.num
+					  }),
+					  contentType: "application/json",
+					  dataType: 'json',
+					  success: function(res){
+			              if(res.code == "200"){
+			            	  that.$message({message: '添加购物车成功~',type: 'success'});
+			              }else{
+			            	  that.$message.error('啊哦！系统错误，请稍后添加');
+			              }
+			              
+		            }
+				  })
+				  vm.visible = false;
 			  },
-			  
+			  handleChange(value) {
+				  //console.log(value);
+			  },
+			  /*
 			  open() {
 				  const h = this.$createElement;
 			        this.$msgbox({
@@ -49,7 +64,7 @@ $(document).ready(function(){
 			            message: '添加购物车成功',
 			          });
 			        });
-		      },
+		      },*/
 			  
 			  /**
 			   * 立即购买
@@ -86,38 +101,26 @@ $(document).ready(function(){
 			    }else{
 			    	return "全新，简直完美";
 			    }
-			  }
-		  },
+			  },
+			  date: function(date){
+					var date = new Date(date);
+					Y = date.getFullYear() ;
+					M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) ;
+					D = date.getDate();
+					h = date.getHours() + ':';
+					m = date.getMinutes() + ':';
+					s = date.getSeconds(); 
+					return (Y+"年"+M+"月"+D+"日");
+			 },
+		  }
 		  
 	});
 	
 	/**
 	   * 添加购物车
 	   */
-	function adCart(num){
-		  let that = this;
-		  $.ajax({
-			  url: "/home/gdsDetails/adCart.do",
-			  async: false,
-			  type: "post",
-			  data: JSON.stringify({
-				  goodsId: 2,
-				  userId: 2,
-				  goodsNum: num
-			  }),
-			  contentType: "application/json",
-			  dataType: 'json',
-			  success: function(res){
-	              /*if(res.code == "200"){
-	            	  that.$message({
-	                      message: '添加购物车成功',
-	                      type: 'success'
-	                   });
-	            	  return;
-	              }
-	              that.$message.error('啊哦！系统错误，请稍后添加');*/
-            }
-		  })
+	function adCart(){
+		  
 	  }
 	
 	/**
@@ -137,9 +140,9 @@ $(document).ready(function(){
 			  dataType: 'json',
 			  success: function(data){
 	              vm.goods = data.goods;
-	              console.log(vm.goods);
-	              vm.goods.goodsPics = JSON.parse(data.goods.goodsPics);
-	              console.log(vm.goods.goodsNum);
+	              //console.log(vm.goods);
+	              vm.goods.goodsPics = data.goods.goodsPics.split(",");
+	              //console.log(vm.goods.goodsNum);
               }
 		  })
 	  }

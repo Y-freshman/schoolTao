@@ -26,10 +26,15 @@ public class NeedService {
 		needMapper.addNum(needId);
 	}
 	
-	public List<Need> SelectNeed() {
-		// TODO Auto-generated method stub
-		//NeedExample needExample = new NeedExample();
-		return needMapper.selectNeedAndUser(null);
+	public List<Need> SelectNeed(int i) {
+		
+		List<Need> needlist;
+		if(i == 0){
+			needlist = needMapper.selectNeedAndUser(null);
+		}else{
+			needlist = needMapper.selectNeedAndUser2(null);
+		}
+		return needlist;
 	}
 	
 	

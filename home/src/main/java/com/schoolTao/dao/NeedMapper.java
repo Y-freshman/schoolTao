@@ -19,6 +19,8 @@ public interface NeedMapper {
     List<Need> selectByExample(NeedExample example);
     
     List<Need> selectNeedAndUser(NeedExample example);
+    
+    List<Need> selectNeedAndUser2(NeedExample example);
 
     Need selectByPrimaryKey(Integer needId);
 

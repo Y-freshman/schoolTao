@@ -1,10 +1,10 @@
 @CHARSET "UTF-8";
 
 .el-header, .el-footer {
-	background-color: #B3C0D1;
+	/*background-color: #B3C0D1;
 	color: #333;
 	text-align: center;
-	line-height: 60px;
+	line-height: 60px;*/
 }
 
 #purchaseCar{
@@ -33,9 +33,9 @@
 }
 
 .gd_num{
-	font-size:20px;
-	font-weight:400;
-	color:red;
+	font-size: 18px;
+    font-weight: 600;
+    color: #607D8B;
 }
 .gd_mdfy_size{
 	float: right;
@@ -47,7 +47,7 @@
   	corlor: light-blue;
   } */
 .purchaseCar_sum{
-	color: red;
+	color: #2196F3;
 	font-size: 18px;
 	font-weight: 600;
 }

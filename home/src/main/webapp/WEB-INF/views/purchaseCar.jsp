@@ -9,10 +9,12 @@
 <link rel="stylesheet" href="/home/css/element.css">
 <link rel="stylesheet" href="/home/css/fonts/element-icons.woff">
 <link rel="stylesheet" href="/home/css/purchaseCar.css">
+<link rel="stylesheet" href="/home/css/index.css">
 </head>
 <body>
-	<div id="purchaseCar">
-		<template>
+	<%@include file="/inc/header2.inc"%>
+	<div id="purchaseCar" style="min-height:400px">
+		<template >
 		  <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" border 
 		  style="width: 100%;border:1px solid rgb(72, 115, 172);" @selection-change="handleSelectionChange">
 		    <el-table-column type="selection" width="45" style="border:1px solid rgb(72, 115, 172);"> </el-table-column>
@@ -57,7 +59,7 @@
 		    	<template slot-scope="scope">
 			        <el-button @click.native.prevent="deleteRow(scope.$index,scope.row.cartId)"
 			          type="text" size="small">
-			          <span style="color:red">删除</span>
+			          <el-link type="danger">删除</el-link>
 			        </el-button>
       			</template>
 		    </el-table-column>
@@ -67,15 +69,15 @@
 			    <el-button type="primary" @click="toggleSelection(tableData)">选择全部</el-button>
 			    <el-button type="warning" @click="deleteRow(index, tableData)">删除所选项</el-button>
 		    </el-col>
-		    <el-col :span="12"  style="text-align:right;">
+		    <el-col :span="12"  style="text-align:right;color: #555;font-size: 16px;font-weight: 600;">
 		    	<el-col :span="8" style="padding-top: 8px;">
 		    		<span>已选择商品&ensp;
-		    		<span class="gd_num">0</span>&ensp;件
+		    		<span class="gd_num">{{num1}}</span>&ensp;件
 		    	&emsp;&emsp;&emsp;</span>
 		    	</el-col>
 		    	<el-col :span="8" style="padding-top: 8px;">
-		    		合计： <span style="font-size:20px;font-weight:400;color:red;">
-		    		￥<span class="sum_price">0</span>&ensp;
+		    		合计： <span style="font-size:20px;font-weight:600;color:#f56c6b;">
+		    		￥<span class="sum_price">{{num2}}</span>&ensp;
 		    		</span>
 		    	</el-col>
 		    	<el-col :span="8">
@@ -84,10 +86,13 @@
 		    </el-col>
 		  </div>
 		</template>
+		
 	</div>
+	<%@include file="/inc/footer.inc"%>
 </body>
 <script src="/home/js/vue.js"></script>
 <script src="/home/js/element.js"></script>
 <script src="/home/js/jquery.min.js"></script>
 <script src="/home/js/purchaseCar.js"></script>
+<script src="/home/js/header.js"></script>
 </html>

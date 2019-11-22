@@ -19,13 +19,12 @@
 		  	<el-row :gutter="20" >
 			  <el-col :span="17" :offset="1">
 			  	<el-tabs type="border-card">
-				  <el-tab-pane>
-				    <span slot="label">创建时间<i class="el-icon-download"></i> </span>
+			  	  <el-tab-pane >
+				    <span slot="label" @click="type(1)">热度优先<i class="el-icon-download"></i> </span>
 				  </el-tab-pane>
-				  <el-tab-pane>
-				    <span slot="label">热度优先<i class="el-icon-download"></i> </span>
-				  </el-tab-pane>
-				  
+				  <el-tab-pane >
+				    <span slot="label" @click="type(0)">创建时间<i class="el-icon-download"></i> </span>
+				  </el-tab-pane>	  
 				</el-tabs>
 			  </el-col>
 			  <el-col :span="6" >

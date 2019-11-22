@@ -26,7 +26,7 @@
 			  <el-col :span="12">
 				<div class="grid-content ">
 				  	<div style="margin-top: 15px;">
-					  <el-input placeholder="请输入你想要的商品"  class="input-with-select">
+					  <el-input placeholder="请输入你想要的商品"  class="input-with-select" v-model="input">
 					    <el-button slot="append"  @click="search()" type="primary"  icon="el-icon-search" style="background-color: #409EFF; color: white;">搜索</el-button>
 					  </el-input>
 					</div>

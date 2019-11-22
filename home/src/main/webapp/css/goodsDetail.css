@@ -22,9 +22,9 @@
 }
 
 .gd_main .el-aside img {
-	width: 400px;
+	/*width: 400px;
 	height: 400px;
-	object-fit: cover;
+	object-fit: cover;*/
 }
 
 .gd_main .el-aside .el-row {
@@ -57,11 +57,12 @@
 	object-fit: cover;
 }
 .gd_main .gd_detail_item{
-	color:#333;
-	font-weight:400;
+	color: #6D4C41;
+    font-weight: 600;
+    font-size: 15px;
 }
 .gd_main .item_info{
-	color:#666;
+	color:#584842;
 }
 .gd_detail_price{
 	color:#3a8ee6;

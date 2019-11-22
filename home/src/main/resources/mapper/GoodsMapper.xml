@@ -94,6 +94,12 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByView" parameterType="com.schoolTao.pojo.GoodsExample" resultMap="BaseResultMap">
+    select * from goods ORDER BY goods.goods_view_num DESC LIMIT 0,8
+  </select>
+  <select id="selectByType" parameterType="com.schoolTao.pojo.Goods" resultMap="BaseResultMap">
+    select * from goods where goods.goods_type = #{goodsType,jdbcType=VARCHAR} ORDER BY goods.goods_id DESC LIMIT 0,8
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

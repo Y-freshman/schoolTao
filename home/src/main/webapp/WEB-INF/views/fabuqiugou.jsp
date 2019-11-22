@@ -12,10 +12,11 @@
 <link rel="stylesheet" href="/home/css/fabuqiugou.css">
 </head>
 <body>
-	
+	<%@include file="/inc/header2.inc"%>
 	<div id="fabuqiugou">
 		<el-container>
 		  <el-main style="background: linear-gradient(to bottom, #fff , #eee);min-height:400px;padding-top: 0px;">
+		  	<!--  
 		  	<el-row :gutter="20" >
 		  	  <el-col :span="8">
 	  			<el-image src="img/icon_1.png" class="shouye_tubiao"  lazy></el-image>
@@ -43,7 +44,7 @@
 			  </el-col>
 			  
 			</el-row>
-		  	
+		  	-->
 		  	<el-row :gutter="20" >
 			  <el-col :span="22" :offset="1" >
 			  	<span style="color: #666;font-size: 16px;font-weight: 600">求购内容</span>
@@ -53,7 +54,7 @@
 			  <el-col :span="22" :offset="1" style="text-align:center">
 			  	<el-input
 				  type="textarea"
-				  :autosize="{ minRows: 4}"
+				  :autosize="{ minRows: 6}"
 				  placeholder="内容描述区域"
 				  v-model="text"
 				  maxlength="255"
@@ -105,7 +106,7 @@
 			</el-row>
 		  	<el-row :gutter="20" >
 			  <el-col :span="2" :offset="11" style="text-align:center">
-			  	<el-button type="primary" icon="el-icon-position" @click="fabu()" >发布</el-button>
+			  	<el-button type="primary" icon="el-icon-position" @click="fabu()" >发布求购</el-button>
 			  </el-col>
 			</el-row>
 		  	
@@ -118,4 +119,5 @@
 <script src="/home/js/element.js"></script>
 <script src="/home/js/jquery.min.js"></script>
 <script src="/home/js/fabuqiugou.js"></script>
+<script src="/home/js/header.js"></script>
 </html>

@@ -7,6 +7,7 @@ $(document).ready(function(){
 		    items2:[],
 		    items3:[],
 		    text:'',
+		    start:1,
 		  },
 		  methods: { 
 			  jubao: function () {
@@ -14,6 +15,10 @@ $(document).ready(function(){
 					  message: '我们已收到您的举报，感谢支持！',
 					  type: 'warning'
 				  });
+			  },
+			  type: function (e) {
+				  vm.start = e;
+				  xr_qiugou();
 			  },
 			  fabu: function (e1,e2,e3) {
 				  if(vm.text.match(/^[ ]*$/)){
@@ -172,6 +177,7 @@ $(document).ready(function(){
 		});
 	}
 	function xr_qiugou() {
+		let that = this;
 		$.ajax({
 			type: "post",
 			dataType:"json",
@@ -179,7 +185,7 @@ $(document).ready(function(){
 			contentType:"application/json", 
 			url: "/home/need/select.do",
 			data:  JSON.stringify({
-				
+				type:vm.start,
 			}), 
 			success: function(data) {
 				//console.log(data.list);

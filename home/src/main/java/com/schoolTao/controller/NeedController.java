@@ -71,7 +71,8 @@ public class NeedController {
 			public  Map<String, Object> select(HttpServletRequest request,HttpServletResponse response,@RequestBody Map<String,String> Data ) throws IOException, ParseException{
 				request.setCharacterEncoding("utf-8");
 				response.setContentType("application/json;charset=utf-8");
-				List<Need> needlist = needService.SelectNeed();
+				int type = Integer.parseInt(Data.get("type"));
+				List<Need> needlist = needService.SelectNeed(type);
 				Map<String, Object>map = new HashMap<String, Object>();
 				map.put("list",needlist);
 				return map;

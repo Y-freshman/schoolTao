@@ -4,7 +4,9 @@ $(document).ready(function(){
 		  data: {
 			    tableData: [],
 			    multipleSelection: [],
-			    checked: false
+			    checked: false,
+			    num1:0,
+			    num2:0,
 		},
 
 	    methods: {
@@ -15,15 +17,15 @@ $(document).ready(function(){
 	            this.$refs.multipleTable.toggleRowSelection(row);
 	          });
 	          for(var i=0; i<vm.tableData.length;i++){
-		        	sum += vm.tableData[i].sum;
+		        	sum += vm.tableData[i].goodsNewPrice;
 		        }
-	          $(".gd_num").html(vm.tableData.length);
-		      $(".sum_price").html(sum);
+	          vm.num1 = vm.tableData.length;
+	          vm.num2 = sum;
 	        } else {
+	        	vm.num1 = 0;
+		         vm.num2 = 0;
 	          this.$refs.multipleTable.clearSelection();
-	          sum = 0;
-	          $(".gd_num").html(0);
-	          $(".sum_price").html(sum);
+	          
 	        }
 	      },
 	      deleteRow(index, cartId) {
@@ -49,6 +51,7 @@ $(document).ready(function(){
 		            type: 'success',
 		            message: '删除成功!'
 		        });
+	        	getCart();
 	        	/*rows.splice(index, 1);*/
 	          }).catch(() => {
 	            this.$message({
@@ -59,7 +62,7 @@ $(document).ready(function(){
 	      },
 	      toDetail(goodsId){
 	    	  sessionStorage.setItem("goodsId",goodsId);
-	    	  location.href = "/home/goodsDetail.jsp";
+	    	  location.href = "/home/gdsDetail.do";
 	      },
 	      handleSelectionChange(val) {
 	        this.multipleSelection = val;
@@ -114,15 +117,15 @@ $(document).ready(function(){
 			  async: false,
 			  type: "post",
 			  data: JSON.stringify({
-				  userId: 2
+				  userId: 1
 			  }),
 			  contentType: "application/json",
 			  dataType: 'json',
 			  success: function(data){
 	              vm.tableData = data;
-	              console.log(vm.tableData);
+	              //console.log(vm.tableData);
 	              for(var i=0; i<vm.tableData.length; i++){
-	            	  vm.tableData[i].goodsPics = JSON.parse(vm.tableData[i].goodsPics);
+	            	  vm.tableData[i].goodsPics = vm.tableData[i].goodsPics.split(",");
 	              }
             }
 		})

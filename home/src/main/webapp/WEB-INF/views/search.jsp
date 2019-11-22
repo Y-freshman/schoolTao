@@ -40,7 +40,7 @@
 			  <el-col :span="12">
 				<div class="grid-content ">
 				  	<div style="margin-top: 15px;">
-					  <el-input placeholder="请输入你想要的商品"  class="input-with-select">
+					  <el-input placeholder="请输入你想要的商品"  class="input-with-select" v-model="input">
 					    <el-button slot="append"  @click="search()" type="primary"  icon="el-icon-search" style="background-color: #409EFF; color: white;">搜索</el-button>
 					  </el-input>
 					</div>
@@ -58,31 +58,31 @@
 				    <span slot="label" >全部 123<i class="el-icon-download"></i> </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
-				    <span slot="label">工业原料 12 </span>
+				    <span slot="label">电子数码 12 </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
-				    <span slot="label">建筑设备 12 </span>
+				    <span slot="label">服装首饰 12 </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
-				    <span slot="label">智能安防 12 </span>
+				    <span slot="label">酒水零食 12 </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
-				    <span slot="label">电工电器 12 </span>
-				  </el-tab-pane>
-				  <el-tab-pane>
-				    <span slot="label">电子元件 12 </span>
-				  </el-tab-pane>
-				  <el-tab-pane>
-				    <span slot="label">照明工业 12 </span>
-				  </el-tab-pane>
-				  <el-tab-pane>
-				    <span slot="label">办公文教 12 </span>
-				  </el-tab-pane>
-				  <el-tab-pane>
-				    <span slot="label">包装用品 12 </span>
+				    <span slot="label">文具图书 12 </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
 				    <span slot="label">生鲜食材 12 </span>
+				  </el-tab-pane>
+				  <el-tab-pane>
+				    <span slot="label">体育健身 12 </span>
+				  </el-tab-pane>
+				  <el-tab-pane>
+				    <span slot="label">卫生洁具 12 </span>
+				  </el-tab-pane>
+				  <el-tab-pane>
+				    <span slot="label">妇女婴幼 12 </span>
+				  </el-tab-pane>
+				  <el-tab-pane>
+				    <span slot="label">办公家居 12 </span>
 				  </el-tab-pane>
 				</el-tabs>
 			  </el-col>
@@ -93,7 +93,7 @@
 			  		<el-card>
 					  	<div style="float: left;height: 200px">
 					  		<div >
-					  			<el-image src="img/gongjuxiang.jpg"  style="height:130px;" lazy></el-image>
+					  			<el-image src="img/gongjuxiang.jpg" fit="contain" style="height:130px;" lazy></el-image>
 					  		</div>
 					  		<div style="margin-top: 10px;height:70px;">
 					  			<div style="height: 40px;overflow: hidden;margin-bottom: 5px;">
@@ -112,7 +112,7 @@
 			  		<el-card>
 					  	<div style="float: left;height: 200px">
 					  		<div >
-					  			<el-image src="img/gongjuxiang.jpg"  style="height:130px;" lazy></el-image>
+					  			<el-image src="img/gongjuxiang.jpg" fit="contain"  style="height:130px;" lazy></el-image>
 					  		</div>
 					  		<div style="margin-top: 10px;height:70px;">
 					  			<div style="height: 40px;overflow: hidden;margin-bottom: 5px;">
@@ -131,7 +131,7 @@
 			  		<el-card>
 					  	<div style="float: left;height: 200px">
 					  		<div >
-					  			<el-image src="img/gongjuxiang.jpg"  style="height:130px;" lazy></el-image>
+					  			<el-image src="img/gongjuxiang.jpg" fit="contain"  style="height:130px;" lazy></el-image>
 					  		</div>
 					  		<div style="margin-top: 10px;height:70px;">
 					  			<div style="height: 40px;overflow: hidden;margin-bottom: 5px;">
@@ -150,7 +150,7 @@
 			  		<el-card>
 					  	<div style="float: left;height: 200px">
 					  		<div >
-					  			<el-image src="img/gongjuxiang.jpg"  style="height:130px;" lazy></el-image>
+					  			<el-image src="img/gongjuxiang.jpg"  fit="contain" style="height:130px;" lazy></el-image>
 					  		</div>
 					  		<div style="margin-top: 10px;height:70px;">
 					  			<div style="height: 40px;overflow: hidden;margin-bottom: 5px;">

@@ -3,6 +3,8 @@ $(document).ready(function(){
 		  el: '#shouye_db',
 		  data: {
 		    value:"sy",
+		    input:'',
+		    dialogVisible: false,
 		  },
 		  methods: {
 			  goSy: function () {
@@ -14,6 +16,7 @@ $(document).ready(function(){
 				  location.href="/home/index.jsp";
 			  },
 			  search: function () {
+				  sessionStorage.setItem("input",vm2.input);
 				  location.href="/home/search.do";
 			  },
 			  goQg: function () {
@@ -21,10 +24,7 @@ $(document).ready(function(){
 				  //location.href="./qiugou.jsp";
 			  },
 			  alert: function (e) {
-				  this.$message({
-			          message: '恭喜你，'+e,
-			          type: 'success'
-			        });
+				  vm2.dialogVisible = true;
 			  },
 			  
 		  },

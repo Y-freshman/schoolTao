@@ -78,7 +78,10 @@
     need_id, user_id, need_content, need_pics, need_view_num, need_time, need_comment_num
   </sql>
   <select id="selectNeedAndUser" parameterType="com.schoolTao.pojo.NeedExample" resultMap="BaseResultMapAndUser">
-    select * from need,user where need.user_id = user.user_id ORDER BY need.need_id DESC  LIMIT 0,60
+    select * from need,user where need.user_id = user.user_id ORDER BY need.need_time DESC  
+  </select>
+  <select id="selectNeedAndUser2" parameterType="com.schoolTao.pojo.NeedExample" resultMap="BaseResultMapAndUser">
+    select * from need,user where need.user_id = user.user_id ORDER BY need.need_view_num DESC  
   </select>
   <select id="selectByExample" parameterType="com.schoolTao.pojo.NeedExample" resultMap="BaseResultMap">
     select

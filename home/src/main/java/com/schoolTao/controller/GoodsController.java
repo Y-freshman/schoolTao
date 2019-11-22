@@ -2,6 +2,7 @@ package com.schoolTao.controller;
 
 import java.text.ParseException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,37 @@ public class GoodsController {
 		Map<String, Object>map = new HashMap<String, Object>();
 		Goods goods = goodsService.getOne(Integer.parseInt(data.get("gdId")));
 		map.put("goods", goods);
+		return map;
+	}
+	
+	/**
+	 * 查询热门商品详情
+	 * @param data 不需要查询的商品条件
+	 * @return 热门商品信息
+	 */
+	@PostMapping("/selectByView.do")
+	@ResponseBody
+	public Map<String, Object> selectByView(@RequestBody Map<String,String> data){
+		Map<String, Object>map = new HashMap<String, Object>();
+		List<Goods> goods = goodsService.getHot();
+		map.put("list", goods);
+		return map;
+	}
+	
+	/**
+	 * 查询各种类商品详情
+	 * @param data 需要查询的商品条件
+	 * @return 对应种类商品信息
+	 */
+	@PostMapping("/selectByType.do")
+	@ResponseBody
+	public Map<String, Object> selectByType(@RequestBody Map<String,String> data){
+		Map<String, Object>map = new HashMap<String, Object>();
+		String goodsType = data.get("goodsType");
+		Goods goods = new Goods();
+		goods.setGoodsType(goodsType);
+		List<Goods> goodslist = goodsService.getType(goods);
+		map.put("list", goodslist);
 		return map;
 	}
 	

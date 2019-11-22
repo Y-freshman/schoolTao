@@ -2,7 +2,7 @@ $(document).ready(function(){
 	var vm = new Vue({
 		  el: '#search',
 		  data: {
-		    
+			  input:sessionStorage.getItem("input"),
 		  },
 		  methods: { 
 			  jubao: function () {
