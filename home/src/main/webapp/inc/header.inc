@@ -65,11 +65,8 @@
 			  </el-col>
 			  <el-col :span="14" style="font-size:14px;margin-top:10px">
 				   <el-carousel style="float:right;width:300px;color:#666;"height="30px" direction="vertical" :autoplay="true"  indicator-position="none">
-				    <el-carousel-item  >
-				      <el-link  @click="alert(1)"><span class="truncate" style="width:300px">中小企业如何通过智能建造中小企业如何通过智能建造111111</span></el-link>
-				    </el-carousel-item>
-				    <el-carousel-item  >
-				      <el-link  @click="alert(2)"><span class="truncate" style="width:300px">叫阿呆和擦掉法布尔而被日本中小企业如何通过智能建造22222222</span></el-link>
+				    <el-carousel-item  v-for="(item,index) in notice" v-bind:key="item.noticeId">
+				      <el-link  @click="alert(index)"><span class="truncate" style="width:300px">{{item.noticeContent}}</span></el-link>
 				    </el-carousel-item>
 				   </el-carousel>
 				   <span style="float:right;color:#999;"><i class="el-icon-bell"></i>通告：</span>
@@ -83,9 +80,9 @@
 		  :visible.sync="dialogVisible"
 		  width="30%"
 		  >
-		  <span>中小企业如何通过智能建造中小企业如何通过智能建造中小企业如何通过智能建造</span>
+		  <span style="line-height: 25px;">&emsp;&emsp;{{noticeXq.noticeContent}}</span>
 		  <span slot="footer" class="dialog-footer">
-		  	<span style="float:left;margin-top: 15px;color: #666;font-size: 14px;">[ 2小时前 ]</span>
+		  	<span style="float:left;margin-top: 15px;color: #666;font-size: 14px;">[ {{noticeXq.noticeTime|date}} ]</span>
 		    <el-button @click="dialogVisible = false">取 消</el-button>
 		    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
 		  </span>

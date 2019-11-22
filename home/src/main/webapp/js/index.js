@@ -25,6 +25,7 @@ $(document).ready(function(){
 			  bgjj2:[],
 			  qiugou:[],
 			  text:'',
+			  lbt:[],
 		  },
 		  methods: { 
 			  jubao: function () {
@@ -339,6 +340,27 @@ $(document).ready(function(){
 		});
 	}
 	xr_hot();
+	function xr_lbt() {
+		let that = this;
+		$.ajax({
+			type: "post",
+			dataType:"json",
+			async:true,//同步异步
+			contentType:"application/json", 
+			url: "/home/turn/select.do",
+			data:  JSON.stringify({
+				
+			}), 
+			success: function(data) {
+				//console.log(data.list);
+				vm.lbt = data.list;
+			},
+			error: function(){
+				that.$message.error('轮播图加载失败~');
+			}
+		});
+	}
+	xr_lbt();
 	
 	/*
 	function scrollHandle () {
