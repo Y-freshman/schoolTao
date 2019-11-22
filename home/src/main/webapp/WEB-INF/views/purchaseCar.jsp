@@ -15,8 +15,12 @@
 	<%@include file="/inc/header2.inc"%>
 	<div id="purchaseCar" style="min-height:400px">
 		<template >
-		  <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" border 
-		  style="width: 100%;border:1px solid rgb(72, 115, 172);" @selection-change="handleSelectionChange">
+		  <el-table ref="multipleTable" 
+		  :data="tableData" 
+		  tooltip-effect="dark" 
+		  border 
+		  style="width: 100%;border:1px solid rgb(72, 115, 172);"
+		   @selection-change="handleSelectionChange">
 		    <el-table-column type="selection" width="45" style="border:1px solid rgb(72, 115, 172);"> </el-table-column>
 		    <el-table-column label="商品信息" width="550">
 		    	<template slot-scope="scope">
@@ -38,7 +42,7 @@
 					</el-row>
 			    </template>
 		    </el-table-column>
-		    <el-table-column label="出手人" width="151"> 
+		    <el-table-column label="卖家" width="151"> 
 	    		<template slot-scope="scope">
 	    			<el-link type="primary">
 		        	{{ scope.row.goodsUserName }}
@@ -66,7 +70,7 @@
 		  </el-table>
 		  <div style="margin-top: 20px" class="purchase_submit">
 		  	<el-col :span="12">
-			    <el-button type="primary" @click="toggleSelection(tableData)">选择全部</el-button>
+			    <el-button type="primary" @click="toggleSelection(tableData)">切换选中</el-button>
 			    <el-button type="warning" @click="deleteRow(index, tableData)">删除所选项</el-button>
 		    </el-col>
 		    <el-col :span="12"  style="text-align:right;color: #555;font-size: 16px;font-weight: 600;">

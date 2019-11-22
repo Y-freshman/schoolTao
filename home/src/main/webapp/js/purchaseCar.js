@@ -11,21 +11,12 @@ $(document).ready(function(){
 
 	    methods: {
 	      toggleSelection(rows) {
-	    	var sum = 0;
 	        if (rows) {
 	          rows.forEach(row => {
 	            this.$refs.multipleTable.toggleRowSelection(row);
 	          });
-	          for(var i=0; i<vm.tableData.length;i++){
-		        	sum += vm.tableData[i].goodsNewPrice;
-		        }
-	          vm.num1 = vm.tableData.length;
-	          vm.num2 = sum;
 	        } else {
-	        	vm.num1 = 0;
-		         vm.num2 = 0;
 	          this.$refs.multipleTable.clearSelection();
-	          
 	        }
 	      },
 	      deleteRow(index, cartId) {
@@ -64,8 +55,20 @@ $(document).ready(function(){
 	    	  sessionStorage.setItem("goodsId",goodsId);
 	    	  location.href = "/home/gdsDetail.do";
 	      },
-	      handleSelectionChange(val) {
-	        this.multipleSelection = val;
+	      handleSelectionChange(data) {
+	          //this.multipleSelection = data;
+	    	  //console.log(data);
+	    	  if(data.length > 0){
+	    		  vm.num1 = data.length;
+	    		  var sum = 0;
+	    		  for(let i=0; i<data.length;i++){
+	    			  sum += data[i].goodsNewPrice;
+			      }
+	    		  vm.num2 = sum;
+	    	  }else{
+	    		  vm.num1 = 0;
+		          vm.num2 = 0;
+	    	  }
 	      },
 	    },
 	    filters: {
