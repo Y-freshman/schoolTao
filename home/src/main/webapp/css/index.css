@@ -67,10 +67,9 @@ body{
     transition: .3s;
     padding-bottom: 20px;
 }
-.shouye_zl:hover{
+.shouye_zl{
 	border-bottom: 1px solid #666;
-	color:#333;
-	cursor: pointer;
+	
 }
 .footer {
 	background: #fff;

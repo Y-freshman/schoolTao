@@ -16,11 +16,8 @@
 		
 		<div >
 		  	  <el-carousel indicator-position="outside" height="350px">
-			    <el-carousel-item style="text-align:center;">
-			      <el-image src="img/lunbo_3.png"   fit="cover" style="min-width:70%;max-width:95%;"></el-image>
-			    </el-carousel-item>
-			    <el-carousel-item style="text-align:center;">
-			      <el-image src="img/lunbo_4.jpg"   fit="cover" style="min-width:70%;max-width:95%;"></el-image>
+			    <el-carousel-item style="text-align:center;" v-for="item in lbt" v-bind:key="item.turnId">
+			      <el-image @click="toGoods(item.goodsId)" :src="item.turnPic"   fit="cover" style="min-width:70%;max-width:95%;"></el-image>
 			    </el-carousel-item>
 			  </el-carousel>
 		</div>
@@ -593,4 +590,10 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/index.js"></script>
 <script src="js/header.js"></script>
+<script >
+function typePage(e) {
+	  sessionStorage.setItem("typePage",e);
+	  location.href="/home/typePage.do";
+}
+</script>
 </html>

@@ -21,6 +21,12 @@ public interface GoodsMapper {
     List<Goods> selectByView(GoodsExample example);
     
     List<Goods> selectByType(Goods record);
+    
+    List<Goods> selectByView2(GoodsExample example);
+    
+    List<Goods> selectByType2(Goods record);
+    
+    List<Goods> selectByName(Goods record);
 
     Goods selectByPrimaryKey(Integer goodsId);
 

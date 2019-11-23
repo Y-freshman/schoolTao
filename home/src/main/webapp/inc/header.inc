@@ -40,15 +40,15 @@
 					   <i class="el-icon-s-grid"></i>全部分类
 					  </span>
 					  <el-dropdown-menu slot="dropdown" style="width:150px;text-align: center;background-color: rgba(0,0,0,0.5);">
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_dzsm'">电子数码</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_fzss'" divided>服装首饰</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_jsls'" divided>酒水零食</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_wjts'" divided>文具图书</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_sxsc'" divided>生鲜食材</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_tyjs'" divided>体育健身</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_wsjj'" divided>卫生洁具</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_fnyy'" divided>妇女婴幼</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_bgjj'" divided>办公家居</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('电子数码')">电子数码</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('服装首饰')" divided>服装首饰</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('酒水零食')" divided>酒水零食</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('文具图书')" divided>文具图书</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('生鲜食材')" divided>生鲜食材</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('体育健身')" divided>体育健身</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('卫生洁具')" divided>卫生洁具</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('妇女婴幼')" divided>妇女婴幼</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('办公家居')" divided>办公家居</el-dropdown-item>
 					  </el-dropdown-menu>
 					</el-dropdown>
 			  </el-col>
@@ -65,11 +65,8 @@
 			  </el-col>
 			  <el-col :span="14" style="font-size:14px;margin-top:10px">
 				   <el-carousel style="float:right;width:300px;color:#666;"height="30px" direction="vertical" :autoplay="true"  indicator-position="none">
-				    <el-carousel-item  >
-				      <el-link  @click="alert(1)"><span class="truncate" style="width:300px">中小企业如何通过智能建造中小企业如何通过智能建造111111</span></el-link>
-				    </el-carousel-item>
-				    <el-carousel-item  >
-				      <el-link  @click="alert(2)"><span class="truncate" style="width:300px">叫阿呆和擦掉法布尔而被日本中小企业如何通过智能建造22222222</span></el-link>
+				    <el-carousel-item  v-for="(item,index) in notice" v-bind:key="item.noticeId">
+				      <el-link  @click="alert(index)"><span class="truncate" style="width:300px">{{item.noticeContent}}</span></el-link>
 				    </el-carousel-item>
 				   </el-carousel>
 				   <span style="float:right;color:#999;"><i class="el-icon-bell"></i>通告：</span>
@@ -83,9 +80,9 @@
 		  :visible.sync="dialogVisible"
 		  width="30%"
 		  >
-		  <span>中小企业如何通过智能建造中小企业如何通过智能建造中小企业如何通过智能建造</span>
+		  <span style="line-height: 25px;">&emsp;&emsp;{{noticeXq.noticeContent}}</span>
 		  <span slot="footer" class="dialog-footer">
-		  	<span style="float:left;margin-top: 15px;color: #666;font-size: 14px;">[ 2小时前 ]</span>
+		  	<span style="float:left;margin-top: 15px;color: #666;font-size: 14px;">[ {{noticeXq.noticeTime|date}} ]</span>
 		    <el-button @click="dialogVisible = false">取 消</el-button>
 		    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
 		  </span>

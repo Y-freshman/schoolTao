@@ -75,5 +75,11 @@ public class PageController {
 			return "goodsDetail";
 		}
 		
+		//链接
+		@RequestMapping("/typePage.do")
+		public String tiaozhuan14()throws IOException{
+			return "typePage";
+		}
+		
 		
 }
