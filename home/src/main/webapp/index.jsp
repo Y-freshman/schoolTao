@@ -590,4 +590,10 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/index.js"></script>
 <script src="js/header.js"></script>
+<script >
+function typePage(e) {
+	  sessionStorage.setItem("typePage",e);
+	  location.href="/home/typePage.do";
+}
+</script>
 </html>

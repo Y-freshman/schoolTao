@@ -42,6 +42,40 @@ public class GoodsController {
 	}
 	
 	/**
+	 * 搜索商品
+	 * @param data 需要查询的商品条件
+	 * @return 该条件商品信息
+	 */
+	@PostMapping("/search.do")
+	@ResponseBody
+	public Map<String, Object> search(@RequestBody Map<String,String> data){
+		Map<String, Object>map = new HashMap<String, Object>();
+		String goodsName = data.get("search");
+		Goods goods = new Goods();
+		goods.setGoodsName(goodsName);
+		List<Goods> goodslist = goodsService.getName(goods);
+		map.put("list", goodslist);
+		return map;
+	}
+	
+	/**
+	 * 对应种类商品页面
+	 * @param data 需要查询的商品条件
+	 * @return 该条件商品信息
+	 */
+	@PostMapping("/selectTypePage.do")
+	@ResponseBody
+	public Map<String, Object> selectTypePage(@RequestBody Map<String,String> data){
+		Map<String, Object>map = new HashMap<String, Object>();
+		String goodsType = data.get("goodsType");
+		Goods goods = new Goods();
+		goods.setGoodsType(goodsType);
+		List<Goods> goodslist = goodsService.getTypePage(goods);
+		map.put("list", goodslist);
+		return map;
+	}
+	
+	/**
 	 * 查询热门商品详情
 	 * @param data 不需要查询的商品条件
 	 * @return 热门商品信息

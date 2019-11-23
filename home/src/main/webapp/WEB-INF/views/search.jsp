@@ -55,51 +55,56 @@
 			  <el-col :span="24"  >
 			  	<el-tabs type="border-card">
 				  <el-tab-pane >
-				    <span slot="label" >全部 123<i class="el-icon-download"></i> </span>
+				    <span slot="label"  @click="type(0)">全部 {{qb}}<i class="el-icon-download"></i> </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
-				    <span slot="label">电子数码 12 </span>
+				    <span slot="label" @click="type(1)">电子数码 {{dzsm}} </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
-				    <span slot="label">服装首饰 12 </span>
+				    <span slot="label" @click="type(2)">服装首饰 {{fzss}} </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
-				    <span slot="label">酒水零食 12 </span>
+				    <span slot="label" @click="type(3)">酒水零食 {{jsls}} </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
-				    <span slot="label">文具图书 12 </span>
+				    <span slot="label" @click="type(4)">文具图书 {{wjts}} </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
-				    <span slot="label">生鲜食材 12 </span>
+				    <span slot="label" @click="type(5)">生鲜食材 {{sxsc}} </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
-				    <span slot="label">体育健身 12 </span>
+				    <span slot="label" @click="type(6)">体育健身 {{tyjs}} </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
-				    <span slot="label">卫生洁具 12 </span>
+				    <span slot="label" @click="type(7)">卫生洁具 {{wsjj}} </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
-				    <span slot="label">妇女婴幼 12 </span>
+				    <span slot="label" @click="type(8)">妇女婴幼 {{fnyy}} </span>
 				  </el-tab-pane>
 				  <el-tab-pane>
-				    <span slot="label">办公家居 12 </span>
+				    <span slot="label" @click="type(9)">办公家居 {{bgjj}} </span>
 				  </el-tab-pane>
 				</el-tabs>
 			  </el-col>
 			</el-row>
-		  	<el-row :gutter="20" >
+		  	<el-row :gutter="20"  v-if="qb == 0" style="margin-top:40px">
+			  <el-col :span="4"  :offset="10">
+			  	<el-image src="img/kong.png"  fit="contain" style="width:100%;" lazy></el-image>
+			  </el-col>
+			</el-row>
+		  	<el-row :gutter="20"  v-loading="loading" style="min-height:100px">
 			 <el-col :span="22" :offset="1">
 			  <el-col :span="5" :offset="2">
-			  		<el-card>
+			  		<el-card v-for="item in items1" v-bind:key="item.goodsId" style="margin-bottom:20px">
 					  	<div style="float: left;height: 200px">
 					  		<div >
-					  			<el-image src="img/gongjuxiang.jpg" fit="contain" style="height:130px;" lazy></el-image>
+					  			<el-image :src="item.goodsPics[0]"  fit="contain" style="height:130px;" lazy></el-image>
 					  		</div>
 					  		<div style="margin-top: 10px;height:70px;">
 					  			<div style="height: 40px;overflow: hidden;margin-bottom: 5px;">
-					  				<el-link>史丹利家用工具箱套装，家用工具箱套装60件套13245</el-link>
+					  				<el-link class="truncate2" @click="toGoods(item.goodsId)">{{item.goodsName}}</el-link>
 					  			</div>
-					  			<div><b style="color: #673AB7;float: left;">￥330.00</b>
+					  			<div><b style="color: #673AB7;float: left;">￥{{item.goodsNewPrice}}.00</b>
 					  			<span style="color: #999;font-size: 13px;float: right;margin-top: 5px;margin-left: -5px">
 					  			<el-link @click="jiagou()" ><i class="el-icon-shopping-cart-2"></i></el-link>
 					  			</span></div>
@@ -109,16 +114,16 @@
 					</el-card>
 				</el-col>
 		  		<el-col :span="5" >
-			  		<el-card>
+			  		<el-card v-for="item in items2" v-bind:key="item.goodsId" style="margin-bottom:20px">
 					  	<div style="float: left;height: 200px">
 					  		<div >
-					  			<el-image src="img/gongjuxiang.jpg" fit="contain"  style="height:130px;" lazy></el-image>
+					  			<el-image :src="item.goodsPics[0]"  fit="contain" style="height:130px;" lazy></el-image>
 					  		</div>
 					  		<div style="margin-top: 10px;height:70px;">
 					  			<div style="height: 40px;overflow: hidden;margin-bottom: 5px;">
-					  				<el-link>史丹利家用工具箱套装，家用工具箱套装60件套13245</el-link>
+					  				<el-link class="truncate2" @click="toGoods(item.goodsId)">{{item.goodsName}}</el-link>
 					  			</div>
-					  			<div><b style="color: #673AB7;float: left;">￥330.00</b>
+					  			<div><b style="color: #673AB7;float: left;">￥{{item.goodsNewPrice}}.00</b>
 					  			<span style="color: #999;font-size: 13px;float: right;margin-top: 5px;margin-left: -5px">
 					  			<el-link @click="jiagou()" ><i class="el-icon-shopping-cart-2"></i></el-link>
 					  			</span></div>
@@ -128,16 +133,16 @@
 					</el-card>
 				</el-col>
 		  		<el-col :span="5" >
-			  		<el-card>
+			  		<el-card v-for="item in items3" v-bind:key="item.goodsId" style="margin-bottom:20px">
 					  	<div style="float: left;height: 200px">
 					  		<div >
-					  			<el-image src="img/gongjuxiang.jpg" fit="contain"  style="height:130px;" lazy></el-image>
+					  			<el-image :src="item.goodsPics[0]"  fit="contain" style="height:130px;" lazy></el-image>
 					  		</div>
 					  		<div style="margin-top: 10px;height:70px;">
 					  			<div style="height: 40px;overflow: hidden;margin-bottom: 5px;">
-					  				<el-link>史丹利家用工具箱套装，家用工具箱套装60件套13245</el-link>
+					  				<el-link class="truncate2" @click="toGoods(item.goodsId)">{{item.goodsName}}</el-link>
 					  			</div>
-					  			<div><b style="color: #673AB7;float: left;">￥330.00</b>
+					  			<div><b style="color: #673AB7;float: left;">￥{{item.goodsNewPrice}}.00</b>
 					  			<span style="color: #999;font-size: 13px;float: right;margin-top: 5px;margin-left: -5px">
 					  			<el-link @click="jiagou()" ><i class="el-icon-shopping-cart-2"></i></el-link>
 					  			</span></div>
@@ -147,16 +152,16 @@
 					</el-card>
 				</el-col>
 		  		<el-col :span="5" >
-			  		<el-card>
+			  		<el-card v-for="item in items4" v-bind:key="item.goodsId" style="margin-bottom:20px">
 					  	<div style="float: left;height: 200px">
 					  		<div >
-					  			<el-image src="img/gongjuxiang.jpg"  fit="contain" style="height:130px;" lazy></el-image>
+					  			<el-image :src="item.goodsPics[0]"  fit="contain" style="height:130px;" lazy></el-image>
 					  		</div>
 					  		<div style="margin-top: 10px;height:70px;">
 					  			<div style="height: 40px;overflow: hidden;margin-bottom: 5px;">
-					  				<el-link>史丹利家用工具箱套装，家用工具箱套装60件套13245</el-link>
+					  				<el-link class="truncate2" @click="toGoods(item.goodsId)">{{item.goodsName}}</el-link>
 					  			</div>
-					  			<div><b style="color: #673AB7;float: left;">￥330.00</b>
+					  			<div><b style="color: #673AB7;float: left;">￥{{item.goodsNewPrice}}.00</b>
 					  			<span style="color: #999;font-size: 13px;float: right;margin-top: 5px;margin-left: -5px">
 					  			<el-link @click="jiagou()" ><i class="el-icon-shopping-cart-2"></i></el-link>
 					  			</span></div>

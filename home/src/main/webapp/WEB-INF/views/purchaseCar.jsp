@@ -26,7 +26,7 @@
 		    	<template slot-scope="scope">
 			        <el-row>
 					  <el-col :span="8"><div class="grid-content">
-					  	<img :src="scope.row.goodsPics" class="head_pic"/>
+					  	<img :src="scope.row.goodsPics[0]" class="head_pic"/>
 					  </div></el-col>
 					  <el-col :span="8"><div class="grid-content" style="margin-left: -20px;margin-top: 10px;">
 					  	<el-link :underline="false" target="_blank" @click="toDetail(scope.row.goodsId)">

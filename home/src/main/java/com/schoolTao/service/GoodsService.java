@@ -34,6 +34,26 @@ public class GoodsService {
 	}
 	
 	/**
+	 * 获取一种商品全部信息
+	 * @param 
+	 * @return
+	 */
+	public List<Goods> getTypePage(Goods type) {
+		// TODO Auto-generated method stub
+		return goodsMapper.selectByType2(type);
+	}
+	
+	/**
+	 * 根据name获取商品信息
+	 * @param goodsId
+	 * @return
+	 */
+	public List<Goods> getName(Goods type) {
+		// TODO Auto-generated method stub
+		return goodsMapper.selectByName(type);
+	}
+	
+	/**
 	 * 获取热门商品信息
 	 * @param 
 	 * @return

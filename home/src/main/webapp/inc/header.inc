@@ -40,15 +40,15 @@
 					   <i class="el-icon-s-grid"></i>全部分类
 					  </span>
 					  <el-dropdown-menu slot="dropdown" style="width:150px;text-align: center;background-color: rgba(0,0,0,0.5);">
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_dzsm'">电子数码</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_fzss'" divided>服装首饰</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_jsls'" divided>酒水零食</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_wjts'" divided>文具图书</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_sxsc'" divided>生鲜食材</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_tyjs'" divided>体育健身</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_wsjj'" divided>卫生洁具</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_fnyy'" divided>妇女婴幼</el-dropdown-item>
-					    <el-dropdown-item onclick="javascript:location.href='#shouye_bgjj'" divided>办公家居</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('电子数码')">电子数码</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('服装首饰')" divided>服装首饰</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('酒水零食')" divided>酒水零食</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('文具图书')" divided>文具图书</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('生鲜食材')" divided>生鲜食材</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('体育健身')" divided>体育健身</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('卫生洁具')" divided>卫生洁具</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('妇女婴幼')" divided>妇女婴幼</el-dropdown-item>
+					    <el-dropdown-item onclick="typePage('办公家居')" divided>办公家居</el-dropdown-item>
 					  </el-dropdown-menu>
 					</el-dropdown>
 			  </el-col>

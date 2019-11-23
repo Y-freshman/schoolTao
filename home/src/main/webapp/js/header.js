@@ -74,6 +74,10 @@ $(document).ready(function(){
 		});
 	}
 	xr_gg();
+	function typePage(e) {
+		  sessionStorage.setItem("typePage",e);
+		  location.href="/home/typePage.do";
+	 }
 	function time(dateTimeStamp) {
 	    var minute = 1000 * 60;
 	    var hour = minute * 60;
