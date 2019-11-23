@@ -1,5 +1,6 @@
 package com.schoolTao.dao;
 
+import com.schoolTao.dto.OrderDTO;
 import com.schoolTao.pojo.Order;
 import com.schoolTao.pojo.OrderExample;
 import java.util.List;
@@ -17,6 +18,8 @@ public interface OrderMapper {
     int insertSelective(Order record);
 
     List<Order> selectByExample(OrderExample example);
+    
+    List<OrderDTO> selectAndGoods(Integer userId);
 
     Order selectByPrimaryKey(Integer orderId);
 
@@ -27,4 +30,12 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+    
+    int updateConfirm(Integer orderId);
+
+	List<OrderDTO> selectAndGoodsNeed(@Param("userId")Integer userId, @Param("orderState")String orderState);
+
+	int addOrders(List<Order> gdsList);
+	
+	int addOrder(Order order);
 }

@@ -2,80 +2,17 @@ $(document).ready(function(){
 	var vm = new Vue({
 		  el: '#orderForm',
 		  data: {
-			  activeName: 'second',
+			  activeName: 'first',
 			  input3: '',
 		      select: '',
 		      clear: true,
-		      tableData: [{
-		          title: '2019秋冬女装春装新款上衣连衣裙加绒加厚打底衫女长袖衬衫t恤女',
-		          head_pic: 'img/goods/timg.jpg',
-		          time:	'2019-11-02',
-			      source: '站在远处看从前',
-			      gd_num: 1,
-			      status: '交易成功',
-			      sum: 79,
-			    }, {
-			      title: '2019秋冬女装春装新款上衣连衣裙加绒加厚打底衫女长袖衬衫t恤女',
-			      head_pic: 'img/goods/timg.jpg',
-			      time:	'2019-11-02',
-	        	  source: '站在远处看从前',
-	        	  gd_num: 1,
-	        	  status: '交易进行中',
-	        	  sum: 89,
-			    }, {
-			      title: '2019秋冬女装春装新款上衣连衣裙加绒加厚打底衫女长袖衬衫t恤女',
-			      head_pic: 'img/goods/timg.jpg',
-			      time:	'2019-11-02',
-	        	  source: '站在远处看从前',
-	        	  gd_num: 1,
-	        	  status: '交易已取消',
-	        	  sum: 99,
-			    }, {
-			      title: '2019秋冬女装春装新款上衣连衣裙加绒加厚打底衫女长袖衬衫t恤女',
-			      head_pic: 'img/goods/timg.jpg',
-			      time:	'2019-11-02',
-	        	  source: '站在远处看从前',
-	        	  gd_num: 1,
-	        	  status: '待付款',
-	        	  sum: 69,
-			    }],
-			    tableData1: [ {
-			    	title: '2019秋冬女装春装新款上衣连衣裙加绒加厚打底衫女长袖衬衫t恤女',
-			    	head_pic: 'img/goods/timg.jpg',
-			    	time:	'2019-11-02',
-			    	source: '站在远处看从前',
-			    	gd_num: 1,
-			    	status: '待付款',
-			    	sum: 69,
-			    },
-			    {
-			    	title: '2019秋冬女装春装新款上衣连衣裙加绒加厚打底衫女长袖衬衫t恤女',
-			    	head_pic: 'img/goods/timg.jpg',
-			    	time:	'2019-11-02',
-			    	source: '站在远处看从前',
-			    	gd_num: 1,
-			    	status: '待付款',
-			    	sum: 69,
-			    }],
-			    tableData2: [ {
-			    	title: '2019秋冬女装春装新款上衣连衣裙加绒加厚打底衫女长袖衬衫t恤女',
-			    	head_pic: 'img/goods/timg.jpg',
-			    	time:	'2019-11-02',
-			    	source: '站在远处看从前',
-			    	gd_num: 1,
-			    	status: '交易进行中',
-			    	sum: 69,
-			    },
-			    {
-			    	title: '2019秋冬女装春装新款上衣连衣裙加绒加厚打底衫女长袖衬衫t恤女',
-			    	head_pic: 'img/goods/timg.jpg',
-			    	time:	'2019-11-02',
-			    	source: '站在远处看从前',
-			    	gd_num: 1,
-			    	status: '交易进行中',
-			    	sum: 69,
-			    }],
-			    currentPage4: 4,
+		      tableData: [],
+			  tableData1: [],
+			  tableData2: [],
+			  currentPage1: 1,
+			  totalAll: '',
+			  totalNeed: '',
+			  totalconfirm: '',
 		  },
 		  methods: {
 			  handleClick(tab, event) {
@@ -90,13 +27,8 @@ $(document).ready(function(){
 			          for(var i=0; i<vm.tableData.length;i++){
 				        	sum += vm.tableData[i].sum;
 				        }
-			          $(".gd_num").html(vm.tableData.length);
-				      $(".sum_price").html(sum);
 			        } else {
 			          this.$refs.multipleTable.clearSelection();
-			          sum = 0;
-			          $(".gd_num").html(0);
-			          $(".sum_price").html(sum);
 			        }
 			      },
 			      handleSelectionChange(val) {
@@ -114,17 +46,146 @@ $(document).ready(function(){
 		        handleCurrentChange(val) {
 		          console.log(`当前页: ${val}`);
 		        },
-		        gdSure(index){
-		        	vm.tableData2[index].status = '交易成功';
+		        gdSure(index,orderId){
+		        	vm.tableData2[index].orderState = 2;
+		        	confirmGds(orderId);
+		        	this.$message({
+		                message: '已确认收货',
+		                type: 'success'
+		              });
+		        	getAllReceive();
+		        	getAll();
 		        },
-		        gdSure0(index){
-		        	vm.tableData[index].status = '交易成功';
+		        gdSure0(index,orderId){
+		        	vm.tableData[index].orderState = 2;
+		        	confirmGds(orderId);
+		        	this.$message({
+		                message: '已确认收货',
+		                type: 'success'
+		              });
+		        	getAllReceive();
 		        },
+		        toDetail(goodsId){
+			    	  sessionStorage.setItem("goodsId",goodsId);
+			    	  location.href = "/home/gdsDetail.do";
+			     },
+			     nextPage(){
+			    	 vm.tableData.splice(0,7);
+			     },
+			     prePage(){
+			    	 
+			     }
 		  },
 		  filters: {
-			  
+			  dateFormat(date){
+					var date = new Date(date);
+					Y = date.getFullYear() + '-';
+					M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+					D = date.getDate() + ' ';
+					h = date.getHours() + ':';
+					m = date.getMinutes() + ':';
+					s = date.getSeconds(); 
+					return (Y+M+D+h+m+s);
+				}
 		  },
 		  
 	});
+	
+	/**
+	 * 获取所有
+	 * @returns
+	 */
+	function getAll(){
+		$.ajax({
+			  url: "/home/order/select.do",
+			  async: true,
+			  type: "post",
+			  data: JSON.stringify({
+				  userId: 2,
+			  }),
+			  contentType: "application/json",
+			  dataType: 'json',
+			  success: function(data){
+				  vm.tableData = data.orders;
+				  vm.totalAll = vm.tableData.length;
+				  /*var data = data.orders;
+				  for(var i=0; i<data.length; i++){
+					  while(data[i].orderState != '0'){
+						  data.splice(i-1,1);
+						  break;
+					  }
+				  }
+				  vm.tableData1 = data;
+				  console.log(vm.tableData1);*/
+            }
+		})
+	}
+	getAll();
+	
+	/**
+	 * 获取待付款
+	 * @returns
+	 */
+	function getAllNeed(){
+		$.ajax({
+			url: "/home/order/selectNeed.do",
+			async: true,
+			type: "post",
+			data: JSON.stringify({
+				userId: 2,
+				orderState: 0,
+			}),
+			contentType: "application/json",
+			dataType: 'json',
+			success: function(data){
+				vm.tableData1 = data.orders;
+			}
+		})
+	}
+	getAllNeed();
+	
+	/**
+	 * 获取待收货
+	 * @returns
+	 */
+	function getAllReceive(){
+		$.ajax({
+			url: "/home/order/selectNeed.do",
+			async: true,
+			type: "post",
+			data: JSON.stringify({
+				userId: 2,
+				orderState: 1,
+			}),
+			contentType: "application/json",
+			dataType: 'json',
+			success: function(data){
+				vm.tableData2 = data.orders;
+				console.log(vm.tableData2);
+			}
+		})
+	}
+	getAllReceive();
+	
+	/**
+	 * 确认收货
+	 * @param goodsId
+	 * @returns
+	 */
+	function confirmGds(orderId){
+		$.ajax({
+			url: "/home/order/confirm.do",
+			async: true,
+			type: "post",
+			data: JSON.stringify({
+				orderId: orderId
+			}),
+			contentType: "application/json",
+			dataType: 'json',
+			success: function(res){
+				
+			}
+		})
+	}
 	
 });

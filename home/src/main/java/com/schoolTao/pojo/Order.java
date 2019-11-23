@@ -69,5 +69,4 @@ public class Order {
 				+ ", orderNum=" + orderNum + ", orderState=" + orderState + "]";
 	}
     
-    
 }

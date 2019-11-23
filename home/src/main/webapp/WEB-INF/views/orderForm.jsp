@@ -22,52 +22,55 @@
 				<template>
 				<el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" border 
 				  style="width: 100%;border:1px solid rgb(72, 115, 172);" @selection-change="handleSelectionChange">
-				    <el-table-column type="selection" width="40" style="border:1px solid rgb(72, 115, 172);"> </el-table-column>
 				    <el-table-column label="商品信息" width="325">
 				    	<template slot-scope="scope">
 					        <el-row>
 							  <el-col :span="12"><div class="grid-content">
-							  	<img :src="scope.row.head_pic" class="head_pic"/>
+							  	<img :src="scope.row.goodsPics" class="head_pic"/>
 							  </div></el-col>
 							  <el-col :span="12"><div class="grid-content" style="margin-left: -20px;">
-							  	<el-link href="goodsDetail.jsp" :underline="false" target="_blank">
-							  		{{ scope.row.title }}
+							  	<el-link @click="toDetail(scope.row.goodsId)" :underline="false" target="_blank">
+							  		{{ scope.row.goodsName }}
 							  	</el-link>
 							  </div></el-col>
 							</el-row>
 					    </template>
 				    </el-table-column>
-				    <el-table-column label="交易时间" prop="time" width="120"></el-table-column>
-				    <el-table-column label="数量" prop="gd_num" width="40"></el-table-column>
+				    <el-table-column label="交易时间" width="170">
+				    	<template slot-scope="scope">
+				        	<span>{{ scope.row.orderTime|dateFormat }}</span>
+		    			</template>
+				    </el-table-column>
+				    <el-table-column label="数量" prop="orderNum" width="40"></el-table-column>
 				    <el-table-column label="出手人" width="151"> 
 			    		<template slot-scope="scope">
 			    			<el-link type="primary">
-				        	{{ scope.row.source }}
+				        	{{ scope.row.goodsUserName }}
 				        	</el-link>
 		    			</template>
 				    </el-table-column>
-				    <el-table-column label="实付款" width="111">
+				    <el-table-column label="实付款" width="101">
 				    	<template slot-scope="scope">
-				        	<span class="purchaseCar_sum">￥{{ scope.row.sum }}</span>
+				        	<span class="purchaseCar_sum">￥{{ scope.row.goodsNewPrice }}</span>
 		    			</template>
 				    </el-table-column>
 				    <el-table-column label="交易状态" width="120">
 				    	<template slot-scope="scope">
 					        <el-button type="text" size="small">
-					          <span style="color:#0f63bb" v-if="scope.row.status == '交易成功'">{{ scope.row.status }}</span>
-					          <span style="color:#0fbb75" v-if="scope.row.status == '交易进行中'">{{ scope.row.status }}</span>
-					          <span style="color:rgb(186, 15, 187)" v-if="scope.row.status == '交易已取消'">{{ scope.row.status }}</span>
-					          <span style="color:red" v-if="scope.row.status == '待付款'">{{ scope.row.status }}</span>
+					          <span style="color:#0f63bb" v-if="scope.row.orderState == 0">待付款</span>
+					          <span style="color:#0fbb75" v-if="scope.row.orderState == 1">交易进行中</span>
+					          <span style="color:rgb(186, 15, 187)" v-if="scope.row.orderState == 2">交易完成</span>
+					          <span style="color:red" v-if="scope.row.orderState == 3">交易取消</span>
 					        </el-button>
 		      			</template>
 				    </el-table-column>
 				    <el-table-column label="操作" width="111" show-overflow-tooltip> 
 				    	<template slot-scope="scope">
-					        <li><el-button type="primary" size="small" v-if="scope.row.status == '交易进行中'" 
-					        @click="gdSure0(scope.$index)">
+					        <li><el-button type="primary" size="small" v-if="scope.row.orderState == 1" 
+					        @click="gdSure0(scope.$index,scope.row.orderId)">
 					          确认收货
 					        </el-button></li>
-					        <li><el-button type="text" size="small" v-if="scope.row.status != '交易进行中'">
+					        <li><el-button type="text" size="small" v-if="scope.row.orderState != 1">
 					          <span style="color:#f56c8a">追加评论</span>
 					        </el-button></li>
 		      			</template>
@@ -78,13 +81,14 @@
 				    <el-pagination
 				      @size-change="handleSizeChange"
 				      @current-change="handleCurrentChange"
-				      :current-page="currentPage4"
-				      :page-sizes="[100, 200, 300, 400]"
-				      :page-size="100"
-				      layout="total, sizes, prev, pager, next, jumper"
-				      :total="400">
+				      @prev-click="prePage"
+				      @next-click="nextPage"
+				      :current-page="currentPage1"
+				      :page-size="7"
+				      layout="total, prev, pager, next, jumper"
+				      :total="totalAll">
 				    </el-pagination>
-				  </div>
+				</div>
 			</el-tab-pane>
 		    <el-tab-pane label="待付款" name="second">
 				<el-input placeholder="请输入订单号或者物品名进行搜索..." :clearable="clear" v-model="input3" class="input-with-select">
@@ -93,46 +97,49 @@
 				<template>
 				<el-table ref="multipleTable" :data="tableData1" tooltip-effect="dark" border 
 				  style="width: 100%;border:1px solid rgb(72, 115, 172);" @selection-change="handleSelectionChange">
-				    <el-table-column type="selection" width="40" style="border:1px solid rgb(72, 115, 172);"> </el-table-column>
 				    <el-table-column label="商品信息" width="325">
 				    	<template slot-scope="scope">
 					        <el-row>
 							  <el-col :span="12"><div class="grid-content">
-							  	<img :src="scope.row.head_pic" class="head_pic"/>
+							  	<img :src="scope.row.goodsPics" class="head_pic"/>
 							  </div></el-col>
 							  <el-col :span="12"><div class="grid-content" style="margin-left: -20px;">
-							  	<el-link href="goodsDetail.jsp" :underline="false" target="_blank">
-							  		{{ scope.row.title }}
+							  	<el-link @click="toDetail(scope.row.goodsId)" :underline="false" target="_blank">
+							  		{{ scope.row.goodsName }}
 							  	</el-link>
 							  </div></el-col>
 							</el-row>
 					    </template>
 				    </el-table-column>
-				    <el-table-column label="交易时间" prop="time" width="120"></el-table-column>
-				    <el-table-column label="数量" prop="gd_num" width="40"></el-table-column>
+				    <el-table-column label="交易时间" width="170">
+				    	<template slot-scope="scope">
+				        	<span>{{ scope.row.orderTime|dateFormat }}</span>
+		    			</template>
+				    </el-table-column>
+				    <el-table-column label="数量" prop="orderNum" width="40"></el-table-column>
 				    <el-table-column label="出手人" width="151"> 
 			    		<template slot-scope="scope">
 			    			<el-link type="primary">
-				        	{{ scope.row.source }}
+				        	{{ scope.row.goodsUserName }}
 				        	</el-link>
 		    			</template>
 				    </el-table-column>
-				    <el-table-column label="实付款" width="111">
+				    <el-table-column label="实付款" width="101">
 				    	<template slot-scope="scope">
-				        	<span class="purchaseCar_sum">￥{{ scope.row.sum }}</span>
+				        	<span class="purchaseCar_sum">￥{{ scope.row.goodsNewPrice }}</span>
 		    			</template>
 				    </el-table-column>
 				    <el-table-column label="交易状态" width="120">
 				    	<template slot-scope="scope">
 					        <el-button type="text" size="small">
-					          <span style="color:red">{{ scope.row.status }}</span>
+					          <span style="color:red">待付款</span>
 					        </el-button>
 		      			</template>
 				    </el-table-column>
 				    <el-table-column label="操作" width="111" show-overflow-tooltip> 
 				    	<template slot-scope="scope">
-					        <li><el-button type="text" size="small">
-					          <span style="color:#f56c8a">追加评论</span>
+					        <li><el-button type="text" size="small" v-if="scope.row.orderState == 0">
+					          <span style="color:#f56c8a">去付款</span>
 					        </el-button></li>
 		      			</template>
 				    </el-table-column>
@@ -142,11 +149,12 @@
 				    <el-pagination
 				      @size-change="handleSizeChange"
 				      @current-change="handleCurrentChange"
-				      :current-page="currentPage4"
-				      :page-sizes="[100, 200, 300, 400]"
-				      :page-size="100"
-				      layout="total, sizes, prev, pager, next, jumper"
-				      :total="400">
+				      @prev-click="prePage"
+				      @next-click="nextPage"
+				      :current-page="currentPage1"
+				      :page-size="7"
+				      layout="total, prev, pager, next, jumper"
+				      :total="28">
 				    </el-pagination>
 				  </div>
 			</el-tab-pane>
@@ -157,49 +165,53 @@
 				<template>
 				<el-table ref="multipleTable" :data="tableData2" tooltip-effect="dark" border 
 				  style="width: 100%;border:1px solid rgb(72, 115, 172);" @selection-change="handleSelectionChange">
-				    <el-table-column type="selection" width="40" style="border:1px solid rgb(72, 115, 172);"> </el-table-column>
 				    <el-table-column label="商品信息" width="325">
 				    	<template slot-scope="scope">
 					        <el-row>
 							  <el-col :span="12"><div class="grid-content">
-							  	<img :src="scope.row.head_pic" class="head_pic"/>
+							  	<img :src="scope.row.goodsPics" class="head_pic"/>
 							  </div></el-col>
 							  <el-col :span="12"><div class="grid-content" style="margin-left: -20px;">
-							  	<el-link href="goodsDetail.jsp" :underline="false" target="_blank">
-							  		{{ scope.row.title }}
+							  	<el-link @click="toDetail(scope.row.goodsId)" :underline="false" target="_blank">
+							  		{{ scope.row.goodsName }}
 							  	</el-link>
 							  </div></el-col>
 							</el-row>
 					    </template>
 				    </el-table-column>
-				    <el-table-column label="交易时间" prop="time" width="120"></el-table-column>
-				    <el-table-column label="数量" prop="gd_num" width="40"></el-table-column>
+				    <el-table-column label="交易时间" width="176">
+				    	<template slot-scope="scope">
+				        	<span>{{ scope.row.orderTime|dateFormat }}</span>
+		    			</template>
+				    </el-table-column>
+				    <el-table-column label="数量" prop="orderNum" width="40"></el-table-column>
 				    <el-table-column label="出手人" width="151"> 
 			    		<template slot-scope="scope">
 			    			<el-link type="primary">
-				        	{{ scope.row.source }}
+				        	{{ scope.row.goodsUserName }}
 				        	</el-link>
 		    			</template>
 				    </el-table-column>
-				    <el-table-column label="实付款" width="111">
+				    <el-table-column label="实付款" width="95">
 				    	<template slot-scope="scope">
-				        	<span class="purchaseCar_sum">￥{{ scope.row.sum }}</span>
+				        	<span class="purchaseCar_sum">￥{{ scope.row.goodsNewPrice }}</span>
 		    			</template>
 				    </el-table-column>
 				    <el-table-column label="交易状态" width="120">
 				    	<template slot-scope="scope">
 					        <el-button type="text" size="small">
-					          <span style="color:#0f63bb" v-if="scope.row.status == '交易成功'">{{ scope.row.status }}</span>
-					          <span style="color:#0fbb75" v-if="scope.row.status == '交易进行中'">{{ scope.row.status }}</span>
+					          <span style="color:#0f63bb" v-if="scope.row.orderState == 2">交易完成</span>
+					          <span style="color:#0fbb75" v-if="scope.row.orderState == 1">交易进行中</span>
 					        </el-button>
 		      			</template>
 				    </el-table-column>
 				    <el-table-column label="操作" width="111" show-overflow-tooltip> 
 				    	<template slot-scope="scope">
-					        <li><el-button type="primary" size="small" v-if="scope.row.status == '交易进行中'" @click="gdSure(scope.$index)">
+					        <li><el-button type="primary" size="small" v-if="scope.row.orderState == 1" 
+					        @click="gdSure(scope.$index,scope.row.orderId)">
 					          确认收货
 					        </el-button></li>
-					        <li><el-button type="text" size="small" v-if="scope.row.status != '交易进行中'">
+					        <li><el-button type="text" size="small" v-if="scope.row.orderState != 1">
 					          <span style="color:#f56c8a">追加评论</span>
 					        </el-button></li>
 		      			</template>
@@ -210,11 +222,12 @@
 				    <el-pagination
 				      @size-change="handleSizeChange"
 				      @current-change="handleCurrentChange"
-				      :current-page="currentPage4"
-				      :page-sizes="[100, 200, 300, 400]"
-				      :page-size="100"
-				      layout="total, sizes, prev, pager, next, jumper"
-				      :total="400">
+				      @prev-click="prePage"
+				      @next-click="nextPage"
+				      :current-page="currentPage1"
+				      :page-size="7"
+				      layout="total, prev, pager, next, jumper"
+				      :total="28">
 				    </el-pagination>
 				  </div>
 			</el-tab-pane>

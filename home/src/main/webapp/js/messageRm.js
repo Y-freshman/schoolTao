@@ -2,127 +2,81 @@ $(document).ready(function(){
 	var vm = new Vue({
 		  el: '#messageRm',
 		  data: {
-			  activeNames: ['1'],
+			  activeNames: '1',
 			  squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
-			  userName: '一蓑烟雨任平生',
+			  ownerName: '风中旅人',
 			  sex: '0',
-			  message: [
-				  {
-					  id: 1,
-					  squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
-					  remainer: '一蓑烟雨任平生',
-					  toRemainer: 'angle',
-					  time: '2019-11-02 16:32:52',
-					  sex: '0',
-					  content: '失去你的我，比乞丐落魄',
-					  subContent: [
-						  {
-							  remainer: '一蓑烟雨任平生',
-							  toRemainer: 'angle',
-							  content: '抱紧你的我，比国王富有',
-							  time: '2019-11-02 16:32:52',
-						  },
-						  {
-							  remainer: '我',
-							  toRemainer: 'angle',
-							  content: '抱紧你的我，比国王富有',
-							  time: '2019-11-02 16:32:52',
-						  },
-						  {
-							  remainer: '一蓑烟雨任平生',
-							  toRemainer: 'angle',
-							  content: '抱紧你的我，比国王富有',
-							  time: '2019-11-02 16:32:52',
-						  },
-					  ]
-				  },
-				  {
-					  id: 2,
-					  squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
-					  remainer: '一蓑烟雨任平生',
-					  toRemainer: 'angle',
-					  time: '2019-11-02 16:32:52',
-					  sex: '1',
-					  content: '失去你的我，比乞丐落魄',
-					  subContent: [
-						  {
-							  remainer: '一蓑烟雨任平生',
-							  toRemainer: 'angle',
-							  content: '抱紧你的我，比国王富有',
-							  time: '2019-11-02 16:32:52',
-						  },
-						  {
-							  remainer: '一蓑烟雨任平生',
-							  toRemainer: 'angle',
-							  content: '抱紧你的我，比国王富有',
-							  time: '2019-11-02 16:32:52',
-						  },
-						  {
-							  remainer: '一蓑烟雨任平生',
-							  toRemainer: 'angle',
-							  content: '抱紧你的我，比国王富有',
-							  time: '2019-11-02 16:32:52',
-						  },
-						  ]
-				  },
-				  {
-					  id: 3,
-					  squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
-					  remainer: '一蓑烟雨任平生',
-					  toRemainer: 'angle',
-					  time: '2019-11-02 16:32:52',
-					  sex: '0',
-					  content: '失去你的我，比乞丐落魄',
-					  subContent: [
-						  {
-							  remainer: '一蓑烟雨任平生',
-							  toRemainer: 'angle',
-							  content: '抱紧你的我，比国王富有',
-							  time: '2019-11-02 16:32:52',
-						  },
-						  {
-							  remainer: '一蓑烟雨任平生',
-							  toRemainer: 'angle',
-							  content: '抱紧你的我，比国王富有',
-							  time: '2019-11-02 16:32:52',
-						  },
-						  {
-							  remainer: '一蓑烟雨任平生',
-							  toRemainer: 'angle',
-							  content: '抱紧你的我，比国王富有',
-							  time: '2019-11-02 16:32:52',
-						  },
-						  ]
-				  },
-			  ],
-			  drawer: false,
-		      direction: 'btt',
+			  message: [],
 		      textarea: '',
 		  },
 		  methods: {
-			  handleChange(name) {
-			        console.log(name);
-			        $.ajax({
-						url: "/home/remain/selectSub.do",
-						async: false,
-						type: "post",
-						data: JSON.stringify({
-							lastId: 4
-						}),
-						contentType: "application/json",
-						dataType: 'json',
-						success: function(data){
-							for(var i=0; i<vm.message.length; i++){
-								vm.message[i].subContent = data.remains
-							}
-						}
-					})
+			  handleChange(remainId) {
+			        selectSub(remainId);
 			  },
 			  handleClose(done) {
 		            done();
 		      },
-		      reply(){
-		    	  
+		      openReply(remainId){
+		    	  selectSub(remainId);
+		    	  openSub();
+		      },
+		      reply(remainId,receiverId){
+		    	  var remainerId = 2;
+		    	  $.ajax({
+	    			  url: "/home/remain/addItem.do",
+	    			  async: true,
+	    			  type: "post",
+	    			  data: JSON.stringify({
+	    				  receiverId: receiverId,
+	    				  remainerId: remainerId,
+	    				  remianLastId: remainId,
+	    				  remainContent: vm.textarea
+	    			  }),
+	    			  contentType: "application/json",
+	    			  dataType: 'json',
+	    			  success: function(res){
+	    				  if(res.code == 200){
+	    					  selectSub(remainId);
+	    					  vm.textarea = "";
+	    				  }
+	                  }
+	    		})
+		      },
+		      deleteItem(remainId,remianLastId){	//删除留言
+		    	  console.log(remainId);
+		    	  this.$confirm('此操作将使该留言被删除, 是否继续?', '提示', {
+			            confirmButtonText: '确定',
+			            cancelButtonText: '取消',
+			            type: 'warning'
+			          }).then(() => {
+			        	$.ajax({
+			    			  url: "/home/remain/deleteItem.do",
+			    			  async: true,
+			    			  type: "post",
+			    			  data: JSON.stringify({
+			    				  remainId: remainId
+			    			  }),
+			    			  contentType: "application/json",
+			    			  dataType: 'json',
+			    			  success: function(res){
+			    				  //首先判断删除的是主留言还是子留言
+			    				  if(res.code == 200 && remianLastId == 0){
+			    					  getAllMain();
+			    				  }else{
+			    					  selectSub(remianLastId);
+			    				  }
+			                  }
+			    		})
+						this.$message({
+				            type: 'success',
+				            message: '删除成功!'
+				        });
+			          }).catch(() => {
+			            this.$message({
+			              type: 'info',
+			              message: '已取消删除'
+			            });          
+			          });
 		      }
 		  },
 		  filters: {
@@ -140,6 +94,10 @@ $(document).ready(function(){
 		  
 	});
 	
+	/**
+	 * 查询所有主留言
+	 * @returns
+	 */
 	function getAllMain(){
 		$.ajax({
 			  url: "/home/remain/selectMain.do",
@@ -157,5 +115,36 @@ $(document).ready(function(){
 		  })
 	}
 	getAllMain();
+	
+	/**
+	 * 查询所有子留言
+	 * @param remainId
+	 * @returns
+	 */
+	function selectSub(remainId){
+		$.ajax({
+			url: "/home/remain/selectSub.do",
+			async: false,
+			type: "post",
+			data: JSON.stringify({
+				lastId: remainId
+			}),
+			contentType: "application/json",
+			dataType: 'json',
+			success: function(data){
+				for(var i=0; i<vm.message.length; i++){
+					while(vm.message[i].remainId == remainId){
+						vm.message[i].subContent = data.remains;
+						break;
+					}
+				}
+			}
+		})
+	}
+	
+	function openSub(){
+		$('.el-collapse-item__wrap')[0].style.display = 'block';
+		location.href = "#relpy";
+	}
 	
 });

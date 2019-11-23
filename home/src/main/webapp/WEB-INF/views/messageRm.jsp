@@ -14,8 +14,8 @@
 <body>
 	<%@include file="/inc/header2.inc"%>
 	<div id="messageRm">
-		<el-collapse v-model="activeNames" @change="handleChange">
-		  <div v-for="item in message">
+		<div v-for="item in message">
+		  <el-collapse v-model="activeNames" @change="handleChange(item.remainId)">
 		    <el-row class="demo-avatar demo-basic">
 		    	<el-col :span="2">
 		      	  <div class="demo-basic--circle">
@@ -31,30 +31,28 @@
 			        </div>
 			        <div style="float:right;">
 			        	<span style="color:#666;">{{item.remainTime|dateFormat}}&emsp;&emsp;</span>
-			        	<el-button icon="el-icon-delete" plain>删除</el-button>
-			        	<el-button @click="drawer = true" icon="el-icon-message" style="margin-left: 16px;">
+			        	<el-button icon="el-icon-delete" plain @click="deleteItem(item.remainId,item.remianLastId)">删除</el-button>
+			        	<el-button icon="el-icon-message" @click="openReply(item.remainId)" style="margin-left: 16px;">
 						  回复
 						</el-button>
-						<el-drawer title="留言回复" :visible.sync="drawer" :direction="direction"
-						  :before-close="handleClose">
-						  <el-input type="textarea" :rows="4" placeholder="请输入回复内容" v-model="textarea">
-						  </el-input>
-						  <el-button type="primary" style="float:right;margin:15px 15px 15px 0;" @click="reply">确定</el-button>
-						</el-drawer>
 			        </div>
 			    </el-col>
 			</el-row>  
-		    <el-collapse-item :title="item.content" :name="item.remianLastId">
+		    <el-collapse-item :title="item.content" :name="item.remianId">
 		      <div class="block" style="float: left;">
 		      		<p v-for="subItem in item.subContent">
-		      			<span style="color:#409eff;">{{subItem.userName}}</span>
-		      			<!-- <span style="color:#a43eccfc;" v-if="">{{subItem.remainer}}</span> -->
-		      			（{{subItem.remainTime|dateFormat}}）：&emsp;{{subItem.remainContent}}
+		      			<span style="color:#409eff;" v-if="ownerName != subItem.userName">{{subItem.userName}}</span>
+		      			<span style="color:#a43eccfc;" v-if="ownerName == subItem.userName">{{subItem.userName}}（我）</span>
+		      			（{{subItem.remainTime|dateFormat}}）：&emsp;{{subItem.remainContent}}&emsp;
+		      			<span class="deleteSubItem" @click="deleteItem(subItem.remainId,subItem.remianLastId)">删除</span>
 		      		</p>
+		      		<el-input type="textarea" :rows="4" placeholder="请输入内容" v-model="textarea" id="reply">
+					</el-input>
+					<el-button type="primary" style="float:right;margin:15px 15px 15px 0;" @click="reply(item.remainId,item.userId)">确定</el-button>
 		      </div>
 		    </el-collapse-item>
-		  </div>  
-		</el-collapse>
+		  </el-collapse>
+		</div>  
 	</div>
 	<%@include file="/inc/footer.inc"%>
 </body>

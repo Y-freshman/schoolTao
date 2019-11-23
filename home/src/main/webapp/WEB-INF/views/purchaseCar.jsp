@@ -26,7 +26,7 @@
 		    	<template slot-scope="scope">
 			        <el-row>
 					  <el-col :span="8"><div class="grid-content">
-					  	<img :src="scope.row.goodsPics" class="head_pic"/>
+					  	<img :src="scope.row.goodsPics[0]" class="head_pic"/>
 					  </div></el-col>
 					  <el-col :span="8"><div class="grid-content" style="margin-left: -20px;margin-top: 10px;">
 					  	<el-link :underline="false" target="_blank" @click="toDetail(scope.row.goodsId)">
@@ -71,7 +71,7 @@
 		  <div style="margin-top: 20px" class="purchase_submit">
 		  	<el-col :span="12">
 			    <el-button type="primary" @click="toggleSelection(tableData)">切换选中</el-button>
-			    <el-button type="warning" @click="deleteRow(index, tableData)">删除所选项</el-button>
+			    <el-button type="warning" @click="deleteRows">删除所选项</el-button>
 		    </el-col>
 		    <el-col :span="12"  style="text-align:right;color: #555;font-size: 16px;font-weight: 600;">
 		    	<el-col :span="8" style="padding-top: 8px;">
@@ -85,12 +85,18 @@
 		    		</span>
 		    	</el-col>
 		    	<el-col :span="8">
-		    		<el-button type="danger">&emsp;结算&emsp;</el-button>
+		    		<el-button type="danger" @click="firstConfirm">&emsp;结算&emsp;</el-button>
 		    	</el-col>
+		    	<el-dialog title="金额结算" :visible.sync="dialogFormVisible" width="40%">
+		    	  <img src="img/erweima.jpg"  style="width: 200px;display: block;margin: 0 auto;"/>
+				  <div slot="footer" class="dialog-footer">
+				    <el-button @click="dialogFormVisible = false">取 消</el-button>
+				    <el-button type="primary" @click="moneyConfirm">确 定</el-button>
+				  </div>
+				</el-dialog>
 		    </el-col>
 		  </div>
 		</template>
-		
 	</div>
 	<%@include file="/inc/footer.inc"%>
 </body>

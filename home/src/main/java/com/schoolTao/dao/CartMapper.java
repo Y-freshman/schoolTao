@@ -12,6 +12,8 @@ public interface CartMapper {
     int deleteByExample(CartExample example);
 
     int deleteByPrimaryKey(Integer cartId);
+    
+    int deleteRows(List<Long> cartId);
 
     int insert(Cart record);
 

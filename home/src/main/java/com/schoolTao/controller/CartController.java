@@ -47,4 +47,15 @@ public class CartController {
 		cartService.delete(cartId);
 	}
 	
+	/**
+	 * 批量删除购物车内容
+	 * @param data
+	 */
+	@PostMapping("/deleteRows.do")
+	@ResponseBody
+	public void deleteRows(@RequestBody Map<String, Object> data){
+		List<Long>cartId = (List<Long>) data.get("cartId");
+		cartService.deleteRows(cartId);
+	}
+	
 }
