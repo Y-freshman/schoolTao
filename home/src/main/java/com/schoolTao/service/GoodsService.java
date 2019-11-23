@@ -63,5 +63,21 @@ public class GoodsService {
 		return goodsMapper.selectByView(null);
 	}
 	
+	/**
+	 * 我要发布
+	 * @param goods
+	 */
+	public void InsertGoods(Goods goods) {
+		// TODO Auto-generated method stub
+		goodsMapper.insertSelective(goods);
+	}
+	
+	/**
+	 * 猜你喜欢
+	 * @return
+	 */
+	public List<Goods> maylike() {
+		return goodsMapper.selectByMayLike(null);
+	}
 	
 }

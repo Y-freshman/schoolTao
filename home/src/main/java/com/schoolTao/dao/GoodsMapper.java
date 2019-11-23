@@ -18,6 +18,8 @@ public interface GoodsMapper {
 
     List<Goods> selectByExample(GoodsExample example);
     
+    List<Goods> selectByMayLike(GoodsExample example);
+    
     List<Goods> selectByView(GoodsExample example);
     
     List<Goods> selectByType(Goods record);

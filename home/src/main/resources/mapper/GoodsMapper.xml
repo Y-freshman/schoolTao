@@ -94,6 +94,9 @@
       order by ${orderByClause}
     </if>
   </select>
+   <select id="selectByMayLike" parameterType="com.schoolTao.pojo.GoodsExample" resultMap="BaseResultMap">
+    select * from goods  ORDER BY RAND() LIMIT 6
+  </select>
   <select id="selectByView" parameterType="com.schoolTao.pojo.GoodsExample" resultMap="BaseResultMap">
     select * from goods ORDER BY goods.goods_view_num DESC LIMIT 0,8
   </select>
