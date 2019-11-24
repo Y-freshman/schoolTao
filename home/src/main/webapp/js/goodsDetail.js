@@ -6,75 +6,117 @@ $(document).ready(function(){
 			  dialogVisible:false,
 			  visible:false,
 			  num:1,
+			  cartGds:[],
+			  dialogFormVisible: false,
 		  },
 			
 		  methods: {
 			  cart() {
 				  let that = this;
 				  $.ajax({
-					  url: "/home/gdsDetails/adCart.do",
-					  async: true,
+					  url: "/home/cart/select.do",
+					  async: false,
 					  type: "post",
 					  data: JSON.stringify({
-						  goodsId: sessionStorage.getItem("goodsId"),
-						  userId: 1,
-						  goodsNum: vm.num
+						  userId: 1
 					  }),
 					  contentType: "application/json",
 					  dataType: 'json',
-					  success: function(res){
-			              if(res.code == "200"){
-			            	  that.$message({message: '添加购物车成功~',type: 'success'});
-			              }else{
-			            	  that.$message.error('啊哦！系统错误，请稍后添加');
+					  success: function(data){
+			              for(var i=0; i<data.length; i++){
+			            	  vm.cartGds.push(data[i].goodsId);
 			              }
-			              
+			              //console.log(vm.cartGds);
 		            }
 				  })
-				  vm.visible = false;
+				  for(var i=0; i<vm.cartGds.length; i++){
+					  if(vm.cartGds[i] == vm.goods.goodsId){
+						  this.$message({
+					          message: '您的购物车已有此商品哦~',
+					          type: 'warning'
+					        });
+						  vm.visible = false;
+						  break;
+					  }else{
+						  $.ajax({
+							  url: "/home/gdsDetails/adCart.do",
+							  async: false,
+							  type: "post",
+							  data: JSON.stringify({
+								  goodsId: sessionStorage.getItem("goodsId"),
+								  userId: 1,
+								  goodsNum: vm.num
+							  }),
+							  contentType: "application/json",
+							  dataType: 'json',
+							  success: function(res){
+					              if(res.code == "200"){
+					            	  that.$message({message: '添加购物车成功~',type: 'success'});
+					              }else{
+					            	  that.$message.error('啊哦！系统错误，请稍后添加');
+					              }
+					              
+				              }
+						  })
+						  vm.cartGds = [];
+						  vm.visible = false;
+						  break;
+					  }
+				  }
 			  },
 			  handleChange(value) {
 				  //console.log(value);
 			  },
-			  /*
-			  open() {
-				  const h = this.$createElement;
-			        this.$msgbox({
-			          title: '加入购物车',
-			          message: h('p', null, [
-			        	h('span', { style: 'color: teal' }, '所需数量:'),
-			            h('input', { class:'gdNum',placeholder:'现有数量"vm.goods.goodsNum"'}),
-			          ]),
-			          showCancelButton: true,
-			          confirmButtonText: '确定',
-			          cancelButtonText: '取消',
-			          beforeClose: (action, instance, done) => {
-			            if (action === 'confirm') {
-			              var num = $(".gdNum").val();
-			              console.log(num);
-			              adCart(num);
-			              done();
-			            } else {
-			              done();
-			            }
-			          }
-			        }).then(action => {
-			          this.$message({
-			            type: 'success',
-			            message: '添加购物车成功',
-			          });
-			        });
-		      },*/
+			  
+			  /**
+			   * 取消购买
+			   */
+			  monenyCancel(){
+				  /*var gdId = sessionStorage.getItem("goodsId");
+				  var gdsList = [];
+				  gdsList.push(gdId);
+				  $.ajax({
+					  url: "/home/order/addOrders.do",
+					  async: false,
+					  type: "post",
+					  data: JSON.stringify({
+						  gdsList: gdsList,
+					  }),
+					  contentType: "application/json",
+					  dataType: 'json',
+					  success: function(res){
+			              
+					  }
+				  })*/
+				  dialogFormVisible = false
+			  },
 			  
 			  /**
 			   * 立即购买
 			   */
-			  buy(){
+			  moneyConfirm(){
+				  var gdId = sessionStorage.getItem("goodsId");
+				  var gdsList = [];
+				  gdsList.push(gdId);
+				  $.ajax({
+					  url: "/home/order/addOrders.do",
+					  async: false,
+					  type: "post",
+					  data: JSON.stringify({
+						  gdsList: gdsList,
+					  }),
+					  contentType: "application/json",
+					  dataType: 'json',
+					  success: function(res){
+			              
+					  }
+				  })
+				  vm.dialogFormVisible = false;
 				  this.$message({
-                      message: '购买成功',
-                      type: 'success'
-                   }); 
-			  },
+			            type: 'success',
+			            message: '购买成功',
+			          });
+		      },
 		  },
 		  filters: {
 			  xinxian: function (value) {
@@ -143,6 +185,7 @@ $(document).ready(function(){
 	              //console.log(vm.goods);
 	              vm.goods.goodsPics = data.goods.goodsPics.split(",");
 	              //console.log(vm.goods.goodsNum);
+	              console.log(vm.goods.goodsId);
               }
 		  })
 	  }

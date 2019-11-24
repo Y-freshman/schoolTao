@@ -36,7 +36,7 @@
 				  			</div>
 				  			<div><b style="color: #673AB7;float: right;">￥{{item.goodsNewPrice}}.00</b>
 				  			<span  style="color: #999;font-size: 13px;margin-top: 5px;float: left;">
-				  			<el-link @click="jiagou()" ><i class="el-icon-shopping-cart-2"></i><span style="font-size: 12px">加至购物车</span></el-link></span>
+				  			<el-link @click="jiagou(item.goodsId)" ><i class="el-icon-shopping-cart-2"></i><span style="font-size: 12px">加至购物车</span></el-link></span>
 				  			</div>
 				  		</div>
 				  	</div>
@@ -54,7 +54,7 @@
 				  			</div>
 				  			<div><b style="color: #673AB7;float: right;">￥{{item.goodsNewPrice}}.00</b>
 				  			<span  style="color: #999;font-size: 13px;margin-top: 5px;float: left;">
-				  			<el-link @click="jiagou()" ><i class="el-icon-shopping-cart-2"></i><span style="font-size: 12px">加至购物车</span></el-link></span>
+				  			<el-link @click="jiagou(item.goodsId)" ><i class="el-icon-shopping-cart-2"></i><span style="font-size: 12px">加至购物车</span></el-link></span>
 				  			</div>
 				  		</div>
 				  	</div>
@@ -72,7 +72,7 @@
 				  			</div>
 				  			<div><b style="color: #673AB7;float: right;">￥{{item.goodsNewPrice}}.00</b>
 				  			<span  style="color: #999;font-size: 13px;margin-top: 5px;float: left;">
-				  			<el-link @click="jiagou()" ><i class="el-icon-shopping-cart-2"></i><span style="font-size: 12px">加至购物车</span></el-link></span>
+				  			<el-link @click="jiagou(item.goodsId)" ><i class="el-icon-shopping-cart-2"></i><span style="font-size: 12px">加至购物车</span></el-link></span>
 				  			</div>
 				  		</div>
 				  	</div>

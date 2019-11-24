@@ -50,7 +50,7 @@
 						  <span style="color: #3a8ee6;font-weight: 600;font-size: 16px;">{{goods.goodsNum}}</span>
 						</template>
 						<el-row style="margin-top:40px">
-						  <el-button type="danger" icon="el-icon-wallet"  style="font-size: 16px;" @click="buy()">
+						  <el-button type="danger" icon="el-icon-wallet"  style="font-size: 16px;" @click="dialogFormVisible = true">
 						  	立即购买
 						  </el-button>
 						  <el-popover
@@ -64,7 +64,13 @@
 							  </div>
 							  <el-button slot="reference" type="primary" icon="el-icon-shopping-cart-full" style="font-size: 16px;">加入购物车</el-button>
 						  </el-popover>
-						  
+						  <el-dialog title="金额结算" :visible.sync="dialogFormVisible" width="40%">
+					    	  <img src="img/erweima.jpg"  style="width: 200px;display: block;margin: 0 auto;"/>
+							  <div slot="footer" class="dialog-footer">
+							    <el-button @click="monenyCancel">取 消</el-button>
+							    <el-button type="primary" @click="moneyConfirm">确 定</el-button>
+							  </div>
+						  </el-dialog>
 						</el-row>
 					</div>
 				  </el-main>

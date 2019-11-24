@@ -3,10 +3,13 @@ $(document).ready(function(){
 		  el: '#purchaseCar',
 		  data: {
 			    tableData: [],
+			    delarr:[],//存放删除的数据
 			    multipleSelection: [],
 			    checked: false,
 			    num1:0,
 			    num2:0,
+			    dialogFormVisible: false,
+			    code: '',
 		},
 
 	    methods: {
@@ -51,13 +54,62 @@ $(document).ready(function(){
 	            });          
 	          });
 	      },
+	      deleteRows(){
+	    	  var length = vm.multipleSelection.length;
+	    	  for (let i = 0; i < length; i++) {
+	    	     vm.delarr.push(vm.multipleSelection[i].cartId)
+	    	  }
+	    	  //console.log(vm.multipleSelection);
+	    	  commonDelete(vm.delarr);
+			  getCart();
+	      },
+	      firstConfirm(){
+	    	  var length = vm.multipleSelection.length;
+	    	  for (let i = 0; i < length; i++) {
+	    	     vm.delarr.push(vm.multipleSelection[i].cartId)
+	    	  }
+    		  if(vm.delarr.length == 0){
+    			  this.$message({
+    		          message: '请先选择您要购买的商品',
+    		          type: 'warning'
+    		        });
+    		  }else{
+    			  vm.dialogFormVisible = true;
+    		  }
+	      },
+	      moneyConfirm(){
+	    	  var length = vm.multipleSelection.length;
+	    	  for (let i = 0; i < length; i++) {
+	    	     vm.delarr.push(vm.multipleSelection[i].cartId)
+	    	  }
+			  //对数据进行封装，形成后台需要的pojo的数组形式
+			  var gdsList = [];
+	          var length1 = vm.multipleSelection.length;
+	          for (let i = 0; i<length1; i++) {
+	        	  /*gdsList[i] = {};
+	        	  gdsList[i].goodsId=vm.multipleSelection[i].goodsId;
+	        	  gdsList[i].userId=vm.multipleSelection[i].userId;
+	        	  gdsList[i].cartGoodsNum=vm.multipleSelection[i].cartGoodsNum;
+	        	  gdsList[i].orderState='1';
+	        	  gdsList[i].orderTime='2019-11-23 16:04:43';*/
+	        	  gdsList.push(vm.multipleSelection[i].goodsId);
+		      }
+	    	  console.log(gdsList);
+			  addOrders(gdsList);
+			  if(vm.code == 200){
+				  commonDelete(vm.delarr);
+				  getCart();
+				  vm.dialogFormVisible = false;
+			  }else{
+				  alert("系统错误请稍后再试");
+			  }
+	      },
 	      toDetail(goodsId){
 	    	  sessionStorage.setItem("goodsId",goodsId);
 	    	  location.href = "/home/gdsDetail.do";
 	      },
 	      handleSelectionChange(data) {
-	          //this.multipleSelection = data;
-	    	  //console.log(data);
+	          this.multipleSelection = data;
 	    	  if(data.length > 0){
 	    		  vm.num1 = data.length;
 	    		  var sum = 0;
@@ -135,5 +187,45 @@ $(document).ready(function(){
 	}
 	getCart();
 	
+	/**
+	 * 对购物车里商品批量删除
+	 * @param delarr
+	 * @returns
+	 */
+	function commonDelete(delarr){
+		$.ajax({
+			  url: "/home/cart/deleteRows.do",
+			  async: false,
+			  type: "post",
+			  data: JSON.stringify({
+				  cartId: delarr
+			  }),
+			  contentType: "application/json",
+			  dataType: 'json',
+			  success: function(data){
+	              
+          }
+		  })
+	}
+	
+	/**
+	 * 批量添加订单
+	 * @returns
+	 */
+	function addOrders(gdsList){
+		$.ajax({
+			  url: "/home/order/addOrders.do",
+			  async: false,
+			  type: "post",
+			  data: JSON.stringify({
+				  gdsList: gdsList,
+			  }),
+			  contentType: "application/json",
+			  dataType: 'json',
+			  success: function(res){
+	              vm.code = res.code;
+			  }
+		})
+	}
 	
 });

@@ -21,3 +21,9 @@
 #messageRm .el-divider {
     background-color: #bfffff;
 }
+#messageRm .deleteSubItem{
+	color:red;
+}
+#messageRm .deleteSubItem:hover{
+	cursor:pointer;
+}

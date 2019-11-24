@@ -369,4 +369,9 @@
       goods_view_num = #{goodsViewNum,jdbcType=INTEGER}
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>
+  <update id="incView" parameterType="java.lang.Integer">
+    update goods
+    set goods_view_num = goods_view_num + 1
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
 </mapper>

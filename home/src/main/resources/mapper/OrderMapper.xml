@@ -9,6 +9,18 @@
     <result column="order_num" jdbcType="INTEGER" property="orderNum" />
     <result column="order_state" jdbcType="CHAR" property="orderState" />
   </resultMap>
+  <resultMap id="BaseResultMapAndGoods" type="com.schoolTao.dto.OrderDTO">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="order_state" jdbcType="CHAR" property="orderState" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_new_price" jdbcType="INTEGER" property="goodsNewPrice" />
+    <result column="goods_pics" jdbcType="VARCHAR" property="goodsPics" />
+    <result column="goods_user_name" jdbcType="VARCHAR" property="goodsUserName" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -90,6 +102,17 @@
     from order
     where order_id = #{orderId,jdbcType=INTEGER}
   </select>
+  <select id="selectAndGoods" parameterType="java.lang.Integer" resultMap="BaseResultMapAndGoods">
+    select goods_pics,goods_name,order_time,order_num,goods_new_price,order_state,order.goods_id,order_id,goods_user_name 
+		from `order` left join goods on `order`.goods_id = goods.goods_id
+		where `order`.user_id = #{userId,jdbcType=INTEGER} ORDER BY `order`.order_time DESC
+  </select>
+  <select id="selectAndGoodsNeed" resultMap="BaseResultMapAndGoods">
+    select goods_pics,goods_name,order_time,order_num,goods_new_price,order_state,order.goods_id,order_id,goods_user_name 
+		from `order` left join goods on `order`.goods_id = goods.goods_id
+		where `order`.user_id = #{userId,jdbcType=INTEGER} and `order`.order_state = #{orderState,jdbcType=CHAR}
+		ORDER BY `order`.order_time DESC
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from order
     where order_id = #{orderId,jdbcType=INTEGER}
@@ -150,6 +173,21 @@
         #{orderState,jdbcType=CHAR},
       </if>
     </trim>
+  </insert>
+   <insert id="addOrders" parameterType="list">
+    INSERT into order
+    (user_id, goods_id, order_time, order_num, order_state) 
+    VALUES
+    <foreach collection="list" item="test" separator=",">
+        (#{test.userId},
+        #{test.goodsId},
+        #{test.orderTime},
+        #{test.orderNum},
+        #{test.orderState},
+    </foreach>
+  </insert>
+   <insert id="addOrder"  parameterType="com.schoolTao.pojo.Order">
+    INSERT into `order` values (#{orderId},#{userId},#{goodsId},#{orderTime},#{orderNum},#{orderState})
   </insert>
   <select id="countByExample" parameterType="com.schoolTao.pojo.OrderExample" resultType="java.lang.Long">
     select count(*) from order
@@ -223,6 +261,10 @@
       order_time = #{orderTime,jdbcType=TIMESTAMP},
       order_num = #{orderNum,jdbcType=INTEGER},
       order_state = #{orderState,jdbcType=CHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateConfirm" parameterType="java.lang.Integer">
+    UPDATE `order` SET order_state = '2' 
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
 </mapper>

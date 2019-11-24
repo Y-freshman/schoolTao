@@ -104,6 +104,7 @@
   <select id="selectAndUser" parameterType="java.lang.Integer" resultMap="BaseResultMapAndUser">
   	select * from remain left join user on remain.user_id = `user`.user_id 
 		where remain_to_id = #{receicverId,jdbcType=INTEGER} and remain.remian_last_id = 0
+		order by remain.remain_time DESC
   </select>
   <select id="selectAndUserSub" parameterType="java.lang.Integer" resultMap="BaseResultMapAndUser">
   	select * from remain left join user on remain.user_id = `user`.user_id 

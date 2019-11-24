@@ -62,3 +62,6 @@
 .el-table .cell {
     text-align: center;
 }
+#purchaseCar .el-dialog__header {
+    text-align: center;
+}

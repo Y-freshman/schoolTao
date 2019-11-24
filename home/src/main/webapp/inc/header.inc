@@ -11,7 +11,7 @@
 			  	<el-link >在线客服/35135435</el-link>
 			  </el-col>
 			  <el-col :span="3">
-			  	<el-link icon="el-icon-shopping-cart-full" href="/home/purchaseCar.do">购物车(0)</el-link>
+			  	<el-link icon="el-icon-shopping-cart-full" href="/home/purchaseCar.do">购物车({{cartNums}})</el-link>
 			  </el-col>
 		</el-row>
 		<el-container>

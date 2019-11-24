@@ -14,6 +14,7 @@ import com.schoolTao.dto.CartDTO;
 import com.schoolTao.pojo.Cart;
 import com.schoolTao.pojo.CartExample;
 import com.schoolTao.pojo.Goods;
+import com.schoolTao.pojo.Order;
 
 @Service
 public class CartService {
@@ -55,6 +56,18 @@ public class CartService {
 	public void delete(Integer cartId) {
 		// TODO Auto-generated method stub
 		cartMapper.deleteByPrimaryKey(cartId);
+	}
+
+	public void deleteRows(List<Long> cartId) {
+		// TODO Auto-generated method stub
+		cartMapper.deleteRows(cartId);
+	}
+
+	public List<Cart> getInfo(List<Integer> gdsList) {
+		// TODO Auto-generated method stub
+		CartExample cartExample = new CartExample();
+		cartExample.createCriteria().andGoodsIdIn(gdsList);
+		return cartMapper.selectByExample(cartExample);
 	}
 	
 	

@@ -131,6 +131,7 @@ public class GoodsController {
 		map.put("code", 200);
 		return map;
 	}
+<<<<<<< HEAD
 	/**
 	 * 发布商品
 	 */
@@ -183,4 +184,22 @@ public class GoodsController {
 		return map;
 	}
 	
+=======
+	
+	/**
+	 * 商品浏览数加一
+	 * @param data
+	 * @return
+	 */
+	@PostMapping("/incView.do")
+	@ResponseBody
+	public Map<String, Object> incView(@RequestBody Map<String,String> data){
+		Map<String, Object>map = new HashMap<String, Object>();
+		Integer goodsId = Integer.parseInt(data.get("goodsId"));
+		goodsService.incView(goodsId);
+		map.put("code", 200);
+		return map;
+	}
+
+>>>>>>> branch 'yuanzhi' of https://github.com/Y-freshman/schoolTao.git
 }
