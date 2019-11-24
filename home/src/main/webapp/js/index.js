@@ -26,6 +26,7 @@ $(document).ready(function(){
 			  qiugou:[],
 			  text:'',
 			  lbt:[],
+			  cartGds:[],
 		  },
 		  methods: { 
 			  jubao: function () {
@@ -36,13 +37,77 @@ $(document).ready(function(){
 			  },
 			  toGoods: function (e) {
 				  sessionStorage.setItem("goodsId",e);
-				  window.open("/home/gdsDetail.do");
+				  var star=getCookieById("goodsId",e);
+				    if(star==""){
+				        addCookieById("goodsId",e,2); 
+				    }else{
+				    	window.open("/home/gdsDetail.do");
+				    	return false;
+				    }
+				  $.ajax({
+					  url: "/home/gdsDetails/incView.do",
+					  async: false,
+					  type: "post",
+					  data: JSON.stringify({
+						  goodsId: e
+					  }),
+					  contentType: "application/json",
+					  dataType: 'json',
+					  success: function(data){
+						  window.open("/home/gdsDetail.do");
+		              }
+				  })
 			  },
-			  jiagou: function () {
-				  this.$message({
-					  message: '成功添加到购物车~',
-					  type: 'success'
-				  });
+			  jiagou: function (goodsId) {
+				  let that = this;
+				  $.ajax({
+					  url: "/home/cart/select.do",
+					  async: false,
+					  type: "post",
+					  data: JSON.stringify({
+						  userId: 1
+					  }),
+					  contentType: "application/json",
+					  dataType: 'json',
+					  success: function(data){
+			              for(var i=0; i<data.length; i++){
+			            	  vm.cartGds.push(data[i].goodsId);
+			              }
+			              //console.log(vm.cartGds);
+		            }
+				  })
+				  for(var i=0; i<vm.cartGds.length; i++){
+					  if(vm.cartGds[i] == goodsId){
+						  this.$message({
+					          message: '您的购物车已有此商品哦~',
+					          type: 'warning'
+					        });
+						  break;
+					  }else{
+						  $.ajax({
+							  url: "/home/gdsDetails/adCart.do",
+							  async: false,
+							  type: "post",
+							  data: JSON.stringify({
+								  goodsId: goodsId,
+								  userId: 1,
+								  goodsNum: 1
+							  }),
+							  contentType: "application/json",
+							  dataType: 'json',
+							  success: function(res){
+					              if(res.code == "200"){
+					            	  that.$message({message: '添加购物车成功~',type: 'success'});
+					              }else{
+					            	  that.$message.error('啊哦！系统错误，请稍后添加');
+					              }
+					              
+				              }
+						  })
+						  vm.cartGds = [];
+						  break;
+					  }
+				  }
 			  },
 			  fabu: function (e1,e2) {
 				  if(vm.text.match(/^[ ]*$/)){

@@ -22,25 +22,30 @@ $(document).ready(function(){
 		      },
 		      reply(remainId,receiverId){
 		    	  var remainerId = 2;
-		    	  $.ajax({
-	    			  url: "/home/remain/addItem.do",
-	    			  async: true,
-	    			  type: "post",
-	    			  data: JSON.stringify({
-	    				  receiverId: receiverId,
-	    				  remainerId: remainerId,
-	    				  remianLastId: remainId,
-	    				  remainContent: vm.textarea
-	    			  }),
-	    			  contentType: "application/json",
-	    			  dataType: 'json',
-	    			  success: function(res){
-	    				  if(res.code == 200){
-	    					  selectSub(remainId);
-	    					  vm.textarea = "";
-	    				  }
-	                  }
-	    		})
+		    	  if(vm.textarea.match(/^[ ]*$/)){
+					  this.$message.error('评论不能为空！');
+					  return false;
+				  }else{
+			    	  $.ajax({
+		    			  url: "/home/remain/addItem.do",
+		    			  async: true,
+		    			  type: "post",
+		    			  data: JSON.stringify({
+		    				  receiverId: receiverId,
+		    				  remainerId: remainerId,
+		    				  remianLastId: remainId,
+		    				  remainContent: vm.textarea
+		    			  }),
+		    			  contentType: "application/json",
+		    			  dataType: 'json',
+		    			  success: function(res){
+		    				  if(res.code == 200){
+		    					  selectSub(remainId);
+		    					  vm.textarea = "";
+		    				  }
+		                  }
+		    		})
+				  }
 		      },
 		      deleteItem(remainId,remianLastId){	//删除留言
 		    	  console.log(remainId);
@@ -81,13 +86,13 @@ $(document).ready(function(){
 		  },
 		  filters: {
 			  dateFormat(date){
-					var date = new Date(date);
+				  var date = new Date(date);
 					Y = date.getFullYear() + '-';
 					M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-					D = date.getDate() + ' ';
-					h = date.getHours() + ':';
-					m = date.getMinutes() + ':';
-					s = date.getSeconds(); 
+					D = (date.getDate() < 10 ? '0' +(date.getDate()) : date.getDate()) +  ' ';
+					h = (date.getHours() <10 ? '0' +(date.getHours()) : date.getHours()) + ':';
+					m = (date.getMinutes() < 10 ? '0' +(date.getMinutes()) : date.getMinutes()) + ':';
+					s = (date.getSeconds() < 10 ? '0' +(date.getSeconds()) : date.getSeconds()); 
 					return (Y+M+D+h+m+s);
 				}
 		  },

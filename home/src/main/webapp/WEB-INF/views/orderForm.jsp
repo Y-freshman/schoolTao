@@ -16,9 +16,9 @@
 	<div id="orderForm">
 		<el-tabs v-model="activeName" @tab-click="handleClick">
 		    <el-tab-pane label="所有订单" name="first">
-				<el-input placeholder="请输入订单号或者物品名进行搜索..." :clearable="clear" v-model="input3" class="input-with-select">
+				<!-- <el-input placeholder="请输入订单号或者物品名进行搜索..." :clearable="clear" v-model="input3" class="input-with-select">
 				    <el-button slot="append" icon="el-icon-search" class="oderForm_search">订单搜索</el-button>
-				</el-input>
+				</el-input> -->
 				<template>
 				<el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" border 
 				  style="width: 100%;border:1px solid rgb(72, 115, 172);" @selection-change="handleSelectionChange">
@@ -71,13 +71,13 @@
 					          确认收货
 					        </el-button></li>
 					        <li><el-button type="text" size="small" v-if="scope.row.orderState != 1">
-					          <span style="color:#f56c8a">追加评论</span>
+					          <span style="color:#f56c8a">追加留言</span>
 					        </el-button></li>
 		      			</template>
 				    </el-table-column>
 				</el-table>
 				</template>
-				<div class="block">
+				<!-- <div class="block">
 				    <el-pagination
 				      @size-change="handleSizeChange"
 				      @current-change="handleCurrentChange"
@@ -88,12 +88,12 @@
 				      layout="total, prev, pager, next, jumper"
 				      :total="totalAll">
 				    </el-pagination>
-				</div>
+				</div> -->
 			</el-tab-pane>
 		    <el-tab-pane label="待付款" name="second">
-				<el-input placeholder="请输入订单号或者物品名进行搜索..." :clearable="clear" v-model="input3" class="input-with-select">
+				<!-- <el-input placeholder="请输入订单号或者物品名进行搜索..." :clearable="clear" v-model="input3" class="input-with-select">
 				    <el-button slot="append" icon="el-icon-search" class="oderForm_search">订单搜索</el-button>
-				</el-input>
+				</el-input> -->
 				<template>
 				<el-table ref="multipleTable" :data="tableData1" tooltip-effect="dark" border 
 				  style="width: 100%;border:1px solid rgb(72, 115, 172);" @selection-change="handleSelectionChange">
@@ -145,7 +145,7 @@
 				    </el-table-column>
 				</el-table>
 				</template>
-				<div class="block">
+				<!-- <div class="block">
 				    <el-pagination
 				      @size-change="handleSizeChange"
 				      @current-change="handleCurrentChange"
@@ -154,14 +154,14 @@
 				      :current-page="currentPage1"
 				      :page-size="7"
 				      layout="total, prev, pager, next, jumper"
-				      :total="28">
+				      :total="totalNeed">
 				    </el-pagination>
-				  </div>
+				  </div> -->
 			</el-tab-pane>
 		    <el-tab-pane label="待收货" name="third">
-				<el-input placeholder="请输入订单号或者物品名进行搜索..." :clearable="clear" v-model="input3" class="input-with-select">
+				<!-- <el-input placeholder="请输入订单号或者物品名进行搜索..." :clearable="clear" v-model="input3" class="input-with-select">
 				    <el-button slot="append" icon="el-icon-search" class="oderForm_search">订单搜索</el-button>
-				</el-input>
+				</el-input> -->
 				<template>
 				<el-table ref="multipleTable" :data="tableData2" tooltip-effect="dark" border 
 				  style="width: 100%;border:1px solid rgb(72, 115, 172);" @selection-change="handleSelectionChange">
@@ -212,13 +212,13 @@
 					          确认收货
 					        </el-button></li>
 					        <li><el-button type="text" size="small" v-if="scope.row.orderState != 1">
-					          <span style="color:#f56c8a">追加评论</span>
+					          <span style="color:#f56c8a">追加留言</span>
 					        </el-button></li>
 		      			</template>
 				    </el-table-column>
 				</el-table>
 				</template>
-				<div class="block">
+				<!-- <div class="block">
 				    <el-pagination
 				      @size-change="handleSizeChange"
 				      @current-change="handleCurrentChange"
@@ -227,9 +227,9 @@
 				      :current-page="currentPage1"
 				      :page-size="7"
 				      layout="total, prev, pager, next, jumper"
-				      :total="28">
+				      :total="totalConfirm">
 				    </el-pagination>
-				  </div>
+				</div> -->
 			</el-tab-pane>
 		</el-tabs>
 	</div>

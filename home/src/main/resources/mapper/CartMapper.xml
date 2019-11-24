@@ -99,7 +99,7 @@
   </select>
   <select id="selectByUserIdAndGoods" parameterType="java.lang.Integer" resultMap="BaseResultMapAndGoods">
       select * from cart LEFT JOIN goods on cart.goods_id = goods.goods_id 
-	where cart.user_id = #{userId,jdbcType=INTEGER}
+	where cart.user_id = #{userId,jdbcType=INTEGER} order by cart.cart_time DESC
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 

@@ -37,4 +37,6 @@ public interface GoodsMapper {
     int updateByPrimaryKeySelective(Goods record);
 
     int updateByPrimaryKey(Goods record);
+
+	int incView(Integer goodsId);
 }

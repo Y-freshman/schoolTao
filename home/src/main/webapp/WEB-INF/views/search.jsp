@@ -24,7 +24,7 @@
 			  	<el-link >在线客服/35135435</el-link>
 			  </el-col>
 			  <el-col :span="3">
-			  	<el-link icon="el-icon-shopping-cart-full">购物车(0)</el-link>
+			  	<el-link icon="el-icon-shopping-cart-full">购物车({{cartNums}})</el-link>
 			  </el-col>
 		</el-row>
 		<el-container>
@@ -106,7 +106,7 @@
 					  			</div>
 					  			<div><b style="color: #673AB7;float: left;">￥{{item.goodsNewPrice}}.00</b>
 					  			<span style="color: #999;font-size: 13px;float: right;margin-top: 5px;margin-left: -5px">
-					  			<el-link @click="jiagou()" ><i class="el-icon-shopping-cart-2"></i></el-link>
+					  			<el-link @click="jiagou(item.goodsId)" ><i class="el-icon-shopping-cart-2"></i></el-link>
 					  			</span></div>
 					  			
 					  		</div>
@@ -125,7 +125,7 @@
 					  			</div>
 					  			<div><b style="color: #673AB7;float: left;">￥{{item.goodsNewPrice}}.00</b>
 					  			<span style="color: #999;font-size: 13px;float: right;margin-top: 5px;margin-left: -5px">
-					  			<el-link @click="jiagou()" ><i class="el-icon-shopping-cart-2"></i></el-link>
+					  			<el-link @click="jiagou(item.goodsId)" ><i class="el-icon-shopping-cart-2"></i></el-link>
 					  			</span></div>
 					  			
 					  		</div>
@@ -144,7 +144,7 @@
 					  			</div>
 					  			<div><b style="color: #673AB7;float: left;">￥{{item.goodsNewPrice}}.00</b>
 					  			<span style="color: #999;font-size: 13px;float: right;margin-top: 5px;margin-left: -5px">
-					  			<el-link @click="jiagou()" ><i class="el-icon-shopping-cart-2"></i></el-link>
+					  			<el-link @click="jiagou(item.goodsId)" ><i class="el-icon-shopping-cart-2"></i></el-link>
 					  			</span></div>
 					  			
 					  		</div>
@@ -163,7 +163,7 @@
 					  			</div>
 					  			<div><b style="color: #673AB7;float: left;">￥{{item.goodsNewPrice}}.00</b>
 					  			<span style="color: #999;font-size: 13px;float: right;margin-top: 5px;margin-left: -5px">
-					  			<el-link @click="jiagou()" ><i class="el-icon-shopping-cart-2"></i></el-link>
+					  			<el-link @click="jiagou(item.goodsId)" ><i class="el-icon-shopping-cart-2"></i></el-link>
 					  			</span></div>
 					  			
 					  		</div>

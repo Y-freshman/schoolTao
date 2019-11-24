@@ -7,6 +7,7 @@ $(document).ready(function(){
 		    dialogVisible: false,
 		    notice:[],
 		    noticeXq:[],
+		    cartNums: '',
 		  },
 		  methods: {
 			  goSy: function () {
@@ -115,4 +116,23 @@ $(document).ready(function(){
 	        result="刚刚";
 	    return result;
 	};//时间戳转化为几天前，几小时前，几分钟前
+	
+	function cartNum(){
+		$.ajax({
+			  url: "/home/cart/select.do",
+			  async: false,
+			  type: "post",
+			  data: JSON.stringify({
+				  userId: 1
+			  }),
+			  contentType: "application/json",
+			  dataType: 'json',
+			  success: function(data){
+				  //console.log(data);
+	              vm2.cartNums = data.length;
+	              //console.log(vm2.cartNums);
+          }
+		  })
+	}
+	cartNum();
 });

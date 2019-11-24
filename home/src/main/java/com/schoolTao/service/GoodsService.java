@@ -62,6 +62,15 @@ public class GoodsService {
 		// TODO Auto-generated method stub
 		return goodsMapper.selectByView(null);
 	}
+
+	/**
+	 * 商品浏览量加一
+	 * @param goodsId
+	 */
+	public void incView(Integer goodsId) {
+		// TODO Auto-generated method stub
+		goodsMapper.incView(goodsId);
+	}
 	
 	
 }

@@ -12,7 +12,7 @@ $(document).ready(function(){
 			  currentPage1: 1,
 			  totalAll: '',
 			  totalNeed: '',
-			  totalconfirm: '',
+			  totalConfirm: '',
 		  },
 		  methods: {
 			  handleClick(tab, event) {
@@ -81,10 +81,10 @@ $(document).ready(function(){
 					var date = new Date(date);
 					Y = date.getFullYear() + '-';
 					M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-					D = date.getDate() + ' ';
-					h = date.getHours() + ':';
-					m = date.getMinutes() + ':';
-					s = date.getSeconds(); 
+					D = (date.getDate() < 10 ? '0' +(date.getDate()) : date.getDate()) +  ' ';
+					h = (date.getHours() <10 ? '0' +(date.getHours()) : date.getHours()) + ':';
+					m = (date.getMinutes() < 10 ? '0' +(date.getMinutes()) : date.getMinutes()) + ':';
+					s = (date.getSeconds() < 10 ? '0' +(date.getSeconds()) : date.getSeconds()); 
 					return (Y+M+D+h+m+s);
 				}
 		  },
@@ -101,7 +101,7 @@ $(document).ready(function(){
 			  async: true,
 			  type: "post",
 			  data: JSON.stringify({
-				  userId: 2,
+				  userId: 1,
 			  }),
 			  contentType: "application/json",
 			  dataType: 'json',
@@ -132,13 +132,14 @@ $(document).ready(function(){
 			async: true,
 			type: "post",
 			data: JSON.stringify({
-				userId: 2,
+				userId: 1,
 				orderState: 0,
 			}),
 			contentType: "application/json",
 			dataType: 'json',
 			success: function(data){
 				vm.tableData1 = data.orders;
+				vm.totalNeed = data.orders.length;
 			}
 		})
 	}
@@ -154,13 +155,14 @@ $(document).ready(function(){
 			async: true,
 			type: "post",
 			data: JSON.stringify({
-				userId: 2,
+				userId: 1,
 				orderState: 1,
 			}),
 			contentType: "application/json",
 			dataType: 'json',
 			success: function(data){
 				vm.tableData2 = data.orders;
+				vm.totalConfirm = data.orders.length;
 				console.log(vm.tableData2);
 			}
 		})
