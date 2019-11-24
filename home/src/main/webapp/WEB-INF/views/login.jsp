@@ -30,7 +30,7 @@
 			<el-col :span="10">
 			  	<div style="text-align:right;padding-right:40px;margin-top: 38px;">
 					<el-link :underline="false" type="info" >没有账号？&nbsp</el-link>
-					<el-link :underline="false" type="danger"  href="#">请注册&gt;</el-link>
+					<el-link :underline="false" type="danger"  href="/home/register.do">请注册&gt;</el-link>
 				</div>  
 			 </el-col>
 			 <div style="clear:both;"></div>
@@ -57,12 +57,12 @@
   				<br><br>								 				
 			</div>	
 			<div>
-				<el-button type="primary" style="width:100%;font-size:16px" >登      录</el-button>	
+				<el-button type="primary" style="width:100%;font-size:16px" @click="submitForm(root,password)">登      录</el-button>	
 			</div>
 			
 			<p style="margin-top:20px;">
-				<el-link :underline="false" type="primary" style="text-align:left;">忘记密码</el-link>
-				<el-link :underline="false" type="primary" style="float:right;">免费注册</el-link>
+				<el-link :underline="false" type="primary" style="text-align:left;" href="/home/reset.do">忘记密码</el-link>
+				<el-link :underline="false" type="primary" style="float:right;" href="/home/register.do">免费注册</el-link>
 			</p>
 		  </el-col>
  				 

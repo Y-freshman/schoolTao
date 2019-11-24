@@ -1,6 +1,8 @@
 package com.schoolTao.controller;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -145,4 +147,56 @@ public class GoodsController {
 		return map;
 	}
 
+	/**
+	 * 发布商品
+	 */
+	@PostMapping("/InsertGoods.do")
+	@ResponseBody
+	public Map<String, Object> InsertGoods(@RequestBody Map<String,String> data) throws ParseException{
+		Map<String, Object>map = new HashMap<String, Object>();
+		String goodsName = data.get("goodsName");
+		Integer goodsCounterPrice = Integer.parseInt(data.get("goodsCounterPrice"));
+		Integer goodsRetailPrice = Integer.parseInt(data.get("goodsRetailPrice"));
+		Byte goodsIsnew =	Byte.parseByte(data.get("goodsIsnew").toString());
+		String goodsClassfy = data.get("goodsClassfy");
+		String goodsPicUrl = data.get("goodsPicUrl").toString();
+		Integer goodsNum = Integer.parseInt(data.get("goodsNum"));
+		String goodsSealname = data.get("goodsSealname");
+		String goodsPhone = data.get("goodsPhone");
+		
+		Date now = new Date(); 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//可以方便地修改日期格式
+		Date datetime = dateFormat.parse(dateFormat.format( now )); 
+		
+		Goods goods = new Goods();
+		goods.setUserId(1);
+		goods.setGoodsName(goodsName);
+		goods.setGoodsOldPrice(goodsCounterPrice);
+		goods.setGoodsNewPrice(goodsRetailPrice);
+		goods.setGoodsFresh(goodsIsnew);
+		goods.setGoodsType(goodsClassfy);
+		goods.setGoodsPics(goodsPicUrl);
+		goods.setGoodsNum(goodsNum);
+		goods.setGoodsUserName(goodsSealname);
+		goods.setGoodsUserPhone(goodsPhone);
+		goods.setGoodsTime(datetime);
+		goodsService.InsertGoods(goods);
+		map.put("goods", goods);
+ 		return map;
+	}
+	
+	/**
+	 * 猜你喜欢
+	 * @param data
+	 * @return
+	 */
+	@PostMapping("/maylike.do")
+	@ResponseBody
+	public Map<String,Object> maylike(@RequestBody Map<String,Object> data){
+		Map<String,Object> map = new HashMap();
+		List<Goods> likegood = goodsService.maylike();
+		map.put("list", likegood);
+		return map;
+	}
+	
 }

@@ -3,20 +3,20 @@ $(document).ready(function(){
 		  el: '#register',
 		  data: {
 			  options: [{
-		          value: '您的电话号码',
-		          label: ''
+		          value: '0',
+		          label: '您的电话号码'
 		        }, {
-		          value: '您的大学学校',
-		          label: ''
+		          value: '1',
+		          label: '您的大学学校'
 		        }, {
-		          value: '您的初恋名字',
-		          label: ''
+		          value: '2',
+		          label: '您最喜欢的歌'
 		        }, {
-		          value: '您最喜欢的歌手',
-		          label: ''
+		          value: '3',
+		          label: '您最喜欢的人'
 		        }, {
-		          value: '您最喜欢的篮球运动员',
-		          label: ''
+		          value: '4',
+		          label: '您的大学班主任'
 		        }],
 		        value: '',
 				root: '',
@@ -26,6 +26,7 @@ $(document).ready(function(){
 		  },
 		  methods: {
 			  submitForm() {
+				  var that = this;
 			            if(vm.root === '') {
 			            	 this.$message.error('请输入用户名');
 			              } 
@@ -39,9 +40,40 @@ $(document).ready(function(){
 			            	this.$message.error('请选择密保问题');
 			            }
 			            else if(vm.answer === ''){
-			            	this.$message.error('请填入密码答案');
+			            	//this.$message.error(vm.value);
+			            	 this.$message.error('请填入密码答案');
 			            }else {
-			            	this.$message.success('恭喜注册您成功！！！');
+			            	 $.ajax({
+								  url: "/home/user/registers.do",
+								  async: false,
+								  type: "post",
+								  data: JSON.stringify({
+									  root: vm.root,
+									  pass: vm.pass,
+									  value: vm.value,
+								      answer: vm.answer
+								  }),
+								  contentType: "application/json",
+								  dataType: 'json',
+								  success: function(data){
+									  console.log(data);
+									  if(data.code == "200"){
+										  that.$message({
+											  message: '恭喜您注册成功',
+											  type: 'success'
+										  });
+										  setTimeout(function(){  
+											  location.href="/home/index.jsp"; 
+											  }, 2000);
+										 
+									  }else{
+										  that.$message({
+											  message: '注册失败，请重新注册！',
+											  type: 'error'
+										  });
+									  }
+								  }
+							  })
 			            }
 			      }
 		  },

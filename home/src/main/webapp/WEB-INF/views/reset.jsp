@@ -29,7 +29,7 @@
 			<el-col :span="10">
 			  	<div style="text-align:right;padding-right:40px;margin-top: 38px;">
 					<el-link :underline="false" type="info" >已有账号？&nbsp</el-link>
-					<el-link :underline="false" type="danger"  href="#">请登录&gt;</el-link>
+					<el-link :underline="false" type="danger"  href="/home/login.do">请登录&gt;</el-link>
 				</div>  
 			 </el-col>
 		</el-container>

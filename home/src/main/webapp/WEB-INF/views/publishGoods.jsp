@@ -47,50 +47,160 @@
 		  	
 		  	<el-card class="box-card">
 		      <h3 style="text-align:center;">商品介绍</h3>
-		       		<el-form :model="goods" :rules="rules" ref="goods" label-width="100px" class="demo-ruleForm">
-					  	<el-form-item label="商品名称" prop="Name">
-					    <el-input type="text" v-model="goods.Name"></el-input>
+		      
+		        <el-form ref="goods" :rules="rules" :model="goods" label-width="150px">
+			        <el-form-item label="商品名称" prop="name">
+			          <el-input v-model="goods.name" clearable/>
+			        </el-form-item>
+			        <el-form-item label="专柜价格" prop="counterPrice">
+			          <el-input v-model="goods.counterPrice" placeholder="0.00" clearable>
+			            <template slot="append">元</template>
+			          </el-input>
+			        </el-form-item>
+			         <el-form-item label="现售价格" prop="retailPrice">
+				          <el-input v-model="goods.retailPrice" placeholder="0.00" clearable>
+				            <template slot="append">元</template>
+				          </el-input>
+					  </el-form-item>
+					 <el-form-item label="是否新品" >
+				         <template >
+							  <el-select v-model="goods.options.value" placeholder="请选择商品折旧程度" style="width:100%" >
+							    <el-option
+							      v-for="item in goods.options"
+							      :key="item.value"
+							      :label="item.label"
+							      :value="item.value">
+							    </el-option>
+							  </el-select>
+						</template>	
+				      </el-form-item>
+					    <el-form-item label="商品类别" >
+					         <template >
+								  <el-select v-model="goods.optionsOnce.value" placeholder="请选择商品类别" style="width:100%" >
+								    <el-option
+								      v-for="item in goods.optionsOnce"
+								      :key="item.value"
+								      :label="item.label"
+								      :value="item.value">
+								    </el-option>
+								  </el-select>
+							</template>	
+					      </el-form-item>
+					 <el-form-item label="商品上传" >
+				         	<el-upload
+						   	  ref='upload'
+							  action="http://upload-z2.qiniup.com"
+							  :data="tk"
+							  list-type="picture-card"
+							  accept="image/*"
+							  :limit="imgLimit"
+							  :file-list="productImgs"
+							  :multiple="isMultiple"
+							  :on-preview="handlePictureCardPreview"
+							  :on-remove="handleRemove"
+							  :on-success="handleAvatarSuccess"
+							  :before-upload="beforeAvatarUpload"
+							  :on-exceed="handleExceed"
+							  :on-error="imgUploadError"
+							  >
+							  <i class="el-icon-plus"></i>
+							</el-upload>
+							<el-dialog :visible.sync="dialogVisible">
+							  <img width="100%" :src="dialogImageUrl" alt="">
+							</el-dialog>
+				      </el-form-item>
+				   
+				   <el-form-item label="商品数量" prop="num">
+				        <template>
+						  <el-input-number style="line-height:0px;" v-model="goods.num" :min="1" :max="10" label="描述文字"></el-input-number>
+						</template>
+				     </el-form-item>
+				    
+				     <el-form-item label="卖家姓名" prop="sealname">
+				          <el-input v-model="goods.sealname" placeholder="请输入卖家姓名" clearable>
+				          </el-input>
+				    </el-form-item>
+				    
+				     <el-form-item label="卖家号码" prop="phone">
+				          <el-input v-model="goods.phone" placeholder="请输入卖家电话号码" clearable>
+				          </el-input>
+				    </el-form-item>
+				   
+				   <el-form-item>
+					    <el-button type="primary" @click="submitForm('goods')">发布</el-button>
+					    <el-button @click="resetForm('goods')">重置</el-button>
+					  </el-form-item>
+		        </el-form>
+				      
+		       		<!-- <el-form :model="goods" :rules="rules" ref="goods.name" label-width="100px" class="demo-ruleForm">
+					  	<el-form-item label="商品名称" prop="goods.name">
+					    <el-input type="text" v-model="goods.name"></el-input>
 				  	</el-form-item>
-				  	<el-form-item label="专柜价格" prop="counterPrice">
+				  	<el-form-item label="专柜价格" prop="goods.counterPrice">
 			          <el-input v-model="goods.counterPrice" placeholder="0.00">
 			            <template slot="append">元</template>
 			          </el-input>
 			        </el-form-item>
-				 	 <el-form-item label="现售价格" prop="retailPrice">
+				 	 <el-form-item label="现售价格" prop="goods.retailPrice">
 				          <el-input v-model="goods.retailPrice" placeholder="0.00">
 				            <template slot="append">元</template>
 				          </el-input>
 				      </el-form-item>
-				      <el-form-item label="是否新品" prop="isNew">
-				          <el-radio-group v-model="goods.isNew">
-				            <el-radio :label="true">新品</el-radio>
-				            <el-radio :label="false">非新品</el-radio>
-				          </el-radio-group>
+				      <el-form-item label="是否新品" >
+				          <template >
+							  <el-select v-model="goods.options.value" placeholder="请选择商品折旧程度" style="width:100%" >
+							    <el-option
+							      v-for="item in goods.options"
+							      :key="item.value"
+							      :label="item.label"
+							      :value="item.value">
+							    </el-option>
+							  </el-select>
+						</template>	
 				       </el-form-item>
 				     
 					  
-					  <el-form-item label="商品图片">
-					  	<el-upload
-						  action="https://jsonplaceholder.typicode.com/posts/"
-						  list-type="picture-card"
-						  :on-preview="handlePictureCardPreview"
-						  :on-remove="handleRemove">
-						  <i class="el-icon-plus"></i>
-						</el-upload>
-						<el-dialog :visible.sync="dialogVisible">
-						  <img width="100%" v-if="goods.picUrl" :src="goods.picUrl" alt="">
-						</el-dialog>
-					 </el-form-item>
-					 
-					<el-form-item label="商品数量
-					" prop="brief">
-				          <el-input v-model="goods.brief" > </el-input>
+					  <el-row :gutter="20" >
+						  <el-col :span="22" :offset="1" >
+						   	<el-upload
+						   	  ref='upload'
+							  action="http://qiniup.com"
+							  :data="tk"
+							  list-type="picture-card"
+							  accept="image/*"
+							  :limit="imgLimit"
+							  :file-list="productImgs"
+							  :multiple="isMultiple"
+							  :on-preview="handlePictureCardPreview"
+							  :on-remove="handleRemove"
+							  :on-success="handleAvatarSuccess"
+							  :before-upload="beforeAvatarUpload"
+							  :on-exceed="handleExceed"
+							  :on-error="imgUploadError"
+							  >
+							  <i class="el-icon-plus"></i>
+							</el-upload>
+							<el-dialog :visible.sync="dialogVisible">
+							  <img width="100%" :src="dialogImageUrl" alt="">
+							</el-dialog>
+					  </el-col>
+					</el-row>
+					
+					<el-form-item label="商品数量" >
+				        <template>
+						  <el-input-number style="line-height:0px;" v-model="goods.num" :min="1" :max="10" label="描述文字"></el-input-number>
+						</template>
 				      </el-form-item>
+				      
+				    <el-form-item label="商品详情" prop="goods.detail">
+				          <el-input v-model="goods.detail" placeholder="请输入商品详情">
+				          </el-input>
+				    </el-form-item>
 					  <el-form-item>
 					    <el-button type="primary" @click="submitForm('goods')">发布</el-button>
 					    <el-button @click="resetForm('goods')">重置</el-button>
 					  </el-form-item>
-				</el-form>
+				</el-form> -->
 		      	<!-- <el-input v-model="goods_name"  placeholder="请输入商品名称"  clearable>
   					 <el-button slot="prepend" icon="el-icon-user-solid"></el-button>
 		 		</el-input> -->
