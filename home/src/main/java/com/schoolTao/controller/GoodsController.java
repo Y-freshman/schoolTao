@@ -146,7 +146,7 @@ public class GoodsController {
 		map.put("code", 200);
 		return map;
 	}
-
+	
 	/**
 	 * 发布商品
 	 */
